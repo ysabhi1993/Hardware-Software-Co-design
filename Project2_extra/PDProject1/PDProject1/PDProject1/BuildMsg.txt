@@ -1,0 +1,62 @@
+Starting MAKE...
+creating project.mk 
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17): illegal expression
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17): syntax error; found `acosf' expecting `;'
+
+!W F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17):[warning] expression with no effect elided
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17): syntax error; found `]' expecting `;'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17): illegal statement termination
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17): skipping `]'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17): type error: pointer expected
+
+!W F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(17):[warning] expression with no effect elided
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(26): integer expression must be constant
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): syntax error; found `int' expecting `;'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): syntax error; found `int' expecting `;'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): syntax error; found `int' expecting `)'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): skipping `int'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): undeclared identifier `i'
+
+!W F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27):[warning] expression with no effect elided
+
+!W F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27):[warning] unreachable code
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): syntax error; found `)' expecting `;'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): illegal statement termination
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(27): skipping `)'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(34): type error in argument 1 to `printf'; found `pointer to __flash char' expected `pointer to char'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(35): syntax error; found `int' expecting `;'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(35): syntax error; found `int' expecting `;'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(35): syntax error; found `int' expecting `)'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(35): skipping `int'
+
+!E F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\test.c(35): too many errors
+
+make: *** [obj/test.o] Error 1
+
+ 
+PDProject1 - 22 error(s) 4 warning(s) 21:59:32
+

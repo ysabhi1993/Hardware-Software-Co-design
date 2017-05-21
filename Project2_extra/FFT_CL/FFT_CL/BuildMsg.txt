@@ -1,0 +1,42 @@
+Starting MAKE...
+creating project.mk 
+
+lib/e2prom_1.asm
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(135): redeclaration of `flashparams' previously declared at F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(32)
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(135): syntax error; found `.' expecting `;'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(135): skipping `.'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(135): syntax error; found `.' expecting `;'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(135): skipping `.'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(136): syntax error; found `.' expecting `;'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(136): skipping `.'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(136): syntax error; found `.' expecting `;'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(136): skipping `.'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(136): initializer must be constant
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(137): syntax error; found `.' expecting `;'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(137): skipping `.'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(137): syntax error; found `.' expecting `;'
+
+!E F:\HARDWA~1\Project2\FFT_CL\FFT_CL\main.c(137): skipping `.'
+
+make: *** [obj/main.o] Error 1
+
+ 
+FFT_CL - 15 error(s) 0 warning(s) 18:08:11
+

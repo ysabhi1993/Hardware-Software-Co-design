@@ -1,0 +1,48 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8ssc.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\lib\GLOBAL~1.INC\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./obj/isroutine.o :  ./lib/DUALAD~1.INC ./lib/LCD.inc ./lib/LPF2_1.inc\
+   ./lib/LPF2_2.inc ./lib/PGA_1.inc ./lib/PGA_2.inc ./lib/PGA_3.inc\
+   ./lib/PGA_4.inc ./lib/PSoCAPI.inc ./lib/PSOCGP~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./obj/main.o :  ./lib/DUALAD~1.INC ./lib/LCD.inc ./lib/LPF2_1.inc\
+   ./lib/LPF2_2.inc ./lib/PGA_1.inc ./lib/PGA_2.inc ./lib/PGA_3.inc\
+   ./lib/PGA_4.inc ./lib/PSoCAPI.inc ./lib/PSOCGP~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/dualadc_1.o :  ./lib/DUALAD~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/dualadc_1int.o :  ./lib/DUALAD~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/lpf2_1.o :  ./lib/LPF2_1.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/lpf2_2.o :  ./lib/LPF2_2.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/pga_1.o :  ./lib/PGA_1.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/pga_2.o :  ./lib/PGA_2.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/pga_3.o :  ./lib/PGA_3.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/pga_4.o :  ./lib/PGA_4.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\ese566\PROJEC~2\Project1\Project1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc

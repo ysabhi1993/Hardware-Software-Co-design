@@ -1,0 +1,123 @@
+*NODE:1:SW
+03A0: 56 04 00 MOV   [X+4],0x0
+    03A3: 62 D0 00 MOV   REG[0xD0],0x0
+    03A6: 52 FC    MOV   A,[X-4]
+    03A8: 53 02    MOV   [__r1],A
+    03AA: 52 FB    MOV   A,[X-5]
+    03AC: 53 03    MOV   [__r0],A
+    03AE: 51 02    MOV   A,[__r1]
+    03B0: 01 01    ADD   A,0x1
+    03B2: 54 FC    MOV   [X-4],A
+    03B4: 51 03    MOV   A,[__r0]
+    03B6: 09 00    ADC   A,0x0
+    03B8: 54 FB    MOV   [X-5],A
+    03BA: 51 03    MOV   A,[__r0]
+    03BC: 60 D4    MOV   REG[0xD4],A
+    03BE: 3E 02    MVI   A,[__r1]
+    03C0: 7A 02    DEC   [__r1]
+    03C2: 54 03    MOV   [X+3],A
+    03C4: 56 02 00 MOV   [X+2],0x0
+    03C7: 80 5C    JMP   0x0424
+(0041)                  i < 8; 
+(0042)                  i++, data >>= 1)
+(0043)             {
+(0044)                   if ((crc & 0x0001) ^ (data & 0x0001))
+    03C9: 62 D0 00 MOV   REG[0xD0],0x0
+    03CC: 52 03    MOV   A,[X+3]
+    03CE: 21 01    AND   A,0x1
+    03D0: 53 02    MOV   [__r1],A
+    03D2: 52 02    MOV   A,[X+2]
+    03D4: 21 00    AND   A,0x0
+    03D6: 53 03    MOV   [__r0],A
+    03D8: 52 01    MOV   A,[X+1]
+    03DA: 21 01    AND   A,0x1
+    03DC: 53 00    MOV   [__r3],A
+    03DE: 52 00    MOV   A,[X+0]
+    03E0: 21 00    AND   A,0x0
+    03E2: 53 01    MOV   [__r2],A
+    03E4: 51 00    MOV   A,[__r3]
+    03E6: 32 02    XOR   A,[__r1]
+    03E8: 53 02    MOV   [__r1],A
+    03EA: 51 01    MOV   A,[__r2]
+    03EC: 32 03    XOR   A,[__r0]
+    03EE: 39 00    CMP   A,0x0
+    03F0: B0 06    JNZ   0x03F7
+    03F2: 3C 02 00 CMP   [__r1],0x0
+    03F5: A0 20    JZ    0x0416
+(0045)                         crc = (crc >> 1) ^ POLY;
+    03F7: 62 D0 00 MOV   REG[0xD0],0x0
+    03FA: 52 01    MOV   A,[X+1]
+    03FC: 53 02    MOV   [__r1],A
+    03FE: 52 00    MOV   A,[X+0]
+    0400: 53 03    MOV   [__r0],A
+    0402: 70 FB    AND   F,0xFB
+    0404: 6E 03    RRC   [__r0]
+    0406: 6E 02    RRC   [__r1]
+    0408: 51 02    MOV   A,[__r1]
+    040A: 31 08    XOR   A,0x8
+    040C: 54 01    MOV   [X+1],A
+    040E: 51 03    MOV   A,[__r0]
+    0410: 31 84    XOR   A,0x84
+    0412: 54 00    MOV   [X+0],A
+    0414: 80 07    JMP   0x041C
+(0046)                   else  crc >>= 1;
+    0416: 70 FB    AND   F,0xFB
+    0418: 6F 00    RRC   [X+0]
+    041A: 6F 01    RRC   [X+1]
+(0047)             }
+    041C: 77 04    INC   [X+4]
+    041E: 70 FB    AND   F,0xFB
+    0420: 6F 02    RRC   [X+2]
+    0422: 6F 03    RRC   [X+3]
+    0424: 3D 04 08 CMP   [X+4],0x8
+    0427: CF A1    JC    0x03C9
+(0048)       } while (--length);
+    0429: 62 D0 00 MOV   REG[0xD0],0x0
+    042C: 52 FA    MOV   A,[X-6]
+    042E: 11 01    SUB   A,0x1
+    0430: 53 02    MOV   [__r1],A
+    0432: 52 F9    MOV   A,[X-7]
+    0434: 19 00    SBB   A,0x0
+    0436: 53 03    MOV   [__r0],A
+    0438: 51 02    MOV   A,[__r1]
+    043A: 54 FA    MOV   [X-6],A
+    043C: 51 03    MOV   A,[__r0]
+    043E: 54 F9    MOV   [X-7],A
+    0440: 3C 03 00 CMP   [__r0],0x0
+    0443: BF 5C    JNZ   0x03A0
+    0445: 3C 02 00 CMP   [__r1],0x0
+    0448: BF 57    JNZ   0x03A0
+(0049) 
+(0050)       crc = ~crc;
+    044A: 52 01    MOV   A,[X+1]
+    044C: 73       CPL   A
+    044D: 54 01    MOV   [X+1],A
+    044F: 52 00    MOV   A,[X+0]
+    0451: 73       CPL   A
+    0452: 54 00    MOV   [X+0],A
+(0051)       data = crc;
+    0454: 52 01    MOV   A,[X+1]
+    0456: 54 03    MOV   [X+3],A
+    0458: 52 00    MOV   A,[X+0]
+    045A: 54 02    MOV   [X+2],A
+(0052)       crc = (crc << 8) | (data >> 8 & 0xff);
+    045C: 62 D0 00 MOV   REG[0xD0],0x0
+    045F: 52 02    MOV   A,[X+2]
+    0461: 53 02    MOV   [__r1],A
+    0463: 55 03 00 MOV   [__r0],0x0
+    0466: 26 03 00 AND   [__r0],0x0
+    0469: 52 01    MOV   A,[X+1]
+    046B: 53 01    MOV   [__r2],A
+    046D: 50 00    MOV   A,0x0
+    046F: 2A 02    OR    A,[__r1]
+    0471: 54 01    MOV   [X+1],A
+    0473: 51 01    MOV   A,[__r2]
+    0475: 2A 03    OR    A,[__r0]
+    0477: 54 00    MOV   [X+0],A
+    0479: 52 01    MOV   A,[X+1]
+    047B: 53 02    MOV   [__r1],A
+    047D: 52 00    MOV   A,[X+0]
+    047F: 53 03    MOV   [__r0],A
+    0481: 38 FB    ADD   SP,0xFB
+    0483: 20       POP   X
+    0484: 8F FF    JMP   0x0484

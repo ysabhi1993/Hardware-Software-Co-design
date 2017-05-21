@@ -1,0 +1,684 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area lit(rom, con, rel, lit)
+ 0000           _packet_data::
+ 0000 4142434445464748494A00    .byte 'A,'B,'C,'D,'E,'F,'G,'H,'I,'J,0
+ 000B 6162636465666768696A00    .byte 'a,'b,'c,'d,'e,'f,'g,'h,'i,'j,0
+ 0016 3132333435363738393000    .byte 49,50,51,52,53,54,55,56,57,48,0
+ 0021                   .dbfile C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\main.c
+ 0021                   .dbsym e packet_data _packet_data A[33:3:11]kc
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           _main::
+ 0000                   .dbline -1
+ 0000                   .dbline 241
+ 0000           ; //--------------------------------------------------------------------------
+ 0000           ; //
+ 0000           ; // Copyright 2008, Cypress Semiconductor Corporation.
+ 0000           ; //
+ 0000           ; // This software is owned by Cypress Semiconductor Corporation (Cypress)
+ 0000           ; // and is protected by and subject to worldwide patent protection (United
+ 0000           ; // States and foreign), United States copyright laws and international
+ 0000           ; // treaty provisions. Cypress hereby grants to licensee a personal,
+ 0000           ; // non-exclusive, non-transferable license to copy, use, modify, create
+ 0000           ; // derivative works of, and compile the Cypress Source Code and derivative
+ 0000           ; // works for the sole purpose of creating custom software in support of
+ 0000           ; // licensee product to be used only in conjunction with a Cypress integrated
+ 0000           ; // circuit as specified in the applicable agreement. Any reproduction,
+ 0000           ; // modification, translation, compilation, or representation of this
+ 0000           ; // software except as specified above is prohibited without the express
+ 0000           ; // written permission of Cypress.
+ 0000           ; //
+ 0000           ; // Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND,EXPRESS OR IMPLIED,
+ 0000           ; // WITH REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ 0000           ; // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ 0000           ; // Cypress reserves the right to make changes without further notice to the
+ 0000           ; // materials described herein. Cypress does not assume any liability arising
+ 0000           ; // out of the application or use of any product or circuit described herein.
+ 0000           ; // Cypress does not authorize its products for use as critical components in
+ 0000           ; // life-support systems where a malfunction or failure may reasonably be
+ 0000           ; // expected to result in significant injury to the user. The inclusion of
+ 0000           ; // Cypress' product in a life-support systems application implies that the
+ 0000           ; // manufacturer assumes all risk of such use and in doing so indemnifies
+ 0000           ; // Cypress against all charges.
+ 0000           ; //
+ 0000           ; // Use may be limited by and subject to the applicable Cypress software
+ 0000           ; // license agreement.
+ 0000           ; //*****************************************************************************
+ 0000           ; //  FILENAME: main.c
+ 0000           ; //   Version: *C, Updated on 08 August 2012
+ 0000           ; //
+ 0000           ; //  DESCRIPTION: Main file of the Example_CRC Project.
+ 0000           ; //
+ 0000           ; //-----------------------------------------------------------------------------
+ 0000           ; //  Copyright (c) Cypress MicroSystems 2000-2003. All Rights Reserved.
+ 0000           ; //*****************************************************************************
+ 0000           ; //*****************************************************************************
+ 0000           ; //
+ 0000           ; //         CY3210-PSoCEVAL1 Board Project
+ 0000           ; //Project Objective
+ 0000           ; //    To demonstrate the operation of the CRC usermodule of the PSoC microcontroller.  For 
+ 0000           ; //    communication this project uses SPI Master (SPIM) user module. 
+ 0000           ; //
+ 0000           ; //Overview
+ 0000           ; //    A string of 10 characters is transmitted out through MOSI of SPIM (Serial Peripheral 
+ 0000           ; //    Interface) format on every switch closure at P1[4].  The bit stream is internally 
+ 0000           ; //    fed into a 16 bit CRC user module in the master. After the entire string is transmitted
+ 0000           ; //    the CRC is read and displayed on the LCD.
+ 0000           ; //
+ 0000           ; //    The following changes were made to the default settings in the Device Editor:
+ 0000           ; // 
+ 0000           ; //    Select User Modules
+ 0000           ; //        o Select a CRC16_1 from Digital Comm category.
+ 0000           ; //        o Select a SPIM_1 from the Digital Comm category.
+ 0000           ; //        o Select a LCD_1 from the Misc Digital category.
+ 0000           ; //        o In this example, these UMs are renamed as CRC16, SPIM and LCD respectively. 
+ 0000           ; //    Place User Modules
+ 0000           ; //        1. Select CRC16 and place it on block DBB00 and DBB01.
+ 0000           ; //        2. Select SPIM and place it on block DCB02.
+ 0000           ; //        3. Select LCD and select port_2 for the LCD port.
+ 0000           ; //
+ 0000           ; //    Set the global resources and UM parameters in the Device Editor as shown under Project 
+ 0000           ; //    Settings ahead.
+ 0000           ; //    
+ 0000           ; //    Upon program execution, all hardware settings from the device configuration are loaded 
+ 0000           ; //   into the device and main.c is executed.
+ 0000           ; //
+ 0000           ; //    The 24 MHz system clock is divided by 16 (VC1) to generate a 1.5 Mhz clock, which is 
+ 0000           ; //    provided as the clock for SPIM user module.  The effective SPI communication would be 
+ 0000           ; //    at 0.75 Mhz (ie., half of Input clock).
+ 0000           ; //
+ 0000           ; //    The MOSI output of the SPIM is fed into the InputBitStream of CRC16 and the SClk output 
+ 0000           ; //    of the SPIM user module is provided as the Clock for CRC16, so that whenever a bit is 
+ 0000           ; //    transmitted out, the same data enters the CRC and then clocked.
+ 0000           ; //
+ 0000           ; //    On every switch closure at P1[4] a 10 byte string is transmitted out of SPI.  After the 
+ 0000           ; //    entire string is transmitted the CRC is read and displayed on the LCD.
+ 0000           ; //
+ 0000           ; //    Further information on user modules is supplied in the specific user module data sheet 
+ 0000           ; //    included with PSoC Designer.
+ 0000           ; //
+ 0000           ; //Clock Routing
+ 0000           ; //    In the device interface, the MOSI output of the SPIM is routed to the InputDataStream 
+ 0000           ; //    of CRC16 through Row_0_Output_1.  The SClk output of the SPIM user module is routed 
+ 0000           ; //    to the Input clock of CRC16 through Row_0_Output_0.
+ 0000           ; //    
+ 0000           ; //Circuit Connections
+ 0000           ; //    This example project runs on the CY3210-PSoCEVAL1 board or 
+ 0000           ; //    compatible hardware.  
+ 0000           ; //
+ 0000           ; //Project Settings
+ 0000           ; //
+ 0000           ; //    Global Resources 
+ 0000           ; //
+ 0000           ; //        CPU             = 12 MHz (SysClk/2)         Since communication user module is 
+ 0000           ; //                                                    used, CPU clock is set to a higher frequency. 
+ 0000           ; //        VC1             = 16                            Divide 24 Mhz system clock by 16 to get a 
+ 0000           ; //                                                    1.5 Mhz clock (for SPIM source)
+ 0000           ; //
+ 0000           ; //    User Module Parameters
+ 0000           ; //    
+ 0000           ; //
+ 0000           ; //    CRC16           
+ 0000           ; //        InputDataStream     = Row_0_Input_1         MOSI routed parallely to CRC16 module.
+ 0000           ; //        Clock               = Row_0_Output_0                SClk of SPIM routed parallely to CRC16 module.
+ 0000           ; //              Clock Sync      = Sync to SysClk                      Synchronize the clock to SysClock as SClk(VC1 / 2) is derivative of SysClk.
+ 0000           ; //        InvertInputDataStream = Normal              Do not invert the data input to CRC16 module.
+ 0000           ; //        
+ 0000           ; //    SPIM        
+ 0000           ; //        Clock           = VC1                      1.5 MHz Clock from VC1.
+ 0000           ; //        MISO            = Low                      Not used.
+ 0000           ; //        MOSI            = Row_0_Output_1           Routed to CRC16 module through Row_0_Output_1 net. 
+ 0000           ; //        SClk            = Row_0_Output_0           Routed to CRC16 module through Row_0_Output_0 net.
+ 0000           ; //        InterruptMode   = TXComplete               Not used in this project.
+ 0000           ; //              Clock Sync      = Sync to SysClk                       Synchronize the clock to SysClock as VC1 is derivative of SysClk.
+ 0000           ; //        InvertMISO      = Normal                                     Not used.        
+ 0000           ; //    
+ 0000           ; //    LCD             
+ 0000           ; //        LCDPort             = Port_2                     Port 2 is used to send data to LCD
+ 0000           ; //        BarGraph        = Disable                                    Bargraph not used in this project
+ 0000           ; //            
+ 0000           ; //                                    
+ 0000           ; //Input
+ 0000           ; //
+ 0000           ; //    Pin              Select             Drive
+ 0000           ; //    ---------------------------------------------
+ 0000           ; //    P1[4] (Switch)   StdCPU             Pull Down        
+ 0000           ; //             
+ 0000           ; //Output
+ 0000           ; //
+ 0000           ; //    Pin              Select             Drive
+ 0000           ; //    ---------------------------------------------
+ 0000           ; //    P2[0]-P2[6]      StdCPU             Strong (LCD)
+ 0000           ; //            
+ 0000           ; //How to use the Prototype Board
+ 0000           ; //    � Connect an industry standard Hitachi HD44780 based LCD module in the LCD header for 
+ 0000           ; //      CY3210-PSoCEVAL1.In CY3210-PSoCEVAL1 board the port 2 pins and the control signals 
+ 0000           ; //      required for LCD are taken out through J9 slot.The following table shows 
+ 0000           ; //            the connection between LCD and port 2 pins. 
+ 0000           ; //      
+ 0000           ; //
+ 0000           ; //                Port Pins    LCD Pin
+ 0000           ; //                ---------------------
+ 0000           ; //                P2 [0]        LCD_D4
+ 0000           ; //                P2 [1]        LCD_D5
+ 0000           ; //                P2 [2]        LCD_D6
+ 0000           ; //                P2 [3]        LCD_D7
+ 0000           ; //                P2 [4]        LCD_E
+ 0000           ; //                P2 [5]        LCD_RS
+ 0000           ; //                P2 [6]        LCD_RW
+ 0000           ; //
+ 0000           ; //    After downloading the Example_CRC project into the PSoC,power on the PSoC device.
+ 0000           ; //    The following display will appear on LCD.
+ 0000           ; //    ---------------------------------------------------------------------------------------
+ 0000           ; //    Press Switch S1
+ 0000           ; //    ---------------------------------------------------------------------------------------
+ 0000           ; //      
+ 0000           ; //    At every switch closure at P1[4], a string of 10 characters is transmitted from SPI.  The 
+ 0000           ; //    output bit-stream is connected to a CRC user module within the master.  
+ 0000           ; //
+ 0000           ; //    After the entire string is transmitted the CRC is read and displayed on the LCD.
+ 0000           ; //
+ 0000           ; //      After the first closure of switch at P1[4],the first string with string index 0 
+ 0000           ; //      and its CRC will be displayed on LCD as shown below.
+ 0000           ; //    ---------------------------------------------------------------------------------------
+ 0000           ; //            00-ABCDEFGHIJ
+ 0000           ; //            CRC-86F5
+ 0000           ; //  -----------------------------------------------------------------------------------------
+ 0000           ; //    After the Second closure of switch at P1[4],the second string with string index 1 
+ 0000           ; //      and its CRC will be displayed on LCD as shown below.
+ 0000           ; //  ---------------------------------------------------------------------------------------
+ 0000           ; //            01-abcdefghij
+ 0000           ; //            CRC-A32A
+ 0000           ; //  -----------------------------------------------------------------------------------------
+ 0000           ; //    After the Third closure of switch at P1[4],the third string with string index 2 
+ 0000           ; //      and its CRC will be displayed on LCD as shown below.
+ 0000           ; //  ---------------------------------------------------------------------------------------
+ 0000           ; //            02-1234567890
+ 0000           ; //            CRC-D321
+ 0000           ; //  -----------------------------------------------------------------------------------------
+ 0000           ; //     Further closure of switch at P1[4] will repeat the display of the strings with 
+ 0000           ; //   index 0,1 and 2 in the same format shown above.
+ 0000           ; //  
+ 0000           ; //
+ 0000           ; ////-------------------------------------------------------------------
+ 0000           ; // Include Files
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ; // Prototypes
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ; void sendDataToCRC(void);
+ 0000           ; void outputData(void);
+ 0000           ; 
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ; // Constant declarations
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ; #define     TOTAL_STRINGS     3
+ 0000           ; #define     TOTAL_BYTES       10
+ 0000           ; 
+ 0000           ; //Strings whose CRC needs to be calculated
+ 0000           ; const char  packet_data[TOTAL_STRINGS][TOTAL_BYTES+1] = {"ABCDEFGHIJ","abcdefghij","1234567890"};
+ 0000           ; 
+ 0000           ; 
+ 0000           ; #define CLEAR_BIT( MSKN_REG, MASK )   (MSKN_REG &= ~MASK)        // Clear Bit Mask(s) 
+ 0000           ; #define SET_BIT(   MSKN_REG, MASK )   (MSKN_REG |=  MASK)          // Set Bit Mask(s) 
+ 0000           ; 
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ; // Variable Allocation
+ 0000           ; //-------------------------------------------------------------------
+ 0000           ;  
+ 0000           ; char flagReg;                                               //Flag register (each bit is used as a flag)
+ 0000           ; WORD wMasterCrc;                                  //Variable to hold 16 bit CRC
+ 0000           ; BYTE bStringIndex;
+ 0000           ; 
+ 0000           ; 
+ 0000           ; //-----------------------------------------------------------------------------
+ 0000           ; //  FUNCTION NAME: main.c
+ 0000           ; //
+ 0000           ; //  DESCRIPTION:
+ 0000           ; //      Main function. Performs system initialization and loops infinitely.
+ 0000           ; //      
+ 0000           ; //-----------------------------------------------------------------------------
+ 0000           ; //
+ 0000           ; //  ARGUMENTS:        None
+ 0000           ; //  RETURNS:          Nothing.
+ 0000           ; //  SIDE EFFECTS:     None.
+ 0000           ; //
+ 0000           ; //  THEORY of OPERATION or PROCEDURE:
+ 0000           ; //    1) Start the user modules 
+ 0000           ; //    2) Initialize the CRC and Keep sending a string on every switch closure at P1[4].
+ 0000           ; //
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 243
+ 0000           ;     //Start the LCD
+ 0000           ;     LCD_Start();
+ 0000 10                push X
+ 0001 7C0000            xcall _LCD_Start
+ 0004                   .dbline 246
+ 0004           ;     
+ 0004           ;       //Initialize and start the SPI Master user module in mode 0
+ 0004           ;       SPIM_Start(SPIM_SPIM_MODE_0 | SPIM_SPIM_MSB_FIRST);  
+ 0004 5000              mov A,0
+ 0006 7C0000            xcall _SPIM_Start
+ 0009                   .dbline 249
+ 0009           ; 
+ 0009           ;     //Position the LCD to Row 1 column 1        
+ 0009           ;     LCD_Position(0,0);                        
+ 0009 5000              mov A,0
+ 000B 5700              mov X,0
+ 000D 7C0000            xcall _LCD_Position
+ 0010                   .dbline 250
+ 0010           ;     LCD_PrCString("Press Switch S1");            
+ 0010 5028              mov A,>L2
+ 0012 08                push A
+ 0013 5028              mov A,<L2
+ 0015 5C                mov X,A
+ 0016 18                pop A
+ 0017 7C0000            xcall _LCD_PrCString
+ 001A                   .dbline 253
+ 001A           ;     
+ 001A           ;       //Load Polynomial into CRC16 module
+ 001A           ;     CRC16_WritePolynomial(0x8810);
+ 001A 5788              mov X,-120
+ 001C 5010              mov A,16
+ 001E 7C0000            xcall _CRC16_WritePolynomial
+ 0021 20                pop X
+ 0022                   .dbline 255
+ 0022           ; 
+ 0022           ;     bStringIndex=0;
+ 0022 62D000            mov REG[0xd0],>_bStringIndex
+ 0025 550000            mov [_bStringIndex],0
+ 0028 804E              xjmp L4
+ 002A           L3:
+ 002A                   .dbline 259
+ 002A           ;            
+ 002A           ;     //Loop infinitely.  
+ 002A           ;     while(1)
+ 002A           ;     {
+ 002A                   .dbline 261
+ 002A           ;         //Check if switch in P1[4] is pressed
+ 002A           ;         if ( PRT1DR & 0x10 )
+ 002A 5D04              mov A,REG[0x4]
+ 002C 62D000            mov REG[0xd0],>__r0
+ 002F 5300              mov [__r0],A
+ 0031 470010            tst [__r0],16
+ 0034 A042              jz L6
+ 0036                   .dbline 264
+ 0036           ;         {
+ 0036           ;             // Wait for switch to be released
+ 0036           ;                       while (PRT1DR & 0x10);
+ 0036           L8:
+ 0036                   .dbline 264
+ 0036           L9:
+ 0036                   .dbline 264
+ 0036 5D04              mov A,REG[0x4]
+ 0038 62D000            mov REG[0xd0],>__r0
+ 003B 5300              mov [__r0],A
+ 003D 470010            tst [__r0],16
+ 0040 BFF5              jnz L8
+ 0042                   .dbline 267
+ 0042           ;                       
+ 0042           ;             //Load seed value into CRC16 module
+ 0042           ;             CRC16_WriteSeed(0x000);
+ 0042 10                push X
+ 0043 5000              mov A,0
+ 0045 5700              mov X,0
+ 0047 7C0000            xcall _CRC16_WriteSeed
+ 004A                   .dbline 270
+ 004A           ;                       
+ 004A           ;                       //Start CRC16 module
+ 004A           ;             CRC16_Start();
+ 004A 7C0000            xcall _CRC16_Start
+ 004D 20                pop X
+ 004E                   .dbline 273
+ 004E           ; 
+ 004E           ;             //call a routine to send data to slave (CRC16 module)
+ 004E           ;             sendDataToCRC();
+ 004E 902B              xcall _sendDataToCRC
+ 0050                   .dbline 276
+ 0050           ; 
+ 0050           ;             //Stop and Read the CRC of master 
+ 0050           ;             CRC16_Stop();
+ 0050 10                push X
+ 0051 7C0000            xcall _CRC16_Stop
+ 0054                   .dbline 279
+ 0054           ;                       
+ 0054           ;                       //Read the 16 bit CRC  
+ 0054           ;             wMasterCrc = CRC16_wReadCRC();
+ 0054 7C0000            xcall _CRC16_wReadCRC
+ 0057 62D000            mov REG[0xd0],>__r0
+ 005A 5A00              mov [__r0],X
+ 005C 20                pop X
+ 005D 08                push A
+ 005E 5100              mov A,[__r0]
+ 0060 62D000            mov REG[0xd0],>_wMasterCrc
+ 0063 5300              mov [_wMasterCrc],A
+ 0065 18                pop A
+ 0066 5301              mov [_wMasterCrc+1],A
+ 0068                   .dbline 282
+ 0068           ; 
+ 0068           ;             //Call the function to display string and its index and CRC on LCD
+ 0068           ;                       outputData();
+ 0068 90AC              xcall _outputData
+ 006A                   .dbline 285
+ 006A           ;                                       
+ 006A           ;             //increment the string index
+ 006A           ;             bStringIndex++;
+ 006A 62D000            mov REG[0xd0],>_bStringIndex
+ 006D 7600              inc [_bStringIndex]
+ 006F                   .dbline 286
+ 006F           ;             if (bStringIndex == TOTAL_STRINGS)        //CRC for all the strings have been calculated
+ 006F 3C0003            cmp [_bStringIndex],3
+ 0072 B004              jnz L11
+ 0074                   .dbline 287
+ 0074           ;                 bStringIndex=0;
+ 0074 550000            mov [_bStringIndex],0
+ 0077           L11:
+ 0077                   .dbline 288
+ 0077           ;               }
+ 0077           L6:
+ 0077                   .dbline 289
+ 0077           ;       }
+ 0077           L4:
+ 0077                   .dbline 258
+ 0077 8FB2              xjmp L3
+ 0079           X0:
+ 0079                   .dbline -2
+ 0079           L1:
+ 0079                   .dbline 0 ; func end
+ 0079 8FFF              jmp .
+ 007B                   .dbend
+ 007B                   .dbfunc e sendDataToCRC _sendDataToCRC fV
+ 007B           ;         bDummy -> X+1
+ 007B           ;           bCtr -> X+0
+ 007B           _sendDataToCRC::
+ 007B                   .dbline -1
+ 007B 10                push X
+ 007C 4F                mov X,SP
+ 007D 3802              add SP,2
+ 007F                   .dbline 307
+ 007F           ; }
+ 007F           ; //-----------------------------------------------------------------------------
+ 007F           ; //  FUNCTION NAME: sendDataToCRC
+ 007F           ; //
+ 007F           ; //  DESCRIPTION:
+ 007F           ; //      Sends data to CRC UM and gets the CRC value
+ 007F           ; //-----------------------------------------------------------------------------
+ 007F           ; //
+ 007F           ; //  ARGUMENTS:        None
+ 007F           ; //  RETURNS:          None.
+ 007F           ; //  SIDE EFFECTS:     None.
+ 007F           ; //
+ 007F           ; //  THEORY of OPERATION or PROCEDURE:
+ 007F           ; //     - Wait Till Tx Buffer is empty and then send the string, byte by byte.
+ 007F           ; //     - Wait Till Rx Buffer is full. Read and descard the received data.
+ 007F           ; //
+ 007F           ; void sendDataToCRC(void)
+ 007F           ; {
+ 007F                   .dbline 312
+ 007F           ;     BYTE bDummy;
+ 007F           ;     BYTE bCtr;
+ 007F           ; 
+ 007F           ;     // While data remains to be sent 
+ 007F           ;     bCtr=0;
+ 007F 560000            mov [X+0],0
+ 0082 808A              xjmp L15
+ 0084           L17:
+ 0084                   .dbline 316
+ 0084           ;     while(bCtr<TOTAL_BYTES)
+ 0084           ;     {
+ 0084           ;         // Ensure the transmit buffer is free 
+ 0084           ;         while( ! (SPIM_bReadStatus() & SPIM_SPIM_TX_BUFFER_EMPTY ) );
+ 0084           L18:
+ 0084                   .dbline 316
+ 0084 10                push X
+ 0085 7C0000            xcall _SPIM_bReadStatus
+ 0088 20                pop X
+ 0089 62D000            mov REG[0xd0],>__r0
+ 008C 5300              mov [__r0],A
+ 008E 470010            tst [__r0],16
+ 0091 AFF2              jz L17
+ 0093                   .dbline 318
+ 0093           ;         // load the next byte 
+ 0093           ;         SPIM_SendTxData( packet_data[bStringIndex][bCtr] ); 
+ 0093 62D000            mov REG[0xd0],>_bStringIndex
+ 0096 5100              mov A,[_bStringIndex]
+ 0098 62D000            mov REG[0xd0],>__r0
+ 009B 5300              mov [__r1],A
+ 009D 550000            mov [__r0],0
+ 00A0 55000B            mov [__r3],11
+ 00A3 550000            mov [__r2],0
+ 00A6 550000            mov [__rX],0
+ 00A9 550000            mov [__rY],0
+ 00AC           X1:
+ 00AC 3C0000            cmp [__r2],0
+ 00AF B006              jnz X4
+ 00B1 3C0000            cmp [__r3],0
+ 00B4 A01A              jz X3
+ 00B6           X4:
+ 00B6 70FB              and F,-5
+ 00B8 6E00              rrc [__r2]
+ 00BA 6E00              rrc [__r3]
+ 00BC D00C              jnc X2
+ 00BE 62D000            mov REG[0xd0],>__r0
+ 00C1 5100              mov A,[__r1]
+ 00C3 0400              add [__rX],A
+ 00C5 5100              mov A,[__r0]
+ 00C7 0C00              adc [__rY],A
+ 00C9           X2:
+ 00C9 6500              asl [__r1]
+ 00CB 6B00              rlc [__r0]
+ 00CD 8FDE              jmp X1
+ 00CF           X3:
+ 00CF 5F0000            mov [__r1],[__rX]
+ 00D2 5F0000            mov [__r0],[__rY]
+ 00D5 62D000            mov REG[0xd0],>__r0
+ 00D8 060000            add [__r1],<_packet_data
+ 00DB 0E0000            adc [__r0],>_packet_data
+ 00DE 5200              mov A,[X+0]
+ 00E0 0200              add A,[__r1]
+ 00E2 5300              mov [__r1],A
+ 00E4 5000              mov A,0
+ 00E6 0A00              adc A,[__r0]
+ 00E8 10                push X
+ 00E9 5800              mov X,[__r1]
+ 00EB 28                romx
+ 00EC 20                pop X
+ 00ED 10                push X
+ 00EE 7C0000            xcall _SPIM_SendTxData
+ 00F1 20                pop X
+ 00F2           L20:
+ 00F2                   .dbline 321
+ 00F2           ;         
+ 00F2           ;         //Wait till the Receive buffer is full  
+ 00F2           ;         while( ! (SPIM_bReadStatus() & SPIM_SPIM_RX_BUFFER_FULL ) );
+ 00F2           L21:
+ 00F2                   .dbline 321
+ 00F2 10                push X
+ 00F3 7C0000            xcall _SPIM_bReadStatus
+ 00F6 20                pop X
+ 00F7 62D000            mov REG[0xd0],>__r0
+ 00FA 5300              mov [__r0],A
+ 00FC 470008            tst [__r0],8
+ 00FF AFF2              jz L20
+ 0101                   .dbline 323
+ 0101           ;         //Read the Recived data and descard (ie., dont use this data)
+ 0101           ;         bDummy=SPIM_bReadRxData();
+ 0101 10                push X
+ 0102 7C0000            xcall _SPIM_bReadRxData
+ 0105 20                pop X
+ 0106 62D000            mov REG[0xd0],>__r0
+ 0109 5401              mov [X+1],A
+ 010B                   .dbline 326
+ 010B           ; 
+ 010B           ;         //increment the counter
+ 010B           ;         bCtr++;
+ 010B 7700              inc [X+0]
+ 010D                   .dbline 327
+ 010D           ;     }    
+ 010D           L15:
+ 010D                   .dbline 313
+ 010D 3D000A            cmp [X+0],10
+ 0110 CF73              jc L18
+ 0112           X5:
+ 0112                   .dbline -2
+ 0112           L13:
+ 0112 38FE              add SP,-2
+ 0114 20                pop X
+ 0115                   .dbline 0 ; func end
+ 0115 7F                ret
+ 0116                   .dbsym l bDummy 1 c
+ 0116                   .dbsym l bCtr 0 c
+ 0116                   .dbend
+ 0116                   .dbfunc e outputData _outputData fV
+ 0116           _outputData::
+ 0116                   .dbline -1
+ 0116                   .dbline 345
+ 0116           ; }
+ 0116           ; 
+ 0116           ; //-----------------------------------------------------------------------------
+ 0116           ; //  FUNCTION NAME: outputData
+ 0116           ; //
+ 0116           ; //  DESCRIPTION:
+ 0116           ; //      Ouputs data on the LCD
+ 0116           ; //-----------------------------------------------------------------------------
+ 0116           ; //
+ 0116           ; //  ARGUMENTS:        None
+ 0116           ; //  RETURNS:          None.
+ 0116           ; //  SIDE EFFECTS:     None.
+ 0116           ; //
+ 0116           ; //  THEORY of OPERATION or PROCEDURE:
+ 0116           ; //     - Output the String index, String and CRC value on the LCD
+ 0116           ; //
+ 0116           ; void outputData(void) 
+ 0116           ; {
+ 0116                   .dbline 347
+ 0116           ;     //clear LCD
+ 0116           ;     LCD_Control(0x01);
+ 0116 10                push X
+ 0117 5001              mov A,1
+ 0119 7C0000            xcall _LCD_Control
+ 011C                   .dbline 349
+ 011C           ;     //Position the LCD to Row 0 column 0
+ 011C           ;     LCD_Position(0,0);
+ 011C 5000              mov A,0
+ 011E 5700              mov X,0
+ 0120 7C0000            xcall _LCD_Position
+ 0123                   .dbline 351
+ 0123           ;     //Output the index and string
+ 0123           ;     LCD_PrHexByte(bStringIndex);
+ 0123 62D000            mov REG[0xd0],>_bStringIndex
+ 0126 5100              mov A,[_bStringIndex]
+ 0128 7C0000            xcall _LCD_PrHexByte
+ 012B                   .dbline 352
+ 012B           ;     LCD_PrCString("-");
+ 012B 5026              mov A,>L24
+ 012D 08                push A
+ 012E 5026              mov A,<L24
+ 0130 5C                mov X,A
+ 0131 18                pop A
+ 0132 7C0000            xcall _LCD_PrCString
+ 0135 20                pop X
+ 0136                   .dbline 354
+ 0136           ;     //Output the string
+ 0136           ;     LCD_PrCString(packet_data[bStringIndex]);
+ 0136 62D000            mov REG[0xd0],>_bStringIndex
+ 0139 5100              mov A,[_bStringIndex]
+ 013B 62D000            mov REG[0xd0],>__r0
+ 013E 5300              mov [__r1],A
+ 0140 550000            mov [__r0],0
+ 0143 55000B            mov [__r3],11
+ 0146 550000            mov [__r2],0
+ 0149 550000            mov [__rX],0
+ 014C 550000            mov [__rY],0
+ 014F           X6:
+ 014F 3C0000            cmp [__r2],0
+ 0152 B006              jnz X9
+ 0154 3C0000            cmp [__r3],0
+ 0157 A01A              jz X8
+ 0159           X9:
+ 0159 70FB              and F,-5
+ 015B 6E00              rrc [__r2]
+ 015D 6E00              rrc [__r3]
+ 015F D00C              jnc X7
+ 0161 62D000            mov REG[0xd0],>__r0
+ 0164 5100              mov A,[__r1]
+ 0166 0400              add [__rX],A
+ 0168 5100              mov A,[__r0]
+ 016A 0C00              adc [__rY],A
+ 016C           X7:
+ 016C 6500              asl [__r1]
+ 016E 6B00              rlc [__r0]
+ 0170 8FDE              jmp X6
+ 0172           X8:
+ 0172 5F0000            mov [__r1],[__rX]
+ 0175 5F0000            mov [__r0],[__rY]
+ 0178 62D000            mov REG[0xd0],>__r0
+ 017B 060000            add [__r1],<_packet_data
+ 017E 0E0000            adc [__r0],>_packet_data
+ 0181 10                push X
+ 0182 5100              mov A,[__r0]
+ 0184 08                push A
+ 0185 5100              mov A,[__r1]
+ 0187 5C                mov X,A
+ 0188 18                pop A
+ 0189 7C0000            xcall _LCD_PrCString
+ 018C                   .dbline 357
+ 018C           ; 
+ 018C           ;     //Position the LCD to Row 1 column 0
+ 018C           ;     LCD_Position(1,0);
+ 018C 5700              mov X,0
+ 018E 5001              mov A,1
+ 0190 7C0000            xcall _LCD_Position
+ 0193                   .dbline 359
+ 0193           ;     //Output the master CRC
+ 0193           ;     LCD_PrCString("CRC-");
+ 0193 5021              mov A,>L25
+ 0195 08                push A
+ 0196 5021              mov A,<L25
+ 0198 5C                mov X,A
+ 0199 18                pop A
+ 019A 7C0000            xcall _LCD_PrCString
+ 019D                   .dbline 360
+ 019D           ;     LCD_PrHexInt(wMasterCrc);
+ 019D 62D000            mov REG[0xd0],>_wMasterCrc
+ 01A0 5100              mov A,[_wMasterCrc]
+ 01A2 08                push A
+ 01A3 5101              mov A,[_wMasterCrc+1]
+ 01A5 20                pop X
+ 01A6 7C0000            xcall _LCD_PrHexInt
+ 01A9 20                pop X
+ 01AA                   .dbline -2
+ 01AA           L23:
+ 01AA                   .dbline 0 ; func end
+ 01AA 7F                ret
+ 01AB                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\main.c
+ 0000           _bStringIndex::
+ 0000 00                .byte 0
+ 0001                   .dbsym e bStringIndex _bStringIndex c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\main.c
+ 0000           _wMasterCrc::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e wMasterCrc _wMasterCrc i
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\main.c
+ 0000           _flagReg::
+ 0000 00                .byte 0
+ 0001                   .dbsym e flagReg _flagReg c
+                        .area lit(rom, con, rel, lit)
+ 0021           L25:
+ 0021 4352432D00        .byte 'C,'R,'C,45,0
+ 0026           L24:
+ 0026 2D00              .byte 45,0
+ 0028           L2:
+ 0028 50726573732053776974636820533100  .byte 'P,'r,'e,'s,'s,32,'S,'w,'i,'t,'c,'h,32,'S,49,0

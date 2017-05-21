@@ -1,0 +1,25 @@
+Develop (a) a cost-efficient and (b) a time-efficient algorithm 
+for computing the square root of an unsigned integer number. Compare the two solutions.
+
+Look up table - time efficient - (more hw)
+the function is cost efficient - (less hw)
+
+2^16 wouldn't fit in Flash: ~65k inputs
+1) keep solutions as a byte size since sqrt(65k) is ~256
+	input value is the index
+2) keep a table of only perfect sqrt, need to keep an array that holds all the values
+	of a perfect sqrt
+	
+the function: 
+
+	//Function to compute sqroot(n)
+int sqroot(int n) {
+        int x = n;
+		int i;
+        for (i = 0; i < (n/2); i++)
+             x = (x + n / x) / 2;
+
+        return x;
+}
+
+

@@ -1,0 +1,48 @@
+XH
+H 1 areas 5 global symbols
+M tickhander.asm
+S _wLastValue Ref0000
+S _wTickCount Ref0000
+S _wFirstValue Ref0000
+S _cOverFlow Ref0000
+A text size 1F flags 0
+dbfile ./tickhander.asm
+dbfunc 0 ? 0 I
+dbline 40 0
+dbline 42 1
+dbline 43 3
+dbline 44 6
+dbline 47 9
+dbline 4E B
+dbline 4F D
+dbline 50 F
+dbline 51 11
+dbline 52 13
+dbline 53 14
+dbline 57 15
+dbline 58 17
+dbline 59 19
+dbline 5A 1B
+dbline 5B 1D
+dbline 5C 1E
+dbfile TickTimer.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/TickTimer.inc
+dbfunc 0 ? 0 I
+dbfile ./tickhander.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./tickhander.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+S _TickHandler_ISR Def0000
+T 00 00 08 76 00 01 0E 00 00 00 0E 00 00 00 D0 0B
+R 00 00 00 00 03 04 00 01 03 07 00 01 03 0B 00 03
+T 00 0B 5D 22 53 00 01 5D 26 53 00 00 18 7E 5D 22
+R 00 00 00 00 03 05 00 02 03 0A 00 02
+T 00 17 53 00 01 5D 26 53 00 00 18 7E
+R 00 00 00 00 03 03 00 00 03 08 00 00

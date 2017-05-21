@@ -1,0 +1,41 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8ssc.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\lib\GLOBAL~1.INC\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./obj/freqcode.o :  ./lib/COMPAR~1.INC ./lib/LCD.inc ./lib/PSoCAPI.inc\
+   ./lib/PSOCGP~1.INC ./lib/SAMPLE~1.INC ./lib/TICKTI~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./obj/main.o :  ./lib/COMPAR~1.H ./lib/LCD.h ./lib/PSoCAPI.h\
+   ./lib/PSOCGP~1.H ./lib/SAMPLE~1.H ./lib/TICKTI~1.H\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/M8C.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/_const.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/limits.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/stdlib.h\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\FreqCode.h
+./obj/tickhander.o :  ./lib/TICKTI~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./lib/obj/comparator.o :  ./lib/COMPAR~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/samplefreq.o :  ./lib/SAMPLE~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./lib/obj/ticktimer.o :  ./lib/TICKTI~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc
+./lib/obj/ticktimerint.o :  ./lib/TICKTI~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\msur\Desktop\APPLIC~1\AN2283\AN2283\AN2283\FREQUE~1\FREQUE~1\memory.inc

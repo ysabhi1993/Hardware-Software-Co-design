@@ -1,0 +1,62 @@
+XH
+H 3 areas 9 global symbols
+M ticktimerint.asm
+A text size 0 flags 0
+dbfile lib/ticktimerint.asm
+dbfunc 0 ? 0 I
+dbfile TickTimer.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/TickTimer.inc
+dbfunc 0 ? 0 I
+dbfile lib/ticktimerint.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/ticktimerint.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A InterruptRAM size D flags 20
+S _wSaveTickNum Def0008
+S _wLastValue Def0005
+S _wTickCount Def0001
+S _cSaveOverFlow Def0007
+S _wSaveCountNum Def000A
+S _bDataAvailable Def000C
+S _wFirstValue Def0003
+S _cOverFlow Def0000
+A UserModules size 24 flags 0
+dbfile lib/ticktimerint.asm
+dbfunc 0 ? 0 I
+dbline 53 0
+dbline 56 1
+dbline 57 4
+dbline 58 7
+dbline 59 9
+dbline 5A B
+dbline 5B D
+dbline 5E F
+dbline 5F 12
+dbline 60 15
+dbline 64 18
+dbline 65 1A
+dbline 66 1C
+dbline 67 1E
+dbline 68 20
+dbline 69 22
+dbline 6F 23
+S _TickTimer_ISR Def0000
+T 00 00 08 5F 00 0B 00 04 5F 00 0A
+R 00 00 00 02 01 04 00 01 01 06 00 01 01 09 00 01
+T 00 06 00 03 51 00 06 14 00 0B 51
+R 00 00 00 02 01 02 00 01 01 05 00 01 01 08 00 01
+T 00 0C 00 05 1C 00 0A 5F 00 07
+R 00 00 00 02 01 02 00 01 01 05 00 01 01 08 00 01
+T 00 11 00 00 5F 00 08 00 01 5F
+R 00 00 00 02 01 02 00 01 01 05 00 01 01 07 00 01
+T 00 16 00 09 00 02 50 FF 53 00 00 53
+R 00 00 00 02 01 02 00 01 01 04 00 01 01 09 00 01
+T 00 1D 00 01 53 00 02 53 00 0C 18 7E
+R 00 00 00 02 01 02 00 01 01 05 00 01 01 08 00 01

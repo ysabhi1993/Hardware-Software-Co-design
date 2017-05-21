@@ -1,0 +1,26 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8ssc.inc\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\lib\GLOBAL~1.INC\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\memory.inc
+./obj/main.o :  ./lib/CRC16.h ./lib/LCD.h ./lib/PSoCAPI.h\
+   ./lib/PSOCGP~1.H ./lib/SPIM.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.h
+./lib/obj/crc16.o :  ./lib/CRC16.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\memory.inc
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/spim.o :  ./lib/SPIM.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\memory.inc
+./lib/obj/spimint.o :  ./lib/SPIM.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc\
+   C:\DOCUME~1\dima\MYDOCU~1\PSOC1C~1\CE58788\CE58788\memory.inc

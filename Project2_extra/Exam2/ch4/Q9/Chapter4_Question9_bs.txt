@@ -1,0 +1,13 @@
+Program the CRC in C language & assembly; esimate the execution time & code size. Identify the C language constructs that lead to significant execution overhead. Propose solutions that minimize the execution time of the C program. Compare with that of the PSoC hardware block. 
+
+The C program : in question folder
+
+
+The PSoC program : in question folder
+
+
+the C program listing file gave an estimation of 638 cycles to execute (not including 'for loop' jumps)
+most of the execution time goes to for loop performing on each bit, the complexity is n
+
+the PSoC version gives: 280 plus 16 cycles to run the CRC block as the input is a 16 bit size. This is significantly less as hardware is performing the execution faster. 
+

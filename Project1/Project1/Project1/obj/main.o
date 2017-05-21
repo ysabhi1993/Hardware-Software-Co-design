@@ -1,0 +1,1786 @@
+XH
+H 2 areas 5C global symbols
+M main.asm
+S DUALADC_1_iGetData1 Ref0000
+S LPF2_1_Start Ref0000
+S divu_32x32_32 Ref0000
+S DUALADC_1_SetResolution Ref0000
+S DUALADC_1_ClearFlag Ref0000
+S LCD_Start Ref0000
+S Timer16_1_Start Ref0000
+S LCD_Position Ref0000
+S LCD_PrHexByte Ref0000
+S LCD_PrCString Ref0000
+S DUALADC_1_GetSamples Ref0000
+S PGA_1_Start Ref0000
+S PGA_2_Start Ref0000
+S DUALADC_1_Start Ref0000
+S DUALADC_1_fIsDataAvailable Ref0000
+A text size BA6 flags 0
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbline 62 0
+dbline 2 3
+dbline 2 6
+dbline 2 9
+dbline 6B B
+dbline 6C E
+dbline 6D 11
+dbline 6E 14
+dbline 6F 17
+dbline 70 1A
+dbline 71 1D
+dbline 72 20
+dbline 73 23
+dbline 74 26
+dbline 75 29
+dbline 76 2C
+dbline 79 2F
+dbline 7A 31
+dbline 7C 34
+dbline 7D 36
+dbline 7F 39
+dbline 80 3B
+dbline 82 3E
+dbline 83 40
+dbline 85 43
+dbline 86 45
+dbline 88 48
+dbline 89 4A
+dbline 8C 4D
+dbline 8E 50
+dbline 8F 53
+dbline 91 56
+dbline 93 59
+dbline 94 5C
+dbline 95 5F
+dbline 96 62
+dbline 98 65
+dbline 99 68
+dbline 9A 6B
+dbline 9B 6E
+dbline 9D 71
+dbline 9E 74
+dbline 9F 77
+dbline A0 7A
+dbline A2 7D
+dbline A3 80
+dbline A4 83
+dbline A5 86
+dbline A7 89
+dbline A8 8C
+dbline A9 8F
+dbline AA 92
+dbline AC 95
+dbline AD 98
+dbline AE 9B
+dbline AF 9E
+dbline B1 A1
+dbline B2 A4
+dbline B3 A7
+dbline B4 AA
+dbline B6 AD
+dbline B7 B0
+dbline B8 B3
+dbline B9 B6
+dbline BB B9
+dbline BC BC
+dbline BD BF
+dbline BE C2
+dbline C0 C5
+dbline C1 C8
+dbline C2 CB
+dbline C3 CE
+dbline C5 D1
+dbline C9 D4
+dbline CA D6
+dbline CB D8
+dbline CC DB
+dbline CD DD
+dbline F4 E0
+dbline F5 E3
+dbline FC E5
+dbline FD E8
+dbline 102 EB
+dbline 103 ED
+dbline 106 EF
+dbline 107 F2
+dbline 108 F4
+dbline 10B F7
+dbline 10C FA
+dbline 10D FC
+dbline 10E FF
+dbline 10F 101
+dbline 110 104
+dbline 111 106
+dbline 112 109
+dbline 113 10B
+dbline 114 10E
+dbline 11D 110
+dbline 11E 113
+dbline 11F 115
+dbline 120 117
+dbline 121 119
+dbline 122 11C
+dbline 123 11E
+dbline 124 120
+dbline 126 123
+dbline 128 126
+dbline 12B 129
+dbline 12C 12C
+dbline 12D 12E
+dbline 12E 131
+dbline 12F 133
+dbline 130 135
+dbline 131 138
+dbline 132 13A
+dbline 133 13C
+dbline 134 13F
+dbline 137 142
+dbline 138 145
+dbline 139 147
+dbline 13A 14A
+dbline 13B 14C
+dbline 13C 14E
+dbline 13D 151
+dbline 13E 153
+dbline 13F 155
+dbline 140 158
+dbline 143 15B
+dbline 144 15E
+dbline 145 160
+dbline 146 163
+dbline 147 165
+dbline 148 167
+dbline 149 16A
+dbline 14A 16C
+dbline 14B 16E
+dbline 14C 171
+dbline 14F 174
+dbline 150 177
+dbline 151 179
+dbline 153 17C
+dbline 15A 17F
+dbline 15B 182
+dbline 15C 184
+dbline 15D 186
+dbline 15E 188
+dbline 15F 18B
+dbline 160 18D
+dbline 161 18F
+dbline 165 192
+dbline 168 195
+dbline 169 198
+dbline 16A 19A
+dbline 16B 19C
+dbline 16C 19E
+dbline 16D 1A1
+dbline 16E 1A3
+dbline 16F 1A5
+dbline 170 1A8
+dbline 174 1AB
+dbline 175 1AE
+dbline 177 1B0
+dbline 178 1B3
+dbline 179 1B6
+dbline 17A 1B9
+dbline 17C 1BC
+dbline 17D 1BF
+dbline 17E 1C2
+dbline 17F 1C5
+dbline 181 1C8
+dbline 183 1CB
+dbline 184 1CE
+dbline 2 1D0
+dbline 187 1D2
+dbline 2 1D5
+dbline 18B 1D7
+dbline 18D 1DA
+dbline 18F 1DC
+dbline 190 1DE
+dbline 191 1DF
+dbline 192 1E1
+dbline 193 1E4
+dbline 195 1E7
+dbline 196 1E9
+dbline 197 1EC
+dbline 198 1EF
+dbline 19A 1F2
+dbline 19B 1F5
+dbline 19D 1F7
+dbline 19E 1FA
+dbline 19F 1FD
+dbline 1A0 200
+dbline 1A2 203
+dbline 1A3 206
+dbline 1A4 209
+dbline 1A5 20C
+dbline 1A7 20F
+dbline 1A8 212
+dbline 1A9 215
+dbline 1AA 218
+dbline 1AB 21B
+dbline 1AE 21E
+dbline 1AF 221
+dbline 1B1 224
+dbline 1B2 226
+dbline 1B4 228
+dbline 1B5 22A
+dbline 1B6 22C
+dbline 1B7 22F
+dbline 1B8 231
+dbline 1B9 233
+dbline 1BB 236
+dbline 1BC 238
+dbline 1BD 23A
+dbline 1BE 23D
+dbline 1BF 23F
+dbline 1C1 242
+dbline 1C2 244
+dbline 1C3 246
+dbline 1C4 249
+dbline 1C5 24B
+dbline 1C8 24E
+dbline 1C9 251
+dbline 1CA 253
+dbline 1CC 256
+dbline 1D3 259
+dbline 1D4 25C
+dbline 1D5 25E
+dbline 1D6 260
+dbline 1D7 262
+dbline 1D8 265
+dbline 1D9 267
+dbline 1DA 269
+dbline 1DD 26C
+dbline 1DE 26F
+dbline 1DF 271
+dbline 1E0 274
+dbline 1E1 277
+dbline 1E2 27A
+dbline 1E3 27D
+dbline 1E6 280
+dbline 1E7 282
+dbline 1E8 284
+dbline 1E9 287
+dbline 1EA 289
+dbline 1EB 28B
+dbline 1ED 28E
+dbline 1F0 291
+dbline 1F1 294
+dbline 1F4 296
+dbline 1F5 299
+dbline 1F7 29B
+dbline 1F8 29E
+dbline 1FB 2A1
+dbline 1FC 2A4
+dbline 1FE 2A6
+dbline 1FF 2A9
+dbline 203 2AB
+dbline 204 2AE
+dbline 208 2B1
+dbline 209 2B3
+dbline 20A 2B4
+dbline 20B 2B6
+dbline 20D 2B8
+dbline 20E 2BB
+dbline 210 2BE
+dbline 211 2BF
+dbline 212 2C1
+dbline 214 2C3
+dbline 215 2C6
+dbline 219 2C9
+dbline 21A 2CB
+dbline 21B 2CD
+dbline 21E 2CF
+dbline 224 2D2
+dbline 225 2D4
+dbline 226 2D6
+dbline 22A 2D8
+dbline 22B 2DB
+dbline 22E 2DD
+dbline 22F 2DF
+dbline 230 2E1
+dbline 231 2E4
+dbline 232 2E6
+dbline 235 2E9
+dbline 236 2EB
+dbline 238 2ED
+dbline 23B 2EF
+dbline 23C 2F2
+dbline 23F 2F4
+dbline 240 2F6
+dbline 241 2F8
+dbline 242 2FB
+dbline 243 2FD
+dbline 247 300
+dbline 248 302
+dbline 24A 304
+dbline 24D 306
+dbline 24E 309
+dbline 251 30B
+dbline 252 30D
+dbline 253 30F
+dbline 254 312
+dbline 255 314
+dbline 258 317
+dbline 259 319
+dbline 25A 31B
+dbline 25D 31D
+dbline 260 320
+dbline 261 322
+dbline 262 324
+dbline 263 327
+dbline 264 329
+dbline 265 32C
+dbline 268 32F
+dbline 269 332
+dbline 26B 334
+dbline 26C 337
+dbline 26D 339
+dbline 272 33C
+dbline 274 33E
+dbline 275 340
+dbline 277 342
+dbline 278 344
+dbline 27A 346
+dbline 27B 348
+dbline 27D 34A
+dbline 27F 34C
+dbline 281 34E
+dbline 282 350
+dbline 283 352
+dbline 284 355
+dbline 285 357
+dbline 28B 35A
+dbline 290 35D
+dbline 291 360
+dbline 293 362
+dbline 2A4 365
+dbline 2A6 368
+dbline 2A7 36A
+dbline 2A8 36C
+dbline 2A9 36E
+dbline 2AA 370
+dbline 2AB 372
+dbline 2AC 374
+dbline 2AD 376
+dbline 2AF 378
+dbline 2B0 37A
+dbline 2B1 37C
+dbline 2B2 37F
+dbline 2B3 381
+dbline 2B5 384
+dbline 2B6 386
+dbline 2B7 388
+dbline 2B8 38B
+dbline 2B9 38D
+dbline 2BB 390
+dbline 2BC 392
+dbline 2BD 394
+dbline 2BE 397
+dbline 2BF 399
+dbline 2C1 39C
+dbline 2C2 39E
+dbline 2C3 3A0
+dbline 2C4 3A3
+dbline 2C5 3A5
+dbline 2C7 3A8
+dbline 2C8 3AA
+dbline 2C9 3AC
+dbline 2CA 3AF
+dbline 2CB 3B1
+dbline 2CC 3B3
+dbline 2CF 3B6
+dbline 2D0 3B9
+dbline 2D1 3BB
+dbline 2D3 3BE
+dbline 2D9 3C1
+dbline 2DA 3C4
+dbline 2DB 3C6
+dbline 2DC 3C8
+dbline 2DD 3CA
+dbline 2DE 3CD
+dbline 2DF 3CF
+dbline 2E0 3D1
+dbline 2E1 3D4
+dbline 2E4 3D7
+dbline 2E5 3DA
+dbline 2E7 3DC
+dbline 2E8 3DF
+dbline 2E9 3E2
+dbline 2EA 3E5
+dbline 2EB 3E8
+dbline 2ED 3EB
+dbline 2EE 3ED
+dbline 2EF 3EF
+dbline 2F0 3F2
+dbline 2F1 3F4
+dbline 2F2 3F6
+dbline 2F3 3F9
+dbline 2F7 3FC
+dbline 2F8 3FF
+dbline 2 401
+dbline 2FD 404
+dbline 2FE 407
+dbline 2FF 40A
+dbline 300 40D
+dbline 302 410
+dbline 303 413
+dbline 304 416
+dbline 305 419
+dbline 307 41C
+dbline 309 41F
+dbline 30A 422
+dbline 2 424
+dbline 30D 426
+dbline 2 429
+dbline 311 42B
+dbline 313 42E
+dbline 315 430
+dbline 316 432
+dbline 317 433
+dbline 318 435
+dbline 319 438
+dbline 31B 43B
+dbline 31C 43D
+dbline 31D 440
+dbline 31E 443
+dbline 321 446
+dbline 322 449
+dbline 324 44B
+dbline 325 44E
+dbline 326 451
+dbline 327 454
+dbline 329 457
+dbline 32A 45A
+dbline 32B 45D
+dbline 32C 460
+dbline 32E 463
+dbline 32F 466
+dbline 330 469
+dbline 331 46C
+dbline 332 46F
+dbline 335 472
+dbline 336 474
+dbline 337 476
+dbline 338 478
+dbline 339 47A
+dbline 33D 47D
+dbline 33E 47F
+dbline 33F 481
+dbline 341 483
+dbline 346 486
+dbline 347 488
+dbline 34A 48B
+dbline 34B 48E
+dbline 2 490
+dbline 350 493
+dbline 351 495
+dbline 352 497
+dbline 354 499
+dbline 355 49C
+dbline 357 49E
+dbline 358 4A1
+dbline 35D 4A4
+dbline 362 4A7
+dbline 363 4AA
+dbline 364 4AD
+dbline 365 4B0
+dbline 367 4B3
+dbline 368 4B6
+dbline 369 4B9
+dbline 36A 4BC
+dbline 36C 4BF
+dbline 36E 4C2
+dbline 36F 4C5
+dbline 2 4C7
+dbline 372 4C9
+dbline 2 4CC
+dbline 376 4CE
+dbline 378 4D1
+dbline 37A 4D3
+dbline 37B 4D5
+dbline 37C 4D6
+dbline 37D 4D8
+dbline 37E 4DB
+dbline 380 4DE
+dbline 381 4E0
+dbline 382 4E3
+dbline 383 4E6
+dbline 386 4E9
+dbline 387 4EC
+dbline 389 4EE
+dbline 38A 4F1
+dbline 38B 4F4
+dbline 38C 4F7
+dbline 38E 4FA
+dbline 38F 4FD
+dbline 390 500
+dbline 391 503
+dbline 393 506
+dbline 394 509
+dbline 395 50C
+dbline 396 50F
+dbline 397 512
+dbline 39A 515
+dbline 39B 517
+dbline 39C 519
+dbline 39D 51B
+dbline 39E 51D
+dbline 3A2 520
+dbline 3A3 522
+dbline 3A4 524
+dbline 3A6 526
+dbline 3A9 529
+dbline 3AA 52B
+dbline 3AD 52E
+dbline 3AE 531
+dbline 3B1 533
+dbline 3B2 536
+dbline 3B3 538
+dbline 3B5 53B
+dbline 3B7 53D
+dbline 3B8 53F
+dbline 3BA 541
+dbline 3BB 543
+dbline 3BD 545
+dbline 3BE 547
+dbline 3C0 549
+dbline 3C2 54B
+dbline 3C4 54D
+dbline 3C5 54F
+dbline 3C6 551
+dbline 3C7 554
+dbline 3C8 556
+dbline 3CC 559
+dbline 3D0 55C
+dbline 3D1 55F
+dbline 3D3 561
+dbline 3D5 564
+dbline 3D7 567
+dbline 3D8 569
+dbline 3D9 56B
+dbline 3DA 56D
+dbline 3DB 56F
+dbline 3DC 571
+dbline 3DD 573
+dbline 3DE 575
+dbline 3E0 577
+dbline 3E1 579
+dbline 3E2 57B
+dbline 3E3 57E
+dbline 3E4 580
+dbline 3E6 583
+dbline 3E7 585
+dbline 3E8 587
+dbline 3E9 58A
+dbline 3EA 58C
+dbline 3EC 58F
+dbline 3ED 591
+dbline 3EE 593
+dbline 3EF 596
+dbline 3F0 598
+dbline 3F2 59B
+dbline 3F3 59D
+dbline 3F4 59F
+dbline 3F5 5A2
+dbline 3F6 5A4
+dbline 3F8 5A7
+dbline 3F9 5A9
+dbline 3FA 5AB
+dbline 3FB 5AE
+dbline 3FC 5B0
+dbline 3FD 5B2
+dbline 401 5B5
+dbline 402 5B8
+dbline 403 5BA
+dbline 406 5BD
+dbline 40C 5C0
+dbline 40D 5C3
+dbline 40E 5C5
+dbline 40F 5C7
+dbline 410 5C9
+dbline 411 5CC
+dbline 412 5CE
+dbline 413 5D0
+dbline 414 5D3
+dbline 417 5D6
+dbline 419 5D9
+dbline 41A 5DC
+dbline 41B 5DF
+dbline 41C 5E2
+dbline 41D 5E5
+dbline 41E 5E8
+dbline 420 5EB
+dbline 421 5EE
+dbline 422 5F1
+dbline 423 5F4
+dbline 425 5F7
+dbline 426 5FA
+dbline 427 5FD
+dbline 428 600
+dbline 42A 603
+dbline 42B 606
+dbline 42C 609
+dbline 42D 60C
+dbline 431 60F
+dbline 432 612
+dbline 434 614
+dbline 435 616
+dbline 436 619
+dbline 439 61C
+dbline 43A 61F
+dbline 43B 621
+dbline 43D 624
+dbline 43E 627
+dbline 43F 629
+dbline 441 62C
+dbline 442 62F
+dbline 443 631
+dbline 446 634
+dbline 447 635
+dbline 448 637
+dbline 449 639
+dbline 44A 63B
+dbline 44B 63D
+dbline 44C 63F
+dbline 44D 641
+dbline 44E 643
+dbline 44F 645
+dbline 450 647
+dbline 451 649
+dbline 452 64B
+dbline 453 64D
+dbline 455 650
+dbline 456 652
+dbline 457 654
+dbline 458 656
+dbline 459 658
+dbline 45A 65A
+dbline 45B 65C
+dbline 45C 65E
+dbline 45D 660
+dbline 45E 662
+dbline 460 665
+dbline 461 667
+dbline 462 669
+dbline 463 66B
+dbline 464 66D
+dbline 465 66F
+dbline 466 671
+dbline 467 673
+dbline 469 676
+dbline 46A 678
+dbline 46B 67A
+dbline 46C 67C
+dbline 46D 67E
+dbline 46E 680
+dbline 479 683
+dbline 47A 685
+dbline 47B 687
+dbline 47C 68A
+dbline 47D 68C
+dbline 47F 68F
+dbline 480 691
+dbline 481 693
+dbline 482 696
+dbline 483 698
+dbline 485 69B
+dbline 486 69D
+dbline 487 69F
+dbline 488 6A2
+dbline 489 6A4
+dbline 48B 6A7
+dbline 48C 6A9
+dbline 48D 6AB
+dbline 48E 6AE
+dbline 48F 6B0
+dbline 498 6B3
+dbline 499 6B5
+dbline 49A 6B7
+dbline 49B 6BA
+dbline 49C 6BC
+dbline 49D 6BE
+dbline 49F 6C1
+dbline 4A2 6C4
+dbline 4A3 6C7
+dbline 4A5 6C9
+dbline 4A6 6CC
+dbline 4A7 6CE
+dbline 4A8 6D0
+dbline 4A9 6D2
+dbline 4AA 6D4
+dbline 4AB 6D6
+dbline 4AC 6D8
+dbline 4AD 6DA
+dbline 4AE 6DC
+dbline 4AF 6DE
+dbline 4B3 6E1
+dbline 4B4 6E4
+dbline 4B5 6E6
+dbline 4B7 6E9
+dbline 4B8 6EC
+dbline 4B9 6EE
+dbline 4BB 6F1
+dbline 4BC 6F4
+dbline 4BE 6F6
+dbline 4BF 6F7
+dbline 4C0 6F9
+dbline 4C1 6FB
+dbline 4C2 6FD
+dbline 4C3 6FF
+dbline 4C4 701
+dbline 4C5 703
+dbline 4C6 705
+dbline 4C7 707
+dbline 4C8 709
+dbline 4C9 70B
+dbline 4CA 70D
+dbline 4CB 70F
+dbline 4CD 712
+dbline 4CE 714
+dbline 4CF 716
+dbline 4D0 718
+dbline 4D1 71A
+dbline 4D2 71C
+dbline 4D3 71E
+dbline 4D4 720
+dbline 4D5 722
+dbline 4D6 724
+dbline 4D8 727
+dbline 4D9 729
+dbline 4DA 72B
+dbline 4DB 72D
+dbline 4DC 72F
+dbline 4DD 731
+dbline 4DE 733
+dbline 4DF 735
+dbline 4E1 738
+dbline 4E2 73A
+dbline 4E3 73C
+dbline 4E4 73E
+dbline 4E5 740
+dbline 4E6 742
+dbline 4F0 745
+dbline 4F1 747
+dbline 4F2 749
+dbline 4F3 74C
+dbline 4F4 74E
+dbline 4F6 751
+dbline 4F7 753
+dbline 4F8 755
+dbline 4F9 758
+dbline 4FA 75A
+dbline 4FC 75D
+dbline 4FD 75F
+dbline 4FE 761
+dbline 4FF 764
+dbline 500 766
+dbline 502 769
+dbline 503 76B
+dbline 504 76D
+dbline 505 770
+dbline 506 772
+dbline 50F 775
+dbline 510 777
+dbline 511 779
+dbline 512 77C
+dbline 513 77E
+dbline 514 780
+dbline 516 783
+dbline 518 786
+dbline 519 789
+dbline 51D 78B
+dbline 51E 78E
+dbline 51F 791
+dbline 520 794
+dbline 521 797
+dbline 524 79A
+dbline 525 79C
+dbline 526 79E
+dbline 527 7A0
+dbline 528 7A2
+dbline 529 7A4
+dbline 52A 7A6
+dbline 52B 7A8
+dbline 52C 7AA
+dbline 52D 7AC
+dbline 52E 7AE
+dbline 52F 7B0
+dbline 530 7B2
+dbline 531 7B4
+dbline 532 7B6
+dbline 533 7B8
+dbline 534 7BB
+dbline 535 7BD
+dbline 536 7C0
+dbline 538 7C2
+dbline 539 7C4
+dbline 53A 7C6
+dbline 53B 7C8
+dbline 53C 7CA
+dbline 542 7CC
+dbline 543 7CF
+dbline 545 7D2
+dbline 546 7D5
+dbline 549 7D8
+dbline 54A 7DA
+dbline 54C 7DC
+dbline 54D 7DE
+dbline 54E 7E0
+dbline 54F 7E2
+dbline 551 7E4
+dbline 552 7E6
+dbline 553 7E8
+dbline 554 7EA
+dbline 555 7ED
+dbline 556 7EF
+dbline 557 7F1
+dbline 558 7F4
+dbline 559 7F6
+dbline 55D 7F9
+dbline 55E 7FB
+dbline 55F 7FD
+dbline 560 7FF
+dbline 561 801
+dbline 562 803
+dbline 563 805
+dbline 564 807
+dbline 565 809
+dbline 566 80B
+dbline 567 80E
+dbline 568 810
+dbline 569 812
+dbline 56A 815
+dbline 56B 817
+dbline 570 81A
+dbline 571 81D
+dbline 572 820
+dbline 573 823
+dbline 574 826
+dbline 575 829
+dbline 576 82C
+dbline 577 82E
+dbline 578 831
+dbline 579 834
+dbline 57C 837
+dbline 57D 839
+dbline 57E 83B
+dbline 57F 83D
+dbline 580 83F
+dbline 581 841
+dbline 584 844
+dbline 585 846
+dbline 586 848
+dbline 589 84B
+dbline 58A 84E
+dbline 58B 851
+dbline 58C 854
+dbline 58F 856
+dbline 590 859
+dbline 593 85C
+dbline 594 85E
+dbline 595 860
+dbline 596 863
+dbline 599 865
+dbline 59A 867
+dbline 59B 869
+dbline 59C 86B
+dbline 59D 86E
+dbline 59E 870
+dbline 59F 872
+dbline 5A0 874
+dbline 5A1 876
+dbline 5A2 878
+dbline 5A3 87B
+dbline 5A4 87D
+dbline 5A7 880
+dbline 5A8 882
+dbline 5A9 884
+dbline 5AC 887
+dbline 5AD 88A
+dbline 5AE 88D
+dbline 5B0 890
+dbline 5B1 893
+dbline 5B2 895
+dbline 5B3 897
+dbline 5B6 89A
+dbline 5B7 89C
+dbline 5B8 89E
+dbline 5B9 8A0
+dbline 5BA 8A2
+dbline 5BB 8A4
+dbline 5BC 8A6
+dbline 5BF 8A9
+dbline 5C0 8AB
+dbline 5C1 8AD
+dbline 5C4 8B0
+dbline 5C5 8B3
+dbline 5C6 8B6
+dbline 5C7 8B9
+dbline 5CA 8BB
+dbline 5CB 8BE
+dbline 5CE 8C1
+dbline 5CF 8C3
+dbline 5D0 8C5
+dbline 5D1 8C8
+dbline 5D4 8CA
+dbline 5D5 8CC
+dbline 5D6 8CE
+dbline 5D7 8D0
+dbline 5D8 8D3
+dbline 5D9 8D5
+dbline 5DA 8D7
+dbline 5DB 8D9
+dbline 5DC 8DB
+dbline 5DD 8DD
+dbline 5DE 8E0
+dbline 5DF 8E2
+dbline 5E2 8E5
+dbline 5E3 8E7
+dbline 5E4 8E9
+dbline 5E7 8EC
+dbline 5E8 8EF
+dbline 5E9 8F2
+dbline 5EB 8F5
+dbline 5EC 8F8
+dbline 5ED 8FA
+dbline 5EE 8FC
+dbline 5F1 8FF
+dbline 5F2 901
+dbline 5F3 903
+dbline 5F4 905
+dbline 5F5 907
+dbline 5F6 909
+dbline 5F7 90B
+dbline 5FA 90E
+dbline 5FB 910
+dbline 5FC 912
+dbline 5FF 915
+dbline 600 918
+dbline 601 91B
+dbline 604 91E
+dbline 605 921
+dbline 606 923
+dbline 607 925
+dbline 608 927
+dbline 609 929
+dbline 60A 92B
+dbline 60B 92D
+dbline 60C 92F
+dbline 60F 931
+dbline 610 934
+dbline 611 936
+dbline 612 938
+dbline 613 93B
+dbline 614 93D
+dbline 615 93F
+dbline 617 942
+dbline 618 944
+dbline 619 946
+dbline 61A 949
+dbline 61B 94B
+dbline 61D 94E
+dbline 61E 950
+dbline 61F 952
+dbline 620 955
+dbline 621 957
+dbline 622 959
+dbline 624 95C
+dbline 625 95E
+dbline 626 960
+dbline 627 963
+dbline 628 965
+dbline 62A 968
+dbline 62B 96A
+dbline 62C 96C
+dbline 62D 96F
+dbline 62E 971
+dbline 62F 973
+dbline 631 976
+dbline 632 978
+dbline 633 97A
+dbline 634 97D
+dbline 635 97F
+dbline 637 982
+dbline 638 984
+dbline 639 986
+dbline 63A 989
+dbline 63B 98B
+dbline 63C 98D
+dbline 63E 990
+dbline 63F 992
+dbline 640 994
+dbline 641 997
+dbline 642 999
+dbline 645 99C
+dbline 646 99F
+dbline 647 9A2
+dbline 64D 9A5
+dbline 653 9A8
+dbline 654 9A9
+dbline 655 9AB
+dbline 656 9AC
+dbline 657 9AE
+dbline 658 9AF
+dbline 659 9B1
+dbline 65A 9B2
+dbline 65B 9B4
+dbline 65C 9B5
+dbline 65D 9B7
+dbline 65E 9B8
+dbline 65F 9BA
+dbline 660 9BB
+dbline 661 9BD
+dbline 662 9BE
+dbline 663 9C0
+dbline 664 9C1
+dbline 665 9C3
+dbline 666 9C4
+dbline 667 9C6
+dbline 668 9C7
+dbline 669 9CA
+dbline 66A 9CC
+dbline 66B 9CD
+dbline 676 9CE
+dbline 677 9D1
+dbline 679 9D3
+dbline 67A 9D6
+dbline 67E 9D8
+dbline 67F 9DB
+dbline 683 9DE
+dbline 684 9E0
+dbline 685 9E1
+dbline 686 9E3
+dbline 688 9E5
+dbline 689 9E8
+dbline 68B 9EB
+dbline 68C 9EC
+dbline 68D 9EE
+dbline 68F 9F0
+dbline 690 9F3
+dbline 694 9F6
+dbline 695 9F8
+dbline 696 9FA
+dbline 699 9FC
+dbline 69F 9FF
+dbline 6A0 A01
+dbline 6A1 A03
+dbline 6A5 A05
+dbline 6A6 A08
+dbline 6A9 A0A
+dbline 6AA A0C
+dbline 6AB A0E
+dbline 6AC A11
+dbline 6AD A13
+dbline 6B0 A16
+dbline 6B1 A18
+dbline 6B3 A1A
+dbline 6B6 A1C
+dbline 6B7 A1F
+dbline 6BA A21
+dbline 6BB A23
+dbline 6BC A25
+dbline 6BD A28
+dbline 6BE A2A
+dbline 6C2 A2D
+dbline 6C3 A2F
+dbline 6C5 A31
+dbline 6C8 A33
+dbline 6C9 A36
+dbline 6CC A38
+dbline 6CD A3A
+dbline 6CE A3C
+dbline 6CF A3F
+dbline 6D0 A41
+dbline 6D3 A44
+dbline 6D4 A46
+dbline 6D5 A48
+dbline 6D8 A4A
+dbline 6DB A4D
+dbline 6DC A4F
+dbline 6DD A51
+dbline 6DE A54
+dbline 6DF A56
+dbline 6E0 A59
+dbfile program_defines.inc
+dbfunc 0 ? 0 I
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile Timer16_1.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Timer16_1.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PGA_4.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PGA_3.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PGA_2.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PGA_1.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile LPF2_2.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LPF2_2.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile LPF2_1.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LPF2_1.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile LCD.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LCD.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/DUALADC_1.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCGPIOINT.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+S $lb$DEBUG_MODE Def0ABA
+S $le$DEBUG_MODE Def0ACB
+S _main Def0000
+S $lb$NINE_SPACE Def0B6D
+S $lb$CLEAR_TIME Def0ACB
+S $le$NINE_SPACE Def0B77
+S $le$CLEAR_TIME Def0ADC
+S $lb$STRING3 Def0B7B
+S $le$STRING3 Def0B83
+S $lb$SOUND_MODE Def0B20
+S $lb$STOP_SOUND_TIMER Def0B42
+S $le$SOUND_MODE Def0B31
+S $le$STOP_SOUND_TIMER Def0B53
+S $lb$MINIMUM Def0B83
+S $lb$MAXIMUM Def0B94
+S $le$MINIMUM Def0B94
+S $le$MAXIMUM Def0BA6
+S $lb$SAVE Def0B64
+S $lb$THRESHOLD_MODE Def0AED
+S $le$SAVE Def0B69
+S $le$THRESHOLD_MODE Def0AFE
+S $lb$THREE_SPACE Def0B69
+S $le$THREE_SPACE Def0B6D
+S $lb$MEMORY_MODE Def0ADC
+S $lb$SEC_MODE Def0A8B
+S $le$MEMORY_MODE Def0AED
+S $lb$BUTTON_MODE Def0AAA
+S $le$SEC_MODE Def0A9B
+S $le$BUTTON_MODE Def0ABA
+S $lb$SOUND_TIMER Def0B31
+S $le$SOUND_TIMER Def0B42
+S $lb$THE_STRING20 Def0B77
+S $lb$THE_STRING21 Def0B79
+S $lb$HALFSEC_MODE Def0A7C
+S $le$THE_STRING20 Def0B79
+S $le$THE_STRING21 Def0B7B
+S $le$HALFSEC_MODE Def0A8B
+S $lb$CLEAN_LCD Def0B53
+S $le$CLEAN_LCD Def0B64
+S $lb$WHISTLE_MODE Def0B0F
+S $le$WHISTLE_MODE Def0B20
+S $lb$CALC_THRESH_MODE Def0AFE
+S $le$CALC_THRESH_MODE Def0B0F
+S $lb$THE_STRNG Def0A5A
+S $lb$ACCURACY_MODE Def0A9B
+S $le$THE_STRNG Def0A6B
+S $le$ACCURACY_MODE Def0AAA
+S $lb$TENTHSEC_MODE Def0A6B
+S $le$TENTHSEC_MODE Def0A7C
+A var size 31 flags 20
+S addr_inc_m Def0005
+S read_addr_inc_s Def0009
+S addr_inc_s Def0004
+S sound_timer_running Def002F
+S addr_lng_p Def000C
+S read_saved Def0011
+S addr_timer_flag Def0007
+S iResult1 Def0017
+S addr_pin_inc_ms Def0001
+S addr_acc_mode Def000E
+S save_time_index Def0012
+S threshold_value Def002B
+S iResult_Total Def0013
+S md_flg Def000F
+S read_addr_inc_ms Def0008
+S iResult_count Def001B
+S addr_inc_ms Def0003
+S addr_shrt_p Def000D
+S dRes Def0027
+S count_saved Def0010
+S dOpr1 Def0023
+S dOpr2 Def001F
+S debug_register Def0030
+S addr_timer_inc_ms Def0000
+S read_addr_inc_h Def000B
+S addr_adc_inc_ms Def0002
+S read_addr_inc_m Def000A
+S addr_inc_h Def0006
+T 00 00 7C 00 00 43 E1 02 43 E0 20 71 01 55 09 00
+R 00 00 00 00 02 03 00 05
+T 00 0E 55 00 01 00 55 00 02 00 55 00 00 00 55
+R 00 00 00 00 01 03 00 01 01 07 00 01 01 0B 00 01
+T 00 18 00 03 00 55 00 04 00 55 00 05 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 00 21 00 06 00 55 00 0F 01 55 00 30 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 00 2A 00 12 00 55 59 00 50 03 7C 00 00 50 03 7C
+R 00 00 00 00 01 02 00 01 02 0B 00 0B
+T 00 37 00 00 50 03 7C 00 00 50 07 7C 00 00 50 03
+R 00 00 00 00 02 02 00 0C 02 07 00 01 02 0C 00 03
+T 00 45 7C 00 00 50 00 7C 00 00 7C 00 00 62 D5 06
+R 00 00 00 00 02 03 00 0D 02 08 00 0A 02 0B 00 06
+T 00 53 62 D4 06 62 D0 06 55 00 00 55 01 00 55 02
+R 00 00 00 00
+T 00 61 05 55 03 42 55 04 00 55 05 00 55 06 08 55
+R 00 00 00 00
+T 00 6F 07 56 55 08 00 55 09 00 55 0A 01 55 0B 00
+R 00 00 00 00
+T 00 7D 55 0C 00 55 0D 00 55 0E 00 55 0F 00 55 10
+R 00 00 00 00
+T 00 8B 00 55 11 00 55 12 00 55 13 00 55 14 00 55
+R 00 00 00 00
+T 00 99 15 00 55 16 00 55 17 00 55 18 00 55 19 00
+R 00 00 00 00
+T 00 A7 55 1A 00 55 1B 00 55 1C 00 55 1D 00 55 1E
+R 00 00 00 00
+T 00 B5 00 55 1F 00 55 20 00 55 21 00 55 22 00 55
+R 00 00 00 00
+T 00 C3 23 00 55 24 00 55 25 00 55 26 00 55 27 00
+R 00 00 00 00
+T 00 D1 62 D0 00 50 00 57 0E 7C 00 00 51 00 0D 7C
+R 00 00 00 00 02 0A 00 07 01 0D 00 01
+T 00 DE 00 00 3C 00 0C 01 B0 13 55 00 0C 00 55
+R 00 00 00 00 02 02 00 08 01 05 00 01 01 0B 00 01
+T 00 E9 00 0D 00 70 FB 65 00 0F 3C 00 0F 20 B0 04
+R 00 00 00 00 01 02 00 01 01 08 00 01 01 0B 00 01
+T 00 F4 55 00 0F 01 3C 00 0F 01 A0 15 3C 00 0F 02
+R 00 00 00 00 01 03 00 01 01 07 00 01 01 0D 00 01
+T 00 FF A0 7F 3C 00 0F 04 A1 54 3C 00 0F 08 A2 B7
+R 00 00 00 00 01 05 00 01 01 0B 00 01
+T 01 0B 3C 00 0F 10 A4 B1 3C 00 0D 00 B0 15 50 00
+R 00 00 00 00 01 03 00 01 01 09 00 01
+T 01 17 57 00 7C 00 00 50 0A 9B 57 0A 9B 7C
+R 00 00 00 00 02 05 00 07 41 08 00 00 01 0B 00 00
+T 01 21 00 00 55 00 10 00 7D 00 D4 3C
+R 00 00 00 00 02 02 00 09 01 05 00 01 00 09 00 00
+T 01 2A 00 0D 01 B0 15 55 00 0E 03 50 00 57 00 7C
+R 00 00 00 00 01 02 00 01 01 08 00 01
+T 01 36 00 00 50 0A 6B 57 0A 6B 7C
+R 00 00 00 00 02 02 00 07 41 05 00 00 01 08 00 00
+T 01 3D 00 00 7D 00 D4 3C 00 0D 02 B0 15 55
+R 00 00 00 00 02 02 00 09 00 05 00 00 01 08 00 01
+T 01 48 00 0E 02 50 00 57 00 7C 00 00 50 0A 7C 57
+R 00 00 00 00 01 02 00 01 02 0A 00 07 41 0D 00 00
+T 01 54 0A 7C 7C 00 00 7D 00 D4 3C
+R 00 00 00 00 01 02 00 00 02 05 00 09 00 08 00 00
+T 01 5C 00 0D 03 B0 15 55 00 0E 01 50 00 57 00 7C
+R 00 00 00 00 01 02 00 01 01 08 00 01
+T 01 68 00 00 50 0A 8B 57 0A 8B 7C
+R 00 00 00 00 02 02 00 07 41 05 00 00 01 08 00 00
+T 01 6F 00 00 7D 00 D4 3C 00 0D 04 CF 5C 55
+R 00 00 00 00 02 02 00 09 00 05 00 00 01 08 00 01
+T 01 7A 00 0D 00 7D 00 D4 3C 00 0D 00 B0 12 50 00
+R 00 00 00 00 01 02 00 01 00 06 00 00 01 09 00 01
+T 01 86 57 00 7C 00 00 50 0A ED 57 0A ED 7C
+R 00 00 00 00 02 05 00 07 41 08 00 00 01 0B 00 00
+T 01 90 00 00 7D 00 D4 3C 00 0D 01 B0 12 50 00 57
+R 00 00 00 00 02 02 00 09 00 05 00 00 01 08 00 01
+T 01 9D 00 7C 00 00 50 0B 53 57 0B 53 7C
+R 00 00 00 00 02 04 00 07 41 07 00 00 01 0A 00 00
+T 01 A6 00 00 7D 00 D4 3C 00 0D 02 BF FC 55
+R 00 00 00 00 02 02 00 09 00 05 00 00 01 08 00 01
+T 01 B1 00 16 00 55 00 15 00 55 00 14 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 01 BA 00 13 00 55 00 1E 00 55 00 1D 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 01 C3 00 1C 00 55 00 1B 00 55 00 02 00 7C
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 01 CC 00 00 AF FC 70 FE 7C 00 00 71 01 7C 00 00
+R 00 00 00 00 02 02 00 0E 02 09 00 00 02 0E 00 04
+T 01 DA 70 FB 04 00 16 5B 0C 00 15 0E 00 14 00 0E
+R 00 00 00 00 01 05 00 01 01 09 00 01 01 0C 00 01
+T 01 E5 00 13 00 76 00 1E 0E 00 1D 00 0E
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 09 00 01
+T 01 ED 00 1C 00 0E 00 1B 00 3C 00 02 28 BF D5 5F
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 01 F8 00 23 00 13 5F 00 24
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 01 FC 00 14 5F 00 25 00 15 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 02 01 00 26 00 16 5F 00 1F
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 02 05 00 1B 5F 00 20 00 1C 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 02 0A 00 21 00 1D 5F 00 22
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 02 0E 00 1E 7C 09 A8 5F 00 1A
+R 00 00 00 00 01 02 00 01 00 05 00 00 01 08 00 01
+T 02 14 00 2A 5F 00 19 00 29 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 02 19 00 18 00 28 5F 00 17
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 02 1D 00 27 5F 00 2C 00 1A 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 02 22 00 2B 00 19 65 00 2C 65
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 02 27 00 2B 50 00 57 00 7C 00 00 50 0A FE 57
+R 00 00 00 00 01 02 00 01 02 09 00 07 41 0C 00 00
+T 02 32 0A FE 7C 00 00 50 00 57 0B 7C 00 00 51
+R 00 00 00 00 01 02 00 00 02 05 00 09 02 0C 00 07
+T 02 3E 00 1A 7C 00 00 50 00 57 0D 7C 00 00 51
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 02 4A 00 2C 7C 00 00 3C 00 0D 03 CE 82 55
+R 00 00 00 00 01 02 00 01 02 05 00 08 01 08 00 01
+T 02 54 00 0D 00 7D 00 D4 3C 00 0D 00 B0 0F 50 00
+R 00 00 00 00 01 02 00 01 00 06 00 00 01 09 00 01
+T 02 60 57 00 7C 00 00 50 0A AA 57 0A AA 7C
+R 00 00 00 00 02 05 00 07 41 08 00 00 01 0B 00 00
+T 02 6A 00 00 3C 00 0D 01 B0 21 55 00 03 00 55
+R 00 00 00 00 02 02 00 09 01 05 00 01 01 0B 00 01
+T 02 75 00 04 00 55 00 05 00 55 00 06 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 02 7E 00 07 01 50 00 57 00 7C 00 00 50 0A CB 57
+R 00 00 00 00 01 02 00 01 02 0A 00 07 41 0D 00 00
+T 02 8A 0A CB 7C 00 00 7D 00 D4 3C
+R 00 00 00 00 01 02 00 00 02 05 00 09 00 08 00 00
+T 02 92 00 0D 02 B0 9A 3C 00 07 01 B0 07 55 00 00
+R 00 00 00 00 01 02 00 01 01 08 00 01 01 0E 00 01
+T 02 9D 00 55 00 07 00 3C 00 0E 01 A0 24 3C 00 0E
+R 00 00 00 00 01 04 00 01 01 08 00 01 01 0E 00 01
+T 02 A8 02 A0 07 5F 00 03 00 00 7D 02 D2 51
+R 00 00 00 00 01 06 00 01 01 08 00 01 00 0B 00 00
+T 02 B2 00 00 5C 39 32 B0 07 5F 00 03 00 00 7D
+R 00 00 00 00 01 02 00 01 01 0A 00 01 01 0C 00 01
+T 02 BC 02 D2 5B 39 00 B0 10 5F 00 03 00 00 7D
+R 00 00 00 00 00 02 00 00 01 0A 00 01 01 0C 00 01
+T 02 C7 02 D2 51 00 00 39 00 B0 04 5F 00 03
+R 00 00 00 00 00 02 00 00 01 05 00 01 01 0C 00 01
+T 02 D1 00 00 51 00 00 39 64 B0 06 55 00 00 00 76
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 0C 00 01
+T 02 DC 00 04 50 00 57 09 7C 00 00 51 00 03 7C
+R 00 00 00 00 01 02 00 01 02 09 00 07 01 0C 00 01
+T 02 E7 00 00 51 00 04 39 3C B0 06 55 00 04 00 76
+R 00 00 00 00 02 02 00 08 01 05 00 01 01 0C 00 01
+T 02 F3 00 05 50 00 57 06 7C 00 00 51 00 04 7C
+R 00 00 00 00 01 02 00 01 02 09 00 07 01 0C 00 01
+T 02 FE 00 00 51 00 05 39 3C B0 06 55 00 04 00 76
+R 00 00 00 00 02 02 00 08 01 05 00 01 01 0C 00 01
+T 03 0A 00 06 50 00 57 03 7C 00 00 51 00 05 7C
+R 00 00 00 00 01 02 00 01 02 09 00 07 01 0C 00 01
+T 03 15 00 00 51 00 06 39 18 B0 04 55 00 06 00 50
+R 00 00 00 00 02 02 00 08 01 05 00 01 01 0C 00 01
+T 03 21 00 57 00 7C 00 00 51 00 06 7C 00 00 7D
+R 00 00 00 00 02 06 00 07 01 09 00 01 02 0C 00 08
+T 03 2D 00 D4 3C 00 0D 03 B0 2A 3C 59 01 A0 22 55
+R 00 00 00 00 00 02 00 00 01 05 00 01
+T 03 3A 59 01 51 00 06 3F 00 12 51 00 05 3F
+R 00 00 00 00 01 05 00 01 01 08 00 01 01 0B 00 01
+T 03 43 00 12 51 00 04 3F 00 12 51
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 08 00 01
+T 03 49 00 03 3F 00 12 76 00 10 50 01 57 09 7C
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 08 00 01
+T 03 53 00 00 51 00 10 7C 00 00 7D
+R 00 00 00 00 02 02 00 07 01 05 00 01 02 08 00 08
+T 03 5B 00 D4 3C 00 0D 04 B0 55 55 59 00 55 40 00
+R 00 00 00 00 00 02 00 00 01 05 00 01
+T 03 68 3E 40 53 00 0B 3E 40 53 00 0A 3E 40 53
+R 00 00 00 00 01 05 00 01 01 0A 00 01
+T 03 73 00 09 3E 40 53 00 08 50 00 57 00 7C 00 00
+R 00 00 00 00 01 02 00 01 01 07 00 01 02 0E 00 07
+T 03 7F 51 00 0B 7C 00 00 50 00 57 03 7C 00 00 51
+R 00 00 00 00 01 03 00 01 02 06 00 08 02 0D 00 07
+T 03 8C 00 0A 7C 00 00 50 00 57 06 7C 00 00 51
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 03 98 00 09 7C 00 00 50 00 57 09 7C 00 00 51
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 03 A4 00 08 7C 00 00 50 00 57 0C 7C 00 00 50
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 03 B0 0B 64 57 0B 64 7C 00 00 3C
+R 00 00 00 00 41 02 00 00 01 05 00 00 02 08 00 09
+T 03 B7 00 0D 05 CD 1A 55 00 0D 00 7D 00 D4 3C
+R 00 00 00 00 01 02 00 01 01 08 00 01 00 0C 00 00
+T 03 C2 00 0D 00 B0 12 50 00 57 00 7C 00 00 50
+R 00 00 00 00 01 02 00 01 02 0C 00 07
+T 03 CE 0B 20 57 0B 20 7C 00 00 7D
+R 00 00 00 00 41 02 00 00 01 05 00 00 02 08 00 09
+T 03 D5 00 D4 3C 00 0D 01 B0 21 55 00 03 00 55
+R 00 00 00 00 00 02 00 00 01 05 00 01 01 0B 00 01
+T 03 E0 00 04 00 55 00 05 00 55 00 06 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 03 E9 00 07 01 50 00 57 00 7C 00 00 50 0A CB 57
+R 00 00 00 00 01 02 00 01 02 0A 00 07 41 0D 00 00
+T 03 F5 0A CB 7C 00 00 7D 00 D4 3C
+R 00 00 00 00 01 02 00 00 02 05 00 09 00 08 00 00
+T 03 FD 00 0D 02 B0 8B 41 E0 DF 55 00 16 00 55
+R 00 00 00 00 01 02 00 01 01 0B 00 01
+T 04 08 00 15 00 55 00 14 00 55 00 13 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 04 11 00 1E 00 55 00 1D 00 55 00 1C 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 04 1A 00 1B 00 55 00 02 00 7C 00 00 AF FC 70 FE
+R 00 00 00 00 01 02 00 01 01 06 00 01 02 0A 00 0E
+T 04 26 7C 00 00 71 01 7C 00 00 70 FB 04 00 16 5B
+R 00 00 00 00 02 03 00 00 02 08 00 04 01 0D 00 01
+T 04 33 0C 00 15 0E 00 14 00 0E 00 13 00 76
+R 00 00 00 00 01 03 00 01 01 06 00 01 01 0A 00 01
+T 04 3C 00 1E 0E 00 1D 00 0E 00 1C 00 0E
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 09 00 01
+T 04 44 00 1B 00 3C 00 02 05 BF D5 5F 00 23
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0C 00 01
+T 04 4D 00 13 5F 00 24 00 14 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 04 52 00 25 00 15 5F 00 26
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 04 56 00 16 5F 00 1F 00 1B 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 04 5B 00 20 00 1C 5F 00 21
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 04 5F 00 1D 5F 00 22 00 1E 7C
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 04 64 09 A8 5F 00 1A 00 2A 5F
+R 00 00 00 00 00 02 00 00 01 05 00 01 01 07 00 01
+T 04 6A 00 19 00 29 5F 00 18
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 04 6E 00 28 5F 00 17 00 27 51
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 04 73 00 19 3A 00 2B A0 06 D0 0D 7D 00 D4 51
+R 00 00 00 00 01 02 00 01 01 05 00 01 00 0C 00 00
+T 04 7E 00 1A 3A 00 2C D0 04 7D 00 D4 76
+R 00 00 00 00 01 02 00 01 01 05 00 01 00 0A 00 00
+T 04 87 00 0D 7D 00 D4 3C 00 0D 03 B0 9F 43 E0 20
+R 00 00 00 00 01 02 00 01 00 05 00 00 01 08 00 01
+T 04 93 5D 04 31 FF 60 04 3C 00 07 01 B0 07 55
+R 00 00 00 00 01 09 00 01
+T 04 9F 00 00 00 55 00 07 00 7C 09 CE 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 00 0A 00 00
+T 04 A8 00 16 00 55 00 15 00 55 00 14 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 04 B1 00 13 00 55 00 1E 00 55 00 1D 00 55
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 04 BA 00 1C 00 55 00 1B 00 55 00 02 00 7C
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 04 C3 00 00 AF FC 70 FE 7C 00 00 71 01 7C 00 00
+R 00 00 00 00 02 02 00 0E 02 09 00 00 02 0E 00 04
+T 04 D1 70 FB 04 00 16 5B 0C 00 15 0E 00 14 00 0E
+R 00 00 00 00 01 05 00 01 01 09 00 01 01 0C 00 01
+T 04 DC 00 13 00 76 00 1E 0E 00 1D 00 0E
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 09 00 01
+T 04 E4 00 1C 00 0E 00 1B 00 3C 00 02 05 BF 32 5F
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 04 EF 00 23 00 13 5F 00 24
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 04 F3 00 14 5F 00 25 00 15 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 04 F8 00 26 00 16 5F 00 1F
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 04 FC 00 1B 5F 00 20 00 1C 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 05 01 00 21 00 1D 5F 00 22
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 05 05 00 1E 7C 09 A8 5F 00 1A
+R 00 00 00 00 01 02 00 01 00 05 00 00 01 08 00 01
+T 05 0B 00 2A 5F 00 19 00 29 5F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 07 00 01
+T 05 10 00 18 00 28 5F 00 17
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 05 14 00 27 51 00 19 3A 00 2B A0 06 D0 0D 7D
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 08 00 01
+T 05 1E 00 D4 51 00 1A 3A 00 2C D0 04 7D
+R 00 00 00 00 00 02 00 00 01 05 00 01 01 08 00 01
+T 05 27 00 D4 76 00 0D 7D 00 D4 3C
+R 00 00 00 00 00 02 00 00 01 05 00 01 00 08 00 00
+T 05 2F 00 0D 04 B0 2A 3C 59 01 A0 22 55 59 01 51
+R 00 00 00 00 01 02 00 01
+T 05 3C 00 06 3F 00 12 51 00 05 3F
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 08 00 01
+T 05 42 00 12 51 00 04 3F 00 12 51
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 08 00 01
+T 05 48 00 03 3F 00 12 76 00 10 50 01 57 09 7C
+R 00 00 00 00 01 02 00 01 01 05 00 01 01 08 00 01
+T 05 52 00 00 51 00 10 7C 00 00 7D
+R 00 00 00 00 02 02 00 07 01 05 00 01 02 08 00 08
+T 05 5A 00 D4 3C 00 0D 04 B0 55 55 59 00 55 40 00
+R 00 00 00 00 00 02 00 00 01 05 00 01
+T 05 67 3E 40 53 00 0B 3E 40 53 00 0A 3E 40 53
+R 00 00 00 00 01 05 00 01 01 0A 00 01
+T 05 72 00 09 3E 40 53 00 08 50 00 57 00 7C 00 00
+R 00 00 00 00 01 02 00 01 01 07 00 01 02 0E 00 07
+T 05 7E 51 00 0B 7C 00 00 50 00 57 03 7C 00 00 51
+R 00 00 00 00 01 03 00 01 02 06 00 08 02 0D 00 07
+T 05 8B 00 0A 7C 00 00 50 00 57 06 7C 00 00 51
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 05 97 00 09 7C 00 00 50 00 57 09 7C 00 00 51
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 05 A3 00 08 7C 00 00 50 00 57 0C 7C 00 00 50
+R 00 00 00 00 01 02 00 01 02 05 00 08 02 0C 00 07
+T 05 AF 0B 64 57 0B 64 7C 00 00 3C
+R 00 00 00 00 41 02 00 00 01 05 00 00 02 08 00 09
+T 05 B6 00 0D 05 CB 1B 55 00 0D 00 7D 00 D4 3C
+R 00 00 00 00 01 02 00 01 01 08 00 01 00 0C 00 00
+T 05 C1 00 0D 00 B0 12 50 00 57 00 7C 00 00 50
+R 00 00 00 00 01 02 00 01 02 0C 00 07
+T 05 CD 0A DC 57 0A DC 7C 00 00 7D
+R 00 00 00 00 41 02 00 00 01 05 00 00 02 08 00 09
+T 05 D4 00 D4 62 D4 06 55 46 00 55 44 00 55 45 00
+R 00 00 00 00 00 02 00 00
+T 05 E2 55 42 00 55 43 00 55 41 00 55 50 00 55 49
+R 00 00 00 00
+T 05 F0 00 55 48 00 55 47 00 55 54 00 55 53 00 55
+R 00 00 00 00
+T 05 FE 52 00 55 51 00 55 58 00 55 57 00 55 56 00
+R 00 00 00 00
+T 06 0C 55 55 00 3C 00 0D 01 B0 B1 57 0B 55 40 00
+R 00 00 00 00 01 06 00 01
+T 06 19 7D 06 34 06 40 03 70 FB 7D 06 34 06 40 02
+R 00 00 00 00 00 03 00 00 00 0B 00 00
+T 06 27 70 FB 7D 06 34 06 40 01 70 FB 7D 06 34 79
+R 00 00 00 00 00 05 00 00 00 0D 00 00
+T 06 35 A0 4D 3E 40 3A 51 A0 14 CF DE 53 51 3E 40
+R 00 00 00 00
+T 06 43 53 52 3E 40 53 53 3E 40 53 54 7D 06 34 3E
+R 00 00 00 00 00 0D 00 00
+T 06 51 40 3A 52 A0 10 CF CD 53 52 3E 40 53 53 3E
+R 00 00 00 00
+T 06 5F 40 53 54 7D 06 34 3E 40 3A 53 A0 0C CF C0
+R 00 00 00 00 00 06 00 00
+T 06 6D 53 53 3E 40 53 54 7D 06 34 3E 40 3A 54 AF
+R 00 00 00 00 00 09 00 00
+T 06 7B B9 CF B7 53 54 7D 06 34 50 01 57 00 7C
+R 00 00 00 00 00 08 00 00
+T 06 88 00 00 51 51 7C 00 00 50 01 57 03 7C 00 00
+R 00 00 00 00 02 02 00 07 02 07 00 08 02 0E 00 07
+T 06 96 51 52 7C 00 00 50 01 57 06 7C 00 00 51 53
+R 00 00 00 00 02 05 00 08 02 0C 00 07
+T 06 A4 7C 00 00 50 01 57 09 7C 00 00 51 54 7C
+R 00 00 00 00 02 03 00 08 02 0A 00 07
+T 06 B1 00 00 50 00 57 00 7C 00 00 50 0B 94 57
+R 00 00 00 00 02 02 00 08 02 09 00 07 41 0C 00 00
+T 06 BD 0B 94 7C 00 00 7D 00 D4 3C
+R 00 00 00 00 01 02 00 00 02 05 00 09 00 08 00 00
+T 06 C5 00 0D 02 B0 BE 55 40 00 57 0A 3E 40 53 55
+R 00 00 00 00 01 02 00 01
+T 06 D2 3E 40 53 56 3E 40 53 57 3E 40 53 58 7D
+R 00 00 00 00
+T 06 DF 06 F6 06 40 03 70 FB 7D 06 F6 06 40 02 70
+R 00 00 00 00 00 02 00 00 00 0A 00 00
+T 06 ED FB 7D 06 F6 06 40 01 70 FB 79 A0 4D 3E 40
+R 00 00 00 00 00 04 00 00
+T 06 FB 3A 55 A0 14 DF E1 53 55 3E 40 53 56 3E 40
+R 00 00 00 00
+T 07 09 53 57 3E 40 53 58 7D 06 F6 3E 40 3A 56 A0
+R 00 00 00 00 00 09 00 00
+T 07 17 10 DF D0 53 56 3E 40 53 57 3E 40 53 58 7D
+R 00 00 00 00
+T 07 25 06 E1 3E 40 3A 57 A0 0C DF C3 53 57 3E 40
+R 00 00 00 00 00 02 00 00
+T 07 33 53 58 7D 06 E1 3E 40 3A 58 AF B9 DF B7 53
+R 00 00 00 00 00 05 00 00
+T 07 41 58 7D 06 F6 50 01 57 00 7C 00 00 51 55 7C
+R 00 00 00 00 00 04 00 00 02 0B 00 07
+T 07 4F 00 00 50 01 57 03 7C 00 00 51 56 7C 00 00
+R 00 00 00 00 02 02 00 08 02 09 00 07 02 0E 00 08
+T 07 5D 50 01 57 06 7C 00 00 51 57 7C 00 00 50 01
+R 00 00 00 00 02 07 00 07 02 0C 00 08
+T 07 6B 57 09 7C 00 00 51 58 7C 00 00 50 00 57 00
+R 00 00 00 00 02 05 00 07 02 0A 00 08
+T 07 79 7C 00 00 50 0B 83 57 0B 83 7C
+R 00 00 00 00 02 03 00 07 41 06 00 00 01 09 00 00
+T 07 81 00 00 7D 00 D4 3C 00 0D 03 B2 12 55 62 0A
+R 00 00 00 00 02 02 00 09 00 05 00 00 01 08 00 01
+T 07 8E 55 64 04 55 63 91 55 A7 D0 55 DD 03 3E DD
+R 00 00 00 00
+T 07 9C 3F A7 7A DD 7A DD 3E DD 3F A7 7A DD 7A DD
+R 00 00 00 00
+T 07 AA 3E DD 3F A7 7A DD 7A DD 3E DD 3F A7 7A DD
+R 00 00 00 00
+T 07 B8 06 DD 07 7A 62 3C 62 00 BF D9 50 00 3F 63
+R 00 00 00 00
+T 07 C6 3F 63 3F 63 3F 63 55 62 0A 55 A7 D0 55 64
+R 00 00 00 00
+T 07 D4 04 55 63 91 3E A7 53 65 3E 63 02 65 39 3C
+R 00 00 00 00
+T 07 E2 D0 16 7A 63 3F 63 7A 64 3C 64 00 BF EA 7A
+R 00 00 00 00
+T 07 F0 62 3C 62 00 BF DD 7D 08 1A 11 3C 7A 63 3F
+R 00 00 00 00 00 09 00 00
+T 07 FE 63 3E 63 01 01 7A 63 3F 63 7A 63 7A 64 3C
+R 00 00 00 00
+T 08 0C 64 00 BF C9 7A 62 3C 62 00 BF BC 7D 08 1A
+R 00 00 00 00 00 0E 00 00
+T 08 1A 55 62 0A 55 72 00 62 D0 06 5F 10 94 62 D0
+R 00 00 00 00
+T 08 28 00 55 EB 10 3E EB 55 86 00 55 77 B0 55 11
+R 00 00 00 00
+T 08 36 00 3A 62 D0 0A 53 85 51 11 3F 77 7D 08 4B
+R 00 00 00 00 00 0E 00 00
+T 08 44 12 62 76 11 7D 08 37 55 72 0A 55 61 00 55
+R 00 00 00 00 00 07 00 00
+T 08 52 68 00 50 00 55 11 00 55 75 06 02 85 7A 75
+R 00 00 00 00
+T 08 60 3C 75 00 BF F8 3A 62 D0 18 53 86 5F 68 11
+R 00 00 00 00
+T 08 6E 51 68 04 61 50 00 02 86 7A 72 3C 72 00 BF
+R 00 00 00 00
+T 08 7C DA 7D 08 87 12 62 76 11 7D 08 65 62 D0 06
+R 00 00 00 00 00 04 00 00 00 0B 00 00
+T 08 8A 5F 10 93 62 D0 00 55 EB 10 3E EB 02 86 55
+R 00 00 00 00
+T 08 98 11 00 3A 62 D0 0C 53 85 51 11 02 61 3F 77
+R 00 00 00 00
+T 08 A6 7D 08 B0 12 62 76 11 7D 08 9A 55 72 0A 55
+R 00 00 00 00 00 03 00 00 00 0A 00 00
+T 08 B4 61 00 55 68 00 50 00 55 11 00 55 75 06 02
+R 00 00 00 00
+T 08 C2 85 7A 75 3C 75 00 BF F8 3A 62 D0 18 53 86
+R 00 00 00 00
+T 08 D0 5F 68 11 51 68 04 61 50 00 02 86 7A 72 3C
+R 00 00 00 00
+T 08 DE 72 00 BF DA 7D 08 EC 12 62 76 11 7D 08 CA
+R 00 00 00 00 00 07 00 00 00 0E 00 00
+T 08 EC 62 D0 06 5F 10 92 62 D0 00 55 EB 10 3E EB
+R 00 00 00 00
+T 08 FA 02 86 55 11 00 3A 62 D0 0C 53 85 51 11 02
+R 00 00 00 00
+T 09 08 61 3F 77 7D 09 15 12 62 76 11 7D 08 FF 62
+R 00 00 00 00 00 06 00 00 00 0D 00 00
+T 09 16 D0 06 5F B3 91 62 D0 00 55 A7 B0 3E A7 53
+R 00 00 00 00
+T 09 24 C0 3E A7 53 C1 3E A7 53 C2 3E A7 53 C3 7C
+R 00 00 00 00
+T 09 32 00 00 50 00 57 00 7C 00 00 50 0B 7B 57
+R 00 00 00 00 02 02 00 05 02 09 00 07 41 0C 00 00
+T 09 3E 0B 7B 7C 00 00 50 01 57 00 7C 00 00 51 C0
+R 00 00 00 00 01 02 00 00 02 05 00 09 02 0C 00 07
+T 09 4B 7C 00 00 50 01 57 02 7C 00 00 50 0B 77 57
+R 00 00 00 00 02 03 00 08 02 0A 00 07 41 0D 00 00
+T 09 58 0B 77 7C 00 00 50 01 57 03 7C 00 00 51 C1
+R 00 00 00 00 01 02 00 00 02 05 00 09 02 0C 00 07
+T 09 65 7C 00 00 50 01 57 05 7C 00 00 50 0B 77 57
+R 00 00 00 00 02 03 00 08 02 0A 00 07 41 0D 00 00
+T 09 72 0B 77 7C 00 00 50 01 57 06 7C 00 00 51 C2
+R 00 00 00 00 01 02 00 00 02 05 00 09 02 0C 00 07
+T 09 7F 7C 00 00 50 01 57 08 7C 00 00 50 0B 79 57
+R 00 00 00 00 02 03 00 08 02 0A 00 07 41 0D 00 00
+T 09 8C 0B 79 7C 00 00 50 01 57 09 7C 00 00 51 C3
+R 00 00 00 00 01 02 00 00 02 05 00 09 02 0C 00 07
+T 09 99 7C 00 00 3C 00 0D 04 55 00 0D 00 7D
+R 00 00 00 00 02 03 00 08 01 06 00 01 01 0A 00 01
+T 09 A3 00 D4 7D 09 A5 10 50 00 27 08 50
+R 00 00 00 00 00 02 00 00 00 05 00 00 41 09 00 01
+T 09 AD 00 27 08 51 00 1F 08 51 00 20 08 51
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 09 B6 00 21 08 51 00 22 08 51 00 23 08 51
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 09 BF 00 24 08 51 00 25 08 51 00 26 08 7C
+R 00 00 00 00 01 02 00 01 01 06 00 01 01 0A 00 01
+T 09 C8 00 00 38 F6 20 7F 3C 00 0E 01 A0 24 3C
+R 00 00 00 00 02 02 00 02 01 09 00 01
+T 09 D4 00 0E 02 A0 07 5F 00 03 00 00 7D
+R 00 00 00 00 01 02 00 01 01 08 00 01 01 0A 00 01
+T 09 DC 09 FF 51 00 00 5C 39 32 B0 07 5F 00 03
+R 00 00 00 00 00 02 00 00 01 05 00 01 01 0D 00 01
+T 09 E7 00 00 7D 09 FF 5B 39 00 B0 10 5F 00 03
+R 00 00 00 00 01 02 00 01 00 05 00 00 01 0D 00 01
+T 09 F2 00 00 7D 09 FF 51 00 00 39 00 B0 04 5F
+R 00 00 00 00 01 02 00 01 00 05 00 00 01 08 00 01
+T 09 FD 00 03 00 00 51 00 00 39 64 B0 06 55
+R 00 00 00 00 01 02 00 01 01 04 00 01 01 07 00 01
+T 0A 06 00 00 00 76 00 04 50 00 57 09 7C 00 00 51
+R 00 00 00 00 01 02 00 01 01 06 00 01 02 0D 00 07
+T 0A 12 00 03 7C 00 00 51 00 04 39 3C B0 06 55
+R 00 00 00 00 01 02 00 01 02 05 00 08 01 08 00 01
+T 0A 1D 00 04 00 76 00 05 50 00 57 06 7C 00 00 51
+R 00 00 00 00 01 02 00 01 01 06 00 01 02 0D 00 07
+T 0A 29 00 04 7C 00 00 51 00 05 39 3C B0 06 55
+R 00 00 00 00 01 02 00 01 02 05 00 08 01 08 00 01
+T 0A 34 00 04 00 76 00 06 50 00 57 03 7C 00 00 51
+R 00 00 00 00 01 02 00 01 01 06 00 01 02 0D 00 07
+T 0A 40 00 05 7C 00 00 51 00 06 39 18 B0 04 55
+R 00 00 00 00 01 02 00 01 02 05 00 08 01 08 00 01
+T 0A 4B 00 06 00 50 00 57 00 7C 00 00 51 00 06 7C
+R 00 00 00 00 01 02 00 01 02 0A 00 07 01 0D 00 01
+T 0A 57 00 00 7F 45 76 72 79 54 6E 67 20 69 73 20
+R 00 00 00 00 02 02 00 08
+T 0A 65 41 77 73 6D 65 00 41 43 43 3A 20 54 45 4E
+R 00 00 00 00
+T 0A 73 54 48 20 20 20 20 20 20 00 41 43 43 3A 20
+R 00 00 00 00
+T 0A 81 48 41 4C 46 20 20 20 20 20 00 41 43 43 3A
+R 00 00 00 00
+T 0A 8F 20 53 45 43 20 20 20 20 20 20 20 00 41 43
+R 00 00 00 00
+T 0A 9D 43 55 52 41 43 59 20 4D 4F 44 45 20 00 42
+R 00 00 00 00
+T 0A AB 55 54 54 4F 4E 20 4D 4F 44 45 20 20 20 20
+R 00 00 00 00
+T 0A B9 00 44 45 42 55 47 20 4D 4F 44 45 20 20 20
+R 00 00 00 00
+T 0A C7 20 20 20 00 30 30 3A 30 30 3A 30 30 3A 30
+R 00 00 00 00
+T 0A D5 30 20 20 20 20 20 00 4D 45 4D 4F 52 59 20
+R 00 00 00 00
+T 0A E3 4D 4F 44 45 20 20 20 20 20 00 54 48 52 45
+R 00 00 00 00
+T 0A F1 53 48 4F 4C 44 20 4D 4F 44 45 20 20 00 43
+R 00 00 00 00
+T 0A FF 41 4C 43 20 54 48 52 45 53 48 3A 20 20 20
+R 00 00 00 00
+T 0B 0D 20 00 57 48 49 53 54 4C 45 3A 20 20 20 20
+R 00 00 00 00
+T 0B 1B 20 20 20 20 00 53 4F 55 4E 44 20 4D 4F 44
+R 00 00 00 00
+T 0B 29 45 20 20 20 20 20 20 00 53 54 41 52 54 20
+R 00 00 00 00
+T 0B 37 53 20 54 49 4D 45 52 20 20 20 00 53 54 4F
+R 00 00 00 00
+T 0B 45 50 20 53 20 54 49 4D 45 52 20 20 20 20 00
+R 00 00 00 00
+T 0B 53 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+R 00 00 00 00
+T 0B 61 20 20 00 53 41 56 45 00 20 20 20 00 20 20
+R 00 00 00 00
+T 0B 6F 20 20 20 20 20 20 20 00 3A 00 2E 00 41 56
+R 00 00 00 00
+T 0B 7D 45 52 41 47 45 00 4D 49 4E 49 4D 55 4D 20
+R 00 00 00 00
+T 0B 8B 20 20 20 20 20 20 20 20 00 4D 41 58 49 4D
+R 00 00 00 00
+T 0B 99 55 4D 20 20 20 20 20 20 20 20 20 20 00
+R 00 00 00 00

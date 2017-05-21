@@ -1,0 +1,145 @@
+XH
+H 2 areas 20 global symbols
+M samplefreq.asm
+A text size 0 flags 0
+dbfile lib/samplefreq.asm
+dbfunc 0 ? 0 I
+dbfile SampleFreq.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/SampleFreq.inc
+dbfunc 0 ? 0 I
+dbfile lib/samplefreq.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/samplefreq.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 7F flags 0
+dbfile lib/samplefreq.asm
+dbfunc 0 ? 0 I
+dbline 2 0
+dbline 4F 3
+dbline 2 4
+dbline 6B 7
+dbline 2 8
+dbline 88 B
+dbline 2 C
+dbline A4 F
+dbline C0 10
+dbline C1 11
+dbline C2 13
+dbline C3 15
+dbline C4 17
+dbline C5 19
+dbline C6 1B
+dbline C8 1D
+dbline E1 1E
+dbline E2 1F
+dbline E3 21
+dbline E4 23
+dbline E5 25
+dbline E6 27
+dbline E7 29
+dbline E9 2B
+dbline 10A 2C
+dbline 10B 2F
+dbline 10C 31
+dbline 10D 33
+dbline 10E 35
+dbline 10F 37
+dbline 110 39
+dbline 112 3B
+dbline 138 3C
+dbline 139 3E
+dbline 13A 3F
+dbline 13B 41
+dbline 13C 42
+dbline 13D 44
+dbline 13E 45
+dbline 13F 47
+dbline 2 48
+dbline 2 4B
+dbline 142 4D
+dbline 143 4F
+dbline 145 50
+dbline 2 53
+dbline 147 55
+dbline 148 58
+dbline 149 5A
+dbline 14A 5C
+dbline 14B 5E
+dbline 14C 60
+dbline 14D 62
+dbline 14E 64
+dbline 14F 66
+dbline 150 68
+dbline 151 6A
+dbline 152 6B
+dbline 153 6C
+dbline 154 6E
+dbline 155 6F
+dbline 156 71
+dbline 157 72
+dbline 2 74
+dbline 159 76
+dbline 15A 77
+dbline 2 79
+dbline 15C 7B
+dbline 15D 7C
+dbline 15F 7E
+S _SampleFreq_ReadCounter Def003C
+S $sb$SampleFreq_Stop Def000C
+S $se$SampleFreq_Stop Def0010
+S _SampleFreq_WritePeriod Def0010
+S SampleFreq_WriteCompareValue Def001E
+S _SampleFreq_EnableInt Def0000
+S SampleFreq_DisableInt Def0004
+S $sb$_SampleFreq_WritePeriod Def0010
+S $se$_SampleFreq_WritePeriod Def001E
+S $sb$SampleFreq_DisableInt Def0004
+S $se$SampleFreq_DisableInt Def0008
+S _SampleFreq_Stop Def000C
+S SampleFreq_Start Def0008
+S $sb$SampleFreq_Start Def0008
+S $se$SampleFreq_Start Def000C
+S _SampleFreq_WriteCompareValue Def001E
+S _SampleFreq_DisableInt Def0004
+S SampleFreq_ReadCompareValue Def002C
+S $sb$_SampleFreq_WriteCompareValue Def001E
+S $se$_SampleFreq_WriteCompareValue Def002C
+S SampleFreq_ReadCounter Def003C
+S $sb$SampleFreq_ReadCompareValue Def002C
+S $se$SampleFreq_ReadCompareValue Def003C
+S _SampleFreq_Start Def0008
+S SampleFreq_WritePeriod Def0010
+S SampleFreq_EnableInt Def0000
+S $sb$SampleFreq_ReadCounter Def003C
+S $se$SampleFreq_ReadCounter Def007F
+S $sb$SampleFreq_EnableInt Def0000
+S $se$SampleFreq_EnableInt Def0004
+S _SampleFreq_ReadCompareValue Def002C
+S SampleFreq_Stop Def000C
+T 00 00 43 E1 40 7F 41 E1 BF 7F 43 33 01 7F 41 33
+R 00 00 00 01
+T 00 0E FE 7F 4F 52 FB 60 39 52 FC 60 35 52 FD 60
+R 00 00 00 01
+T 00 1C 31 7F 4F 52 FB 60 3A 52 FC 60 36 52 FD 60
+R 00 00 00 01
+T 00 2A 32 7F 56 00 00 5D 3A 54 01 5D 36 54 02 5D
+R 00 00 00 01
+T 00 38 32 54 03 7F 5D 33 08 5D 3A 08 5D 36 08 5D
+R 00 00 00 01
+T 00 46 32 08 41 33 FE 71 10 5D 39 08 62 39 00 70
+R 00 00 00 01
+T 00 54 EF 56 00 00 5D 38 5D 3A 54 01 5D 34 5D 36
+R 00 00 00 01
+T 00 62 54 02 5D 30 5D 32 54 03 20 18 60 32 18 60
+R 00 00 00 01
+T 00 70 36 18 60 3A 71 10 5B 60 39 70 EF 18 60 33
+R 00 00 00 01
+T 00 7E 7F
+R 00 00 00 01

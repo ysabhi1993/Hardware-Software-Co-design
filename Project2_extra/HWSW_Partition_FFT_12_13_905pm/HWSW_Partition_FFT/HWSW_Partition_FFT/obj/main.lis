@@ -1,0 +1,4207 @@
+ 0000                   cpu LMM
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _mod::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0020                   .dbsym e mod _mod A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0000           _data_re::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e data_re _data_re A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0000           _data_imm::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e data_imm _data_imm A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0000           _save_data_re::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e save_data_re _save_data_re A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0000           _save_data_imm::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e save_data_imm _save_data_imm A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+                        .area text(rom, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0000                   .dbfunc e FFT _FFT fS
+ 0000           ;             ty -> X+68
+ 0000           ;             tx -> X+64
+ 0000           ;             i2 -> X+60
+ 0000           ;              l -> X+56
+ 0000           ;              z -> X+52
+ 0000           ;             c2 -> X+48
+ 0000           ;             c1 -> X+44
+ 0000           ;              k -> X+40
+ 0000           ;              j -> X+36
+ 0000           ;             l2 -> X+32
+ 0000           ;              n -> X+28
+ 0000           ;             l1 -> X+24
+ 0000           ;             u2 -> X+20
+ 0000           ;             u1 -> X+16
+ 0000           ;             t2 -> X+12
+ 0000           ;             t1 -> X+8
+ 0000           ;             i1 -> X+4
+ 0000           ;              i -> X+0
+ 0000           ;              y -> X-13
+ 0000           ;              x -> X-11
+ 0000           ;              m -> X-9
+ 0000           ;            dir -> X-5
+ 0000           _FFT::
+ 0000                   .dbline -1
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 384A              add SP,74
+ 0004                   .dbline 18
+ 0004           ; #include "math.h"                              //mathematical library
+ 0004           ; 
+ 0004           ; // FFT parameters
+ 0004           ; #define N_points 8              //number of points                            
+ 0004           ; #define exponent log(8)/log(2)  //log2(N_points); for N_points=64 -> exponent=6
+ 0004           ; 
+ 0004           ; // FFT variables
+ 0004           ; double mod[N_points]={0};        //arrays
+ 0004           ; double data_re[N_points]={0};
+ 0004           ; double data_imm[N_points]={0};
+ 0004           ; 
+ 0004           ; double save_data_re[N_points]={0};
+ 0004           ; double save_data_imm[N_points]={0};
+ 0004           ; 
+ 0004           ; 
+ 0004           ; 
+ 0004           ; short FFT(int dir,long m,double *x,double *y)
+ 0004           ; {
+ 0004                   .dbline 26
+ 0004           ;    // dir:  forward (=1) o inverse (!=1) transform; 
+ 0004           ;    // m exponent;
+ 0004           ;    
+ 0004           ;    long n,i,i1,j,k,i2,l,l1,l2;
+ 0004           ;    double c1,c2,tx,ty,t1,t2,u1,u2,z;
+ 0004           ; 
+ 0004           ;    /* Calculate the number of points */
+ 0004           ;    n = 1;
+ 0004 561C00            mov [X+28],0
+ 0007 561D00            mov [X+29],0
+ 000A 561E00            mov [X+30],0
+ 000D 561F01            mov [X+31],1
+ 0010                   .dbline 27
+ 0010           ;    for (i=0;i<m;i++) 
+ 0010 560000            mov [X+0],0
+ 0013 560100            mov [X+1],0
+ 0016 560200            mov [X+2],0
+ 0019 560300            mov [X+3],0
+ 001C 8015              xjmp L5
+ 001E           L2:
+ 001E                   .dbline 28
+ 001E           ;       n *= 2;
+ 001E 661F              asl [X+31]
+ 0020 6C1E              rlc [X+30]
+ 0022 6C1D              rlc [X+29]
+ 0024 6C1C              rlc [X+28]
+ 0026           L3:
+ 0026                   .dbline 27
+ 0026 070301            add [X+3],1
+ 0029 0F0200            adc [X+2],0
+ 002C 0F0100            adc [X+1],0
+ 002F 0F0000            adc [X+0],0
+ 0032           L5:
+ 0032                   .dbline 27
+ 0032 5203              mov A,[X+3]
+ 0034 13FA              sub A,[X-6]
+ 0036 5202              mov A,[X+2]
+ 0038 1BF9              sbb A,[X-7]
+ 003A 5201              mov A,[X+1]
+ 003C 1BF8              sbb A,[X-8]
+ 003E 52F7              mov A,[X-9]
+ 0040 3180              xor A,-128
+ 0042 62D000            mov REG[0xd0],>__r0
+ 0045 5300              mov [__rX],A
+ 0047 5200              mov A,[X+0]
+ 0049 3180              xor A,-128
+ 004B 1A00              sbb A,[__rX]
+ 004D CFD0              jc L2
+ 004F           X0:
+ 004F                   .dbline 31
+ 004F           ; 
+ 004F           ;    /* Do the bit reversal */
+ 004F           ;    i2 = n >> 1;
+ 004F 62D000            mov REG[0xd0],>__r0
+ 0052 521C              mov A,[X+28]
+ 0054 5300              mov [__r0],A
+ 0056 521D              mov A,[X+29]
+ 0058 5300              mov [__r1],A
+ 005A 521E              mov A,[X+30]
+ 005C 5300              mov [__r2],A
+ 005E 521F              mov A,[X+31]
+ 0060 5300              mov [__r3],A
+ 0062 6800              asr [__r0]
+ 0064 6E00              rrc [__r1]
+ 0066 6E00              rrc [__r2]
+ 0068 6E00              rrc [__r3]
+ 006A 5100              mov A,[__r0]
+ 006C 543C              mov [X+60],A
+ 006E 5100              mov A,[__r1]
+ 0070 543D              mov [X+61],A
+ 0072 5100              mov A,[__r2]
+ 0074 543E              mov [X+62],A
+ 0076 5100              mov A,[__r3]
+ 0078 543F              mov [X+63],A
+ 007A                   .dbline 32
+ 007A           ;    j = 0;
+ 007A 562400            mov [X+36],0
+ 007D 562500            mov [X+37],0
+ 0080 562600            mov [X+38],0
+ 0083 562700            mov [X+39],0
+ 0086                   .dbline 33
+ 0086           ;    for (i=0;i<n-1;i++) {
+ 0086 560000            mov [X+0],0
+ 0089 560100            mov [X+1],0
+ 008C 560200            mov [X+2],0
+ 008F 560300            mov [X+3],0
+ 0092 82A4              xjmp L9
+ 0094           L6:
+ 0094                   .dbline 33
+ 0094                   .dbline 34
+ 0094           ;       if (i < j) {
+ 0094 5203              mov A,[X+3]
+ 0096 1327              sub A,[X+39]
+ 0098 5202              mov A,[X+2]
+ 009A 1B26              sbb A,[X+38]
+ 009C 5201              mov A,[X+1]
+ 009E 1B25              sbb A,[X+37]
+ 00A0 5224              mov A,[X+36]
+ 00A2 3180              xor A,-128
+ 00A4 62D000            mov REG[0xd0],>__r0
+ 00A7 5300              mov [__rX],A
+ 00A9 5200              mov A,[X+0]
+ 00AB 3180              xor A,-128
+ 00AD 1A00              sbb A,[__rX]
+ 00AF D224              jnc L10
+ 00B1           X1:
+ 00B1                   .dbline 35
+ 00B1           ;          tx = x[i];
+ 00B1                   .dbline 35
+ 00B1 62D000            mov REG[0xd0],>__r0
+ 00B4 5200              mov A,[X+0]
+ 00B6 5300              mov [__r0],A
+ 00B8 5201              mov A,[X+1]
+ 00BA 5300              mov [__r1],A
+ 00BC 5202              mov A,[X+2]
+ 00BE 5300              mov [__r2],A
+ 00C0 5203              mov A,[X+3]
+ 00C2 5300              mov [__r3],A
+ 00C4 5002              mov A,2
+ 00C6           X2:
+ 00C6 62D000            mov REG[0xd0],>__r0
+ 00C9 6500              asl [__r3]
+ 00CB 6B00              rlc [__r2]
+ 00CD 6B00              rlc [__r1]
+ 00CF 6B00              rlc [__r0]
+ 00D1 78                dec A
+ 00D2 BFF3              jnz X2
+ 00D4 5100              mov A,[__r3]
+ 00D6 5300              mov [__r1],A
+ 00D8 5100              mov A,[__r2]
+ 00DA 5300              mov [__r0],A
+ 00DC 52F6              mov A,[X-10]
+ 00DE 0400              add [__r1],A
+ 00E0 52F5              mov A,[X-11]
+ 00E2 0C00              adc [__r0],A
+ 00E4 5100              mov A,[__r0]
+ 00E6 60D4              mov REG[0xd4],A
+ 00E8 3E00              mvi A,[__r1]
+ 00EA 5440              mov [X+64],A
+ 00EC 3E00              mvi A,[__r1]
+ 00EE 5441              mov [X+65],A
+ 00F0 3E00              mvi A,[__r1]
+ 00F2 5442              mov [X+66],A
+ 00F4 3E00              mvi A,[__r1]
+ 00F6 5443              mov [X+67],A
+ 00F8                   .dbline 36
+ 00F8           ;          ty = y[i];
+ 00F8 5200              mov A,[X+0]
+ 00FA 5300              mov [__r0],A
+ 00FC 5201              mov A,[X+1]
+ 00FE 5300              mov [__r1],A
+ 0100 5202              mov A,[X+2]
+ 0102 5300              mov [__r2],A
+ 0104 5203              mov A,[X+3]
+ 0106 5300              mov [__r3],A
+ 0108 5002              mov A,2
+ 010A           X3:
+ 010A 62D000            mov REG[0xd0],>__r0
+ 010D 6500              asl [__r3]
+ 010F 6B00              rlc [__r2]
+ 0111 6B00              rlc [__r1]
+ 0113 6B00              rlc [__r0]
+ 0115 78                dec A
+ 0116 BFF3              jnz X3
+ 0118 5100              mov A,[__r3]
+ 011A 5300              mov [__r1],A
+ 011C 5100              mov A,[__r2]
+ 011E 5300              mov [__r0],A
+ 0120 52F4              mov A,[X-12]
+ 0122 0400              add [__r1],A
+ 0124 52F3              mov A,[X-13]
+ 0126 0C00              adc [__r0],A
+ 0128 5100              mov A,[__r0]
+ 012A 60D4              mov REG[0xd4],A
+ 012C 3E00              mvi A,[__r1]
+ 012E 5444              mov [X+68],A
+ 0130 3E00              mvi A,[__r1]
+ 0132 5445              mov [X+69],A
+ 0134 3E00              mvi A,[__r1]
+ 0136 5446              mov [X+70],A
+ 0138 3E00              mvi A,[__r1]
+ 013A 5447              mov [X+71],A
+ 013C                   .dbline 37
+ 013C           ;          x[i] = x[j];
+ 013C 5224              mov A,[X+36]
+ 013E 5300              mov [__r0],A
+ 0140 5225              mov A,[X+37]
+ 0142 5300              mov [__r1],A
+ 0144 5226              mov A,[X+38]
+ 0146 5300              mov [__r2],A
+ 0148 5227              mov A,[X+39]
+ 014A 5300              mov [__r3],A
+ 014C 5002              mov A,2
+ 014E           X4:
+ 014E 62D000            mov REG[0xd0],>__r0
+ 0151 6500              asl [__r3]
+ 0153 6B00              rlc [__r2]
+ 0155 6B00              rlc [__r1]
+ 0157 6B00              rlc [__r0]
+ 0159 78                dec A
+ 015A BFF3              jnz X4
+ 015C 5100              mov A,[__r3]
+ 015E 5300              mov [__r1],A
+ 0160 5100              mov A,[__r2]
+ 0162 5300              mov [__r0],A
+ 0164 52F6              mov A,[X-10]
+ 0166 0400              add [__r1],A
+ 0168 52F5              mov A,[X-11]
+ 016A 0C00              adc [__r0],A
+ 016C 5100              mov A,[__r0]
+ 016E 60D4              mov REG[0xd4],A
+ 0170 3E00              mvi A,[__r1]
+ 0172 5300              mov [__r4],A
+ 0174 3E00              mvi A,[__r1]
+ 0176 5300              mov [__r5],A
+ 0178 3E00              mvi A,[__r1]
+ 017A 5300              mov [__r6],A
+ 017C 3E00              mvi A,[__r1]
+ 017E 5300              mov [__r7],A
+ 0180 5200              mov A,[X+0]
+ 0182 5300              mov [__r0],A
+ 0184 5201              mov A,[X+1]
+ 0186 5300              mov [__r1],A
+ 0188 5202              mov A,[X+2]
+ 018A 5300              mov [__r2],A
+ 018C 5203              mov A,[X+3]
+ 018E 5300              mov [__r3],A
+ 0190 5002              mov A,2
+ 0192           X5:
+ 0192 62D000            mov REG[0xd0],>__r0
+ 0195 6500              asl [__r3]
+ 0197 6B00              rlc [__r2]
+ 0199 6B00              rlc [__r1]
+ 019B 6B00              rlc [__r0]
+ 019D 78                dec A
+ 019E BFF3              jnz X5
+ 01A0 5100              mov A,[__r3]
+ 01A2 5300              mov [__r1],A
+ 01A4 5100              mov A,[__r2]
+ 01A6 5300              mov [__r0],A
+ 01A8 52F6              mov A,[X-10]
+ 01AA 0400              add [__r1],A
+ 01AC 52F5              mov A,[X-11]
+ 01AE 0C00              adc [__r0],A
+ 01B0 5100              mov A,[__r0]
+ 01B2 60D5              mov REG[0xd5],A
+ 01B4 5100              mov A,[__r4]
+ 01B6 3F00              mvi [__r1],A
+ 01B8 5100              mov A,[__r5]
+ 01BA 3F00              mvi [__r1],A
+ 01BC 5100              mov A,[__r6]
+ 01BE 3F00              mvi [__r1],A
+ 01C0 5100              mov A,[__r7]
+ 01C2 3F00              mvi [__r1],A
+ 01C4                   .dbline 38
+ 01C4           ;          y[i] = y[j];
+ 01C4 5224              mov A,[X+36]
+ 01C6 5300              mov [__r0],A
+ 01C8 5225              mov A,[X+37]
+ 01CA 5300              mov [__r1],A
+ 01CC 5226              mov A,[X+38]
+ 01CE 5300              mov [__r2],A
+ 01D0 5227              mov A,[X+39]
+ 01D2 5300              mov [__r3],A
+ 01D4 5002              mov A,2
+ 01D6           X6:
+ 01D6 62D000            mov REG[0xd0],>__r0
+ 01D9 6500              asl [__r3]
+ 01DB 6B00              rlc [__r2]
+ 01DD 6B00              rlc [__r1]
+ 01DF 6B00              rlc [__r0]
+ 01E1 78                dec A
+ 01E2 BFF3              jnz X6
+ 01E4 5100              mov A,[__r3]
+ 01E6 5300              mov [__r1],A
+ 01E8 5100              mov A,[__r2]
+ 01EA 5300              mov [__r0],A
+ 01EC 52F4              mov A,[X-12]
+ 01EE 0400              add [__r1],A
+ 01F0 52F3              mov A,[X-13]
+ 01F2 0C00              adc [__r0],A
+ 01F4 5100              mov A,[__r0]
+ 01F6 60D4              mov REG[0xd4],A
+ 01F8 3E00              mvi A,[__r1]
+ 01FA 5300              mov [__r4],A
+ 01FC 3E00              mvi A,[__r1]
+ 01FE 5300              mov [__r5],A
+ 0200 3E00              mvi A,[__r1]
+ 0202 5300              mov [__r6],A
+ 0204 3E00              mvi A,[__r1]
+ 0206 5300              mov [__r7],A
+ 0208 5200              mov A,[X+0]
+ 020A 5300              mov [__r0],A
+ 020C 5201              mov A,[X+1]
+ 020E 5300              mov [__r1],A
+ 0210 5202              mov A,[X+2]
+ 0212 5300              mov [__r2],A
+ 0214 5203              mov A,[X+3]
+ 0216 5300              mov [__r3],A
+ 0218 5002              mov A,2
+ 021A           X7:
+ 021A 62D000            mov REG[0xd0],>__r0
+ 021D 6500              asl [__r3]
+ 021F 6B00              rlc [__r2]
+ 0221 6B00              rlc [__r1]
+ 0223 6B00              rlc [__r0]
+ 0225 78                dec A
+ 0226 BFF3              jnz X7
+ 0228 5100              mov A,[__r3]
+ 022A 5300              mov [__r1],A
+ 022C 5100              mov A,[__r2]
+ 022E 5300              mov [__r0],A
+ 0230 52F4              mov A,[X-12]
+ 0232 0400              add [__r1],A
+ 0234 52F3              mov A,[X-13]
+ 0236 0C00              adc [__r0],A
+ 0238 5100              mov A,[__r0]
+ 023A 60D5              mov REG[0xd5],A
+ 023C 5100              mov A,[__r4]
+ 023E 3F00              mvi [__r1],A
+ 0240 5100              mov A,[__r5]
+ 0242 3F00              mvi [__r1],A
+ 0244 5100              mov A,[__r6]
+ 0246 3F00              mvi [__r1],A
+ 0248 5100              mov A,[__r7]
+ 024A 3F00              mvi [__r1],A
+ 024C                   .dbline 39
+ 024C           ;          x[j] = tx;
+ 024C 5224              mov A,[X+36]
+ 024E 5300              mov [__r0],A
+ 0250 5225              mov A,[X+37]
+ 0252 5300              mov [__r1],A
+ 0254 5226              mov A,[X+38]
+ 0256 5300              mov [__r2],A
+ 0258 5227              mov A,[X+39]
+ 025A 5300              mov [__r3],A
+ 025C 5002              mov A,2
+ 025E           X8:
+ 025E 62D000            mov REG[0xd0],>__r0
+ 0261 6500              asl [__r3]
+ 0263 6B00              rlc [__r2]
+ 0265 6B00              rlc [__r1]
+ 0267 6B00              rlc [__r0]
+ 0269 78                dec A
+ 026A BFF3              jnz X8
+ 026C 5100              mov A,[__r3]
+ 026E 5300              mov [__r1],A
+ 0270 5100              mov A,[__r2]
+ 0272 5300              mov [__r0],A
+ 0274 52F6              mov A,[X-10]
+ 0276 0400              add [__r1],A
+ 0278 52F5              mov A,[X-11]
+ 027A 0C00              adc [__r0],A
+ 027C 5100              mov A,[__r0]
+ 027E 60D5              mov REG[0xd5],A
+ 0280 5240              mov A,[X+64]
+ 0282 3F00              mvi [__r1],A
+ 0284 5241              mov A,[X+65]
+ 0286 3F00              mvi [__r1],A
+ 0288 5242              mov A,[X+66]
+ 028A 3F00              mvi [__r1],A
+ 028C 5243              mov A,[X+67]
+ 028E 3F00              mvi [__r1],A
+ 0290                   .dbline 40
+ 0290           ;          y[j] = ty;
+ 0290 5224              mov A,[X+36]
+ 0292 5300              mov [__r0],A
+ 0294 5225              mov A,[X+37]
+ 0296 5300              mov [__r1],A
+ 0298 5226              mov A,[X+38]
+ 029A 5300              mov [__r2],A
+ 029C 5227              mov A,[X+39]
+ 029E 5300              mov [__r3],A
+ 02A0 5002              mov A,2
+ 02A2           X9:
+ 02A2 62D000            mov REG[0xd0],>__r0
+ 02A5 6500              asl [__r3]
+ 02A7 6B00              rlc [__r2]
+ 02A9 6B00              rlc [__r1]
+ 02AB 6B00              rlc [__r0]
+ 02AD 78                dec A
+ 02AE BFF3              jnz X9
+ 02B0 5100              mov A,[__r3]
+ 02B2 5300              mov [__r1],A
+ 02B4 5100              mov A,[__r2]
+ 02B6 5300              mov [__r0],A
+ 02B8 52F4              mov A,[X-12]
+ 02BA 0400              add [__r1],A
+ 02BC 52F3              mov A,[X-13]
+ 02BE 0C00              adc [__r0],A
+ 02C0 5100              mov A,[__r0]
+ 02C2 60D5              mov REG[0xd5],A
+ 02C4 5244              mov A,[X+68]
+ 02C6 3F00              mvi [__r1],A
+ 02C8 5245              mov A,[X+69]
+ 02CA 3F00              mvi [__r1],A
+ 02CC 5246              mov A,[X+70]
+ 02CE 3F00              mvi [__r1],A
+ 02D0 5247              mov A,[X+71]
+ 02D2 3F00              mvi [__r1],A
+ 02D4                   .dbline 41
+ 02D4           ;       }
+ 02D4           L10:
+ 02D4                   .dbline 42
+ 02D4           ;       k = i2;
+ 02D4 523C              mov A,[X+60]
+ 02D6 5428              mov [X+40],A
+ 02D8 523D              mov A,[X+61]
+ 02DA 5429              mov [X+41],A
+ 02DC 523E              mov A,[X+62]
+ 02DE 542A              mov [X+42],A
+ 02E0 523F              mov A,[X+63]
+ 02E2 542B              mov [X+43],A
+ 02E4 8019              xjmp L13
+ 02E6           L12:
+ 02E6                   .dbline 43
+ 02E6           ;       while (k <= j) {
+ 02E6                   .dbline 44
+ 02E6           ;          j -= k;
+ 02E6 522B              mov A,[X+43]
+ 02E8 1527              sub [X+39],A
+ 02EA 522A              mov A,[X+42]
+ 02EC 1D26              sbb [X+38],A
+ 02EE 5229              mov A,[X+41]
+ 02F0 1D25              sbb [X+37],A
+ 02F2 5228              mov A,[X+40]
+ 02F4 1D24              sbb [X+36],A
+ 02F6                   .dbline 45
+ 02F6           ;          k >>= 1;
+ 02F6 6928              asr [X+40]
+ 02F8 6F29              rrc [X+41]
+ 02FA 6F2A              rrc [X+42]
+ 02FC 6F2B              rrc [X+43]
+ 02FE                   .dbline 46
+ 02FE           ;       }
+ 02FE           L13:
+ 02FE                   .dbline 43
+ 02FE 5227              mov A,[X+39]
+ 0300 132B              sub A,[X+43]
+ 0302 5226              mov A,[X+38]
+ 0304 1B2A              sbb A,[X+42]
+ 0306 5225              mov A,[X+37]
+ 0308 1B29              sbb A,[X+41]
+ 030A 5228              mov A,[X+40]
+ 030C 3180              xor A,-128
+ 030E 62D000            mov REG[0xd0],>__r0
+ 0311 5300              mov [__rX],A
+ 0313 5224              mov A,[X+36]
+ 0315 3180              xor A,-128
+ 0317 1A00              sbb A,[__rX]
+ 0319 DFCC              jnc L12
+ 031B           X10:
+ 031B                   .dbline 47
+ 031B           ;       j += k;
+ 031B 522B              mov A,[X+43]
+ 031D 0527              add [X+39],A
+ 031F 522A              mov A,[X+42]
+ 0321 0D26              adc [X+38],A
+ 0323 5229              mov A,[X+41]
+ 0325 0D25              adc [X+37],A
+ 0327 5228              mov A,[X+40]
+ 0329 0D24              adc [X+36],A
+ 032B                   .dbline 48
+ 032B           ;    }
+ 032B           L7:
+ 032B                   .dbline 33
+ 032B 070301            add [X+3],1
+ 032E 0F0200            adc [X+2],0
+ 0331 0F0100            adc [X+1],0
+ 0334 0F0000            adc [X+0],0
+ 0337           L9:
+ 0337                   .dbline 33
+ 0337 62D000            mov REG[0xd0],>__r0
+ 033A 521F              mov A,[X+31]
+ 033C 1101              sub A,1
+ 033E 5300              mov [__r3],A
+ 0340 521E              mov A,[X+30]
+ 0342 1900              sbb A,0
+ 0344 5300              mov [__r2],A
+ 0346 521D              mov A,[X+29]
+ 0348 1900              sbb A,0
+ 034A 5300              mov [__r1],A
+ 034C 521C              mov A,[X+28]
+ 034E 1900              sbb A,0
+ 0350 5300              mov [__r0],A
+ 0352 5203              mov A,[X+3]
+ 0354 1200              sub A,[__r3]
+ 0356 5202              mov A,[X+2]
+ 0358 1A00              sbb A,[__r2]
+ 035A 5201              mov A,[X+1]
+ 035C 1A00              sbb A,[__r1]
+ 035E 5100              mov A,[__r0]
+ 0360 3180              xor A,-128
+ 0362 5300              mov [__rX],A
+ 0364 5200              mov A,[X+0]
+ 0366 3180              xor A,-128
+ 0368 1A00              sbb A,[__rX]
+ 036A CD29              jc L6
+ 036C           X11:
+ 036C                   .dbline 51
+ 036C           ; 
+ 036C           ;    /* Compute the FFT */
+ 036C           ;    c1 = -1.0; 
+ 036C 562CBF            mov [X+44],-65
+ 036F 562D80            mov [X+45],-128
+ 0372 562E00            mov [X+46],0
+ 0375 562F00            mov [X+47],0
+ 0378                   .dbline 52
+ 0378           ;    c2 = 0.0;
+ 0378 563000            mov [X+48],0
+ 037B 563100            mov [X+49],0
+ 037E 563200            mov [X+50],0
+ 0381 563300            mov [X+51],0
+ 0384                   .dbline 53
+ 0384           ;    l2 = 1;
+ 0384 562000            mov [X+32],0
+ 0387 562100            mov [X+33],0
+ 038A 562200            mov [X+34],0
+ 038D 562301            mov [X+35],1
+ 0390                   .dbline 54
+ 0390           ;    for (l=0;l<m;l++) {
+ 0390 563800            mov [X+56],0
+ 0393 563900            mov [X+57],0
+ 0396 563A00            mov [X+58],0
+ 0399 563B00            mov [X+59],0
+ 039C 86E2              xjmp L18
+ 039E           L15:
+ 039E                   .dbline 54
+ 039E                   .dbline 55
+ 039E           ;       l1 = l2;
+ 039E 5220              mov A,[X+32]
+ 03A0 5418              mov [X+24],A
+ 03A2 5221              mov A,[X+33]
+ 03A4 5419              mov [X+25],A
+ 03A6 5222              mov A,[X+34]
+ 03A8 541A              mov [X+26],A
+ 03AA 5223              mov A,[X+35]
+ 03AC 541B              mov [X+27],A
+ 03AE                   .dbline 56
+ 03AE           ;       l2 <<= 1;
+ 03AE 6623              asl [X+35]
+ 03B0 6C22              rlc [X+34]
+ 03B2 6C21              rlc [X+33]
+ 03B4 6C20              rlc [X+32]
+ 03B6                   .dbline 57
+ 03B6           ;       u1 = 1.0; 
+ 03B6 56103F            mov [X+16],63
+ 03B9 561180            mov [X+17],-128
+ 03BC 561200            mov [X+18],0
+ 03BF 561300            mov [X+19],0
+ 03C2                   .dbline 58
+ 03C2           ;       u2 = 0.0;
+ 03C2 561400            mov [X+20],0
+ 03C5 561500            mov [X+21],0
+ 03C8 561600            mov [X+22],0
+ 03CB 561700            mov [X+23],0
+ 03CE                   .dbline 59
+ 03CE           ;       for (j=0;j<l1;j++) {
+ 03CE 562400            mov [X+36],0
+ 03D1 562500            mov [X+37],0
+ 03D4 562600            mov [X+38],0
+ 03D7 562700            mov [X+39],0
+ 03DA 8590              xjmp L22
+ 03DC           L19:
+ 03DC                   .dbline 59
+ 03DC                   .dbline 60
+ 03DC           ;          for (i=j;i<n;i+=l2) {
+ 03DC 5224              mov A,[X+36]
+ 03DE 5400              mov [X+0],A
+ 03E0 5225              mov A,[X+37]
+ 03E2 5401              mov [X+1],A
+ 03E4 5226              mov A,[X+38]
+ 03E6 5402              mov [X+2],A
+ 03E8 5227              mov A,[X+39]
+ 03EA 5403              mov [X+3],A
+ 03EC 844C              xjmp L26
+ 03EE           L23:
+ 03EE                   .dbline 60
+ 03EE                   .dbline 61
+ 03EE           ;             i1 = i + l1;
+ 03EE 5203              mov A,[X+3]
+ 03F0 031B              add A,[X+27]
+ 03F2 5407              mov [X+7],A
+ 03F4 5202              mov A,[X+2]
+ 03F6 0B1A              adc A,[X+26]
+ 03F8 5406              mov [X+6],A
+ 03FA 5201              mov A,[X+1]
+ 03FC 0B19              adc A,[X+25]
+ 03FE 5405              mov [X+5],A
+ 0400 5200              mov A,[X+0]
+ 0402 0B18              adc A,[X+24]
+ 0404 5404              mov [X+4],A
+ 0406                   .dbline 62
+ 0406           ;             t1 = u1 * x[i1] - u2 * y[i1];
+ 0406 62D000            mov REG[0xd0],>__r0
+ 0409 5204              mov A,[X+4]
+ 040B 5300              mov [__r0],A
+ 040D 5205              mov A,[X+5]
+ 040F 5300              mov [__r1],A
+ 0411 5206              mov A,[X+6]
+ 0413 5300              mov [__r2],A
+ 0415 5207              mov A,[X+7]
+ 0417 5300              mov [__r3],A
+ 0419 5002              mov A,2
+ 041B           X12:
+ 041B 62D000            mov REG[0xd0],>__r0
+ 041E 6500              asl [__r3]
+ 0420 6B00              rlc [__r2]
+ 0422 6B00              rlc [__r1]
+ 0424 6B00              rlc [__r0]
+ 0426 78                dec A
+ 0427 BFF3              jnz X12
+ 0429 5100              mov A,[__r3]
+ 042B 5300              mov [__r1],A
+ 042D 5100              mov A,[__r2]
+ 042F 5300              mov [__r0],A
+ 0431 5100              mov A,[__r1]
+ 0433 03F4              add A,[X-12]
+ 0435 5300              mov [__r3],A
+ 0437 5100              mov A,[__r0]
+ 0439 0BF3              adc A,[X-13]
+ 043B 60D4              mov REG[0xd4],A
+ 043D 3E00              mvi A,[__r3]
+ 043F 5300              mov [__r4],A
+ 0441 3E00              mvi A,[__r3]
+ 0443 5300              mov [__r5],A
+ 0445 3E00              mvi A,[__r3]
+ 0447 5300              mov [__r6],A
+ 0449 3E00              mvi A,[__r3]
+ 044B 5300              mov [__r7],A
+ 044D 5100              mov A,[__r4]
+ 044F 08                push A
+ 0450 5100              mov A,[__r5]
+ 0452 08                push A
+ 0453 5100              mov A,[__r6]
+ 0455 08                push A
+ 0456 5100              mov A,[__r7]
+ 0458 08                push A
+ 0459 5214              mov A,[X+20]
+ 045B 08                push A
+ 045C 5215              mov A,[X+21]
+ 045E 08                push A
+ 045F 5216              mov A,[X+22]
+ 0461 08                push A
+ 0462 5217              mov A,[X+23]
+ 0464 08                push A
+ 0465 7C0000            xcall __fpmul
+ 0468 18                pop A
+ 0469 5300              mov [__r7],A
+ 046B 18                pop A
+ 046C 5300              mov [__r6],A
+ 046E 18                pop A
+ 046F 5300              mov [__r5],A
+ 0471 18                pop A
+ 0472 5300              mov [__r4],A
+ 0474 38FC              add SP,-4
+ 0476 52F6              mov A,[X-10]
+ 0478 0400              add [__r1],A
+ 047A 52F5              mov A,[X-11]
+ 047C 0C00              adc [__r0],A
+ 047E 5100              mov A,[__r0]
+ 0480 60D4              mov REG[0xd4],A
+ 0482 3E00              mvi A,[__r1]
+ 0484 5300              mov [__r8],A
+ 0486 3E00              mvi A,[__r1]
+ 0488 5300              mov [__r9],A
+ 048A 3E00              mvi A,[__r1]
+ 048C 5300              mov [__r10],A
+ 048E 3E00              mvi A,[__r1]
+ 0490 5300              mov [__r11],A
+ 0492 5100              mov A,[__r8]
+ 0494 08                push A
+ 0495 5100              mov A,[__r9]
+ 0497 08                push A
+ 0498 5100              mov A,[__r10]
+ 049A 08                push A
+ 049B 5100              mov A,[__r11]
+ 049D 08                push A
+ 049E 5210              mov A,[X+16]
+ 04A0 08                push A
+ 04A1 5211              mov A,[X+17]
+ 04A3 08                push A
+ 04A4 5212              mov A,[X+18]
+ 04A6 08                push A
+ 04A7 5213              mov A,[X+19]
+ 04A9 08                push A
+ 04AA 7C0000            xcall __fpmul
+ 04AD 18                pop A
+ 04AE 5300              mov [__r3],A
+ 04B0 18                pop A
+ 04B1 5300              mov [__r2],A
+ 04B3 18                pop A
+ 04B4 5300              mov [__r1],A
+ 04B6 18                pop A
+ 04B7 5300              mov [__r0],A
+ 04B9 38FC              add SP,-4
+ 04BB 5100              mov A,[__r4]
+ 04BD 08                push A
+ 04BE 5100              mov A,[__r5]
+ 04C0 08                push A
+ 04C1 5100              mov A,[__r6]
+ 04C3 08                push A
+ 04C4 5100              mov A,[__r7]
+ 04C6 08                push A
+ 04C7 5100              mov A,[__r0]
+ 04C9 08                push A
+ 04CA 5100              mov A,[__r1]
+ 04CC 08                push A
+ 04CD 5100              mov A,[__r2]
+ 04CF 08                push A
+ 04D0 5100              mov A,[__r3]
+ 04D2 08                push A
+ 04D3 7C0000            xcall __fpsub
+ 04D6 18                pop A
+ 04D7 540B              mov [X+11],A
+ 04D9 18                pop A
+ 04DA 540A              mov [X+10],A
+ 04DC 18                pop A
+ 04DD 5409              mov [X+9],A
+ 04DF 18                pop A
+ 04E0 5408              mov [X+8],A
+ 04E2 38FC              add SP,-4
+ 04E4                   .dbline 63
+ 04E4           ;             t2 = u1 * y[i1] + u2 * x[i1];
+ 04E4 5204              mov A,[X+4]
+ 04E6 5300              mov [__r0],A
+ 04E8 5205              mov A,[X+5]
+ 04EA 5300              mov [__r1],A
+ 04EC 5206              mov A,[X+6]
+ 04EE 5300              mov [__r2],A
+ 04F0 5207              mov A,[X+7]
+ 04F2 5300              mov [__r3],A
+ 04F4 5002              mov A,2
+ 04F6           X13:
+ 04F6 62D000            mov REG[0xd0],>__r0
+ 04F9 6500              asl [__r3]
+ 04FB 6B00              rlc [__r2]
+ 04FD 6B00              rlc [__r1]
+ 04FF 6B00              rlc [__r0]
+ 0501 78                dec A
+ 0502 BFF3              jnz X13
+ 0504 5100              mov A,[__r3]
+ 0506 5300              mov [__r1],A
+ 0508 5100              mov A,[__r2]
+ 050A 5300              mov [__r0],A
+ 050C 5100              mov A,[__r1]
+ 050E 03F6              add A,[X-10]
+ 0510 5300              mov [__r3],A
+ 0512 5100              mov A,[__r0]
+ 0514 0BF5              adc A,[X-11]
+ 0516 60D4              mov REG[0xd4],A
+ 0518 3E00              mvi A,[__r3]
+ 051A 5300              mov [__r4],A
+ 051C 3E00              mvi A,[__r3]
+ 051E 5300              mov [__r5],A
+ 0520 3E00              mvi A,[__r3]
+ 0522 5300              mov [__r6],A
+ 0524 3E00              mvi A,[__r3]
+ 0526 5300              mov [__r7],A
+ 0528 5100              mov A,[__r4]
+ 052A 08                push A
+ 052B 5100              mov A,[__r5]
+ 052D 08                push A
+ 052E 5100              mov A,[__r6]
+ 0530 08                push A
+ 0531 5100              mov A,[__r7]
+ 0533 08                push A
+ 0534 5214              mov A,[X+20]
+ 0536 08                push A
+ 0537 5215              mov A,[X+21]
+ 0539 08                push A
+ 053A 5216              mov A,[X+22]
+ 053C 08                push A
+ 053D 5217              mov A,[X+23]
+ 053F 08                push A
+ 0540 7C0000            xcall __fpmul
+ 0543 18                pop A
+ 0544 5300              mov [__r7],A
+ 0546 18                pop A
+ 0547 5300              mov [__r6],A
+ 0549 18                pop A
+ 054A 5300              mov [__r5],A
+ 054C 18                pop A
+ 054D 5300              mov [__r4],A
+ 054F 38FC              add SP,-4
+ 0551 52F4              mov A,[X-12]
+ 0553 0400              add [__r1],A
+ 0555 52F3              mov A,[X-13]
+ 0557 0C00              adc [__r0],A
+ 0559 5100              mov A,[__r0]
+ 055B 60D4              mov REG[0xd4],A
+ 055D 3E00              mvi A,[__r1]
+ 055F 5300              mov [__r8],A
+ 0561 3E00              mvi A,[__r1]
+ 0563 5300              mov [__r9],A
+ 0565 3E00              mvi A,[__r1]
+ 0567 5300              mov [__r10],A
+ 0569 3E00              mvi A,[__r1]
+ 056B 5300              mov [__r11],A
+ 056D 5100              mov A,[__r8]
+ 056F 08                push A
+ 0570 5100              mov A,[__r9]
+ 0572 08                push A
+ 0573 5100              mov A,[__r10]
+ 0575 08                push A
+ 0576 5100              mov A,[__r11]
+ 0578 08                push A
+ 0579 5210              mov A,[X+16]
+ 057B 08                push A
+ 057C 5211              mov A,[X+17]
+ 057E 08                push A
+ 057F 5212              mov A,[X+18]
+ 0581 08                push A
+ 0582 5213              mov A,[X+19]
+ 0584 08                push A
+ 0585 7C0000            xcall __fpmul
+ 0588 18                pop A
+ 0589 5300              mov [__r3],A
+ 058B 18                pop A
+ 058C 5300              mov [__r2],A
+ 058E 18                pop A
+ 058F 5300              mov [__r1],A
+ 0591 18                pop A
+ 0592 5300              mov [__r0],A
+ 0594 38FC              add SP,-4
+ 0596 5100              mov A,[__r4]
+ 0598 08                push A
+ 0599 5100              mov A,[__r5]
+ 059B 08                push A
+ 059C 5100              mov A,[__r6]
+ 059E 08                push A
+ 059F 5100              mov A,[__r7]
+ 05A1 08                push A
+ 05A2 5100              mov A,[__r0]
+ 05A4 08                push A
+ 05A5 5100              mov A,[__r1]
+ 05A7 08                push A
+ 05A8 5100              mov A,[__r2]
+ 05AA 08                push A
+ 05AB 5100              mov A,[__r3]
+ 05AD 08                push A
+ 05AE 7C0000            xcall __fpadd
+ 05B1 18                pop A
+ 05B2 540F              mov [X+15],A
+ 05B4 18                pop A
+ 05B5 540E              mov [X+14],A
+ 05B7 18                pop A
+ 05B8 540D              mov [X+13],A
+ 05BA 18                pop A
+ 05BB 540C              mov [X+12],A
+ 05BD 38FC              add SP,-4
+ 05BF                   .dbline 64
+ 05BF           ;             x[i1] = x[i] - t1; 
+ 05BF 5200              mov A,[X+0]
+ 05C1 5300              mov [__r0],A
+ 05C3 5201              mov A,[X+1]
+ 05C5 5300              mov [__r1],A
+ 05C7 5202              mov A,[X+2]
+ 05C9 5300              mov [__r2],A
+ 05CB 5203              mov A,[X+3]
+ 05CD 5300              mov [__r3],A
+ 05CF 5002              mov A,2
+ 05D1           X14:
+ 05D1 62D000            mov REG[0xd0],>__r0
+ 05D4 6500              asl [__r3]
+ 05D6 6B00              rlc [__r2]
+ 05D8 6B00              rlc [__r1]
+ 05DA 6B00              rlc [__r0]
+ 05DC 78                dec A
+ 05DD BFF3              jnz X14
+ 05DF 5100              mov A,[__r3]
+ 05E1 5300              mov [__r1],A
+ 05E3 5100              mov A,[__r2]
+ 05E5 5300              mov [__r0],A
+ 05E7 52F6              mov A,[X-10]
+ 05E9 0400              add [__r1],A
+ 05EB 52F5              mov A,[X-11]
+ 05ED 0C00              adc [__r0],A
+ 05EF 5100              mov A,[__r0]
+ 05F1 60D4              mov REG[0xd4],A
+ 05F3 3E00              mvi A,[__r1]
+ 05F5 5300              mov [__r4],A
+ 05F7 3E00              mvi A,[__r1]
+ 05F9 5300              mov [__r5],A
+ 05FB 3E00              mvi A,[__r1]
+ 05FD 5300              mov [__r6],A
+ 05FF 3E00              mvi A,[__r1]
+ 0601 5300              mov [__r7],A
+ 0603 5208              mov A,[X+8]
+ 0605 08                push A
+ 0606 5209              mov A,[X+9]
+ 0608 08                push A
+ 0609 520A              mov A,[X+10]
+ 060B 08                push A
+ 060C 520B              mov A,[X+11]
+ 060E 08                push A
+ 060F 5100              mov A,[__r4]
+ 0611 08                push A
+ 0612 5100              mov A,[__r5]
+ 0614 08                push A
+ 0615 5100              mov A,[__r6]
+ 0617 08                push A
+ 0618 5100              mov A,[__r7]
+ 061A 08                push A
+ 061B 7C0000            xcall __fpsub
+ 061E 18                pop A
+ 061F 5300              mov [__r3],A
+ 0621 18                pop A
+ 0622 5300              mov [__r2],A
+ 0624 18                pop A
+ 0625 5300              mov [__r1],A
+ 0627 18                pop A
+ 0628 5300              mov [__r0],A
+ 062A 38FC              add SP,-4
+ 062C 5204              mov A,[X+4]
+ 062E 5300              mov [__r4],A
+ 0630 5205              mov A,[X+5]
+ 0632 5300              mov [__r5],A
+ 0634 5206              mov A,[X+6]
+ 0636 5300              mov [__r6],A
+ 0638 5207              mov A,[X+7]
+ 063A 5300              mov [__r7],A
+ 063C 5002              mov A,2
+ 063E           X15:
+ 063E 62D000            mov REG[0xd0],>__r0
+ 0641 6500              asl [__r7]
+ 0643 6B00              rlc [__r6]
+ 0645 6B00              rlc [__r5]
+ 0647 6B00              rlc [__r4]
+ 0649 78                dec A
+ 064A BFF3              jnz X15
+ 064C 5100              mov A,[__r7]
+ 064E 5300              mov [__r5],A
+ 0650 5100              mov A,[__r6]
+ 0652 5300              mov [__r4],A
+ 0654 52F6              mov A,[X-10]
+ 0656 0400              add [__r5],A
+ 0658 52F5              mov A,[X-11]
+ 065A 0C00              adc [__r4],A
+ 065C 5100              mov A,[__r4]
+ 065E 60D5              mov REG[0xd5],A
+ 0660 5100              mov A,[__r0]
+ 0662 3F00              mvi [__r5],A
+ 0664 5100              mov A,[__r1]
+ 0666 3F00              mvi [__r5],A
+ 0668 5100              mov A,[__r2]
+ 066A 3F00              mvi [__r5],A
+ 066C 5100              mov A,[__r3]
+ 066E 3F00              mvi [__r5],A
+ 0670                   .dbline 65
+ 0670           ;             y[i1] = y[i] - t2;
+ 0670 5200              mov A,[X+0]
+ 0672 5300              mov [__r0],A
+ 0674 5201              mov A,[X+1]
+ 0676 5300              mov [__r1],A
+ 0678 5202              mov A,[X+2]
+ 067A 5300              mov [__r2],A
+ 067C 5203              mov A,[X+3]
+ 067E 5300              mov [__r3],A
+ 0680 5002              mov A,2
+ 0682           X16:
+ 0682 62D000            mov REG[0xd0],>__r0
+ 0685 6500              asl [__r3]
+ 0687 6B00              rlc [__r2]
+ 0689 6B00              rlc [__r1]
+ 068B 6B00              rlc [__r0]
+ 068D 78                dec A
+ 068E BFF3              jnz X16
+ 0690 5100              mov A,[__r3]
+ 0692 5300              mov [__r1],A
+ 0694 5100              mov A,[__r2]
+ 0696 5300              mov [__r0],A
+ 0698 52F4              mov A,[X-12]
+ 069A 0400              add [__r1],A
+ 069C 52F3              mov A,[X-13]
+ 069E 0C00              adc [__r0],A
+ 06A0 5100              mov A,[__r0]
+ 06A2 60D4              mov REG[0xd4],A
+ 06A4 3E00              mvi A,[__r1]
+ 06A6 5300              mov [__r4],A
+ 06A8 3E00              mvi A,[__r1]
+ 06AA 5300              mov [__r5],A
+ 06AC 3E00              mvi A,[__r1]
+ 06AE 5300              mov [__r6],A
+ 06B0 3E00              mvi A,[__r1]
+ 06B2 5300              mov [__r7],A
+ 06B4 520C              mov A,[X+12]
+ 06B6 08                push A
+ 06B7 520D              mov A,[X+13]
+ 06B9 08                push A
+ 06BA 520E              mov A,[X+14]
+ 06BC 08                push A
+ 06BD 520F              mov A,[X+15]
+ 06BF 08                push A
+ 06C0 5100              mov A,[__r4]
+ 06C2 08                push A
+ 06C3 5100              mov A,[__r5]
+ 06C5 08                push A
+ 06C6 5100              mov A,[__r6]
+ 06C8 08                push A
+ 06C9 5100              mov A,[__r7]
+ 06CB 08                push A
+ 06CC 7C0000            xcall __fpsub
+ 06CF 18                pop A
+ 06D0 5300              mov [__r3],A
+ 06D2 18                pop A
+ 06D3 5300              mov [__r2],A
+ 06D5 18                pop A
+ 06D6 5300              mov [__r1],A
+ 06D8 18                pop A
+ 06D9 5300              mov [__r0],A
+ 06DB 38FC              add SP,-4
+ 06DD 5204              mov A,[X+4]
+ 06DF 5300              mov [__r4],A
+ 06E1 5205              mov A,[X+5]
+ 06E3 5300              mov [__r5],A
+ 06E5 5206              mov A,[X+6]
+ 06E7 5300              mov [__r6],A
+ 06E9 5207              mov A,[X+7]
+ 06EB 5300              mov [__r7],A
+ 06ED 5002              mov A,2
+ 06EF           X17:
+ 06EF 62D000            mov REG[0xd0],>__r0
+ 06F2 6500              asl [__r7]
+ 06F4 6B00              rlc [__r6]
+ 06F6 6B00              rlc [__r5]
+ 06F8 6B00              rlc [__r4]
+ 06FA 78                dec A
+ 06FB BFF3              jnz X17
+ 06FD 5100              mov A,[__r7]
+ 06FF 5300              mov [__r5],A
+ 0701 5100              mov A,[__r6]
+ 0703 5300              mov [__r4],A
+ 0705 52F4              mov A,[X-12]
+ 0707 0400              add [__r5],A
+ 0709 52F3              mov A,[X-13]
+ 070B 0C00              adc [__r4],A
+ 070D 5100              mov A,[__r4]
+ 070F 60D5              mov REG[0xd5],A
+ 0711 5100              mov A,[__r0]
+ 0713 3F00              mvi [__r5],A
+ 0715 5100              mov A,[__r1]
+ 0717 3F00              mvi [__r5],A
+ 0719 5100              mov A,[__r2]
+ 071B 3F00              mvi [__r5],A
+ 071D 5100              mov A,[__r3]
+ 071F 3F00              mvi [__r5],A
+ 0721                   .dbline 66
+ 0721           ;             x[i] += t1;
+ 0721 5200              mov A,[X+0]
+ 0723 5300              mov [__r0],A
+ 0725 5201              mov A,[X+1]
+ 0727 5300              mov [__r1],A
+ 0729 5202              mov A,[X+2]
+ 072B 5300              mov [__r2],A
+ 072D 5203              mov A,[X+3]
+ 072F 5300              mov [__r3],A
+ 0731 5002              mov A,2
+ 0733           X18:
+ 0733 62D000            mov REG[0xd0],>__r0
+ 0736 6500              asl [__r3]
+ 0738 6B00              rlc [__r2]
+ 073A 6B00              rlc [__r1]
+ 073C 6B00              rlc [__r0]
+ 073E 78                dec A
+ 073F BFF3              jnz X18
+ 0741 5100              mov A,[__r3]
+ 0743 5300              mov [__r1],A
+ 0745 5100              mov A,[__r2]
+ 0747 5300              mov [__r0],A
+ 0749 52F6              mov A,[X-10]
+ 074B 0400              add [__r1],A
+ 074D 52F5              mov A,[X-11]
+ 074F 0C00              adc [__r0],A
+ 0751 5100              mov A,[__r0]
+ 0753 60D4              mov REG[0xd4],A
+ 0755 3E00              mvi A,[__r1]
+ 0757 5300              mov [__r4],A
+ 0759 3E00              mvi A,[__r1]
+ 075B 5300              mov [__r5],A
+ 075D 3E00              mvi A,[__r1]
+ 075F 5300              mov [__r6],A
+ 0761 3E00              mvi A,[__r1]
+ 0763 160004            sub [__r1],4
+ 0766 5300              mov [__r7],A
+ 0768 5208              mov A,[X+8]
+ 076A 08                push A
+ 076B 5209              mov A,[X+9]
+ 076D 08                push A
+ 076E 520A              mov A,[X+10]
+ 0770 08                push A
+ 0771 520B              mov A,[X+11]
+ 0773 08                push A
+ 0774 5100              mov A,[__r4]
+ 0776 08                push A
+ 0777 5100              mov A,[__r5]
+ 0779 08                push A
+ 077A 5100              mov A,[__r6]
+ 077C 08                push A
+ 077D 5100              mov A,[__r7]
+ 077F 08                push A
+ 0780 7C0000            xcall __fpadd
+ 0783 18                pop A
+ 0784 5300              mov [__r7],A
+ 0786 18                pop A
+ 0787 5300              mov [__r6],A
+ 0789 18                pop A
+ 078A 5300              mov [__r5],A
+ 078C 18                pop A
+ 078D 5300              mov [__r4],A
+ 078F 38FC              add SP,-4
+ 0791 5100              mov A,[__r0]
+ 0793 60D5              mov REG[0xd5],A
+ 0795 5100              mov A,[__r4]
+ 0797 3F00              mvi [__r1],A
+ 0799 5100              mov A,[__r5]
+ 079B 3F00              mvi [__r1],A
+ 079D 5100              mov A,[__r6]
+ 079F 3F00              mvi [__r1],A
+ 07A1 5100              mov A,[__r7]
+ 07A3 3F00              mvi [__r1],A
+ 07A5                   .dbline 67
+ 07A5           ;             y[i] += t2;
+ 07A5 5200              mov A,[X+0]
+ 07A7 5300              mov [__r0],A
+ 07A9 5201              mov A,[X+1]
+ 07AB 5300              mov [__r1],A
+ 07AD 5202              mov A,[X+2]
+ 07AF 5300              mov [__r2],A
+ 07B1 5203              mov A,[X+3]
+ 07B3 5300              mov [__r3],A
+ 07B5 5002              mov A,2
+ 07B7           X19:
+ 07B7 62D000            mov REG[0xd0],>__r0
+ 07BA 6500              asl [__r3]
+ 07BC 6B00              rlc [__r2]
+ 07BE 6B00              rlc [__r1]
+ 07C0 6B00              rlc [__r0]
+ 07C2 78                dec A
+ 07C3 BFF3              jnz X19
+ 07C5 5100              mov A,[__r3]
+ 07C7 5300              mov [__r1],A
+ 07C9 5100              mov A,[__r2]
+ 07CB 5300              mov [__r0],A
+ 07CD 52F4              mov A,[X-12]
+ 07CF 0400              add [__r1],A
+ 07D1 52F3              mov A,[X-13]
+ 07D3 0C00              adc [__r0],A
+ 07D5 5100              mov A,[__r0]
+ 07D7 60D4              mov REG[0xd4],A
+ 07D9 3E00              mvi A,[__r1]
+ 07DB 5300              mov [__r4],A
+ 07DD 3E00              mvi A,[__r1]
+ 07DF 5300              mov [__r5],A
+ 07E1 3E00              mvi A,[__r1]
+ 07E3 5300              mov [__r6],A
+ 07E5 3E00              mvi A,[__r1]
+ 07E7 160004            sub [__r1],4
+ 07EA 5300              mov [__r7],A
+ 07EC 520C              mov A,[X+12]
+ 07EE 08                push A
+ 07EF 520D              mov A,[X+13]
+ 07F1 08                push A
+ 07F2 520E              mov A,[X+14]
+ 07F4 08                push A
+ 07F5 520F              mov A,[X+15]
+ 07F7 08                push A
+ 07F8 5100              mov A,[__r4]
+ 07FA 08                push A
+ 07FB 5100              mov A,[__r5]
+ 07FD 08                push A
+ 07FE 5100              mov A,[__r6]
+ 0800 08                push A
+ 0801 5100              mov A,[__r7]
+ 0803 08                push A
+ 0804 7C0000            xcall __fpadd
+ 0807 18                pop A
+ 0808 5300              mov [__r7],A
+ 080A 18                pop A
+ 080B 5300              mov [__r6],A
+ 080D 18                pop A
+ 080E 5300              mov [__r5],A
+ 0810 18                pop A
+ 0811 5300              mov [__r4],A
+ 0813 38FC              add SP,-4
+ 0815 5100              mov A,[__r0]
+ 0817 60D5              mov REG[0xd5],A
+ 0819 5100              mov A,[__r4]
+ 081B 3F00              mvi [__r1],A
+ 081D 5100              mov A,[__r5]
+ 081F 3F00              mvi [__r1],A
+ 0821 5100              mov A,[__r6]
+ 0823 3F00              mvi [__r1],A
+ 0825 5100              mov A,[__r7]
+ 0827 3F00              mvi [__r1],A
+ 0829                   .dbline 68
+ 0829           ;          }
+ 0829           L24:
+ 0829                   .dbline 60
+ 0829 5223              mov A,[X+35]
+ 082B 0503              add [X+3],A
+ 082D 5222              mov A,[X+34]
+ 082F 0D02              adc [X+2],A
+ 0831 5221              mov A,[X+33]
+ 0833 0D01              adc [X+1],A
+ 0835 5220              mov A,[X+32]
+ 0837 0D00              adc [X+0],A
+ 0839           L26:
+ 0839                   .dbline 60
+ 0839 5203              mov A,[X+3]
+ 083B 131F              sub A,[X+31]
+ 083D 5202              mov A,[X+2]
+ 083F 1B1E              sbb A,[X+30]
+ 0841 5201              mov A,[X+1]
+ 0843 1B1D              sbb A,[X+29]
+ 0845 521C              mov A,[X+28]
+ 0847 3180              xor A,-128
+ 0849 62D000            mov REG[0xd0],>__r0
+ 084C 5300              mov [__rX],A
+ 084E 5200              mov A,[X+0]
+ 0850 3180              xor A,-128
+ 0852 1A00              sbb A,[__rX]
+ 0854 CB99              jc L23
+ 0856           X20:
+ 0856                   .dbline 69
+ 0856           ;          z =  u1 * c1 - u2 * c2;
+ 0856 62D000            mov REG[0xd0],>__r0
+ 0859 5230              mov A,[X+48]
+ 085B 08                push A
+ 085C 5231              mov A,[X+49]
+ 085E 08                push A
+ 085F 5232              mov A,[X+50]
+ 0861 08                push A
+ 0862 5233              mov A,[X+51]
+ 0864 08                push A
+ 0865 5214              mov A,[X+20]
+ 0867 08                push A
+ 0868 5215              mov A,[X+21]
+ 086A 08                push A
+ 086B 5216              mov A,[X+22]
+ 086D 08                push A
+ 086E 5217              mov A,[X+23]
+ 0870 08                push A
+ 0871 7C0000            xcall __fpmul
+ 0874 18                pop A
+ 0875 5300              mov [__r3],A
+ 0877 18                pop A
+ 0878 5300              mov [__r2],A
+ 087A 18                pop A
+ 087B 5300              mov [__r1],A
+ 087D 18                pop A
+ 087E 5300              mov [__r0],A
+ 0880 38FC              add SP,-4
+ 0882 522C              mov A,[X+44]
+ 0884 08                push A
+ 0885 522D              mov A,[X+45]
+ 0887 08                push A
+ 0888 522E              mov A,[X+46]
+ 088A 08                push A
+ 088B 522F              mov A,[X+47]
+ 088D 08                push A
+ 088E 5210              mov A,[X+16]
+ 0890 08                push A
+ 0891 5211              mov A,[X+17]
+ 0893 08                push A
+ 0894 5212              mov A,[X+18]
+ 0896 08                push A
+ 0897 5213              mov A,[X+19]
+ 0899 08                push A
+ 089A 7C0000            xcall __fpmul
+ 089D 18                pop A
+ 089E 5300              mov [__r7],A
+ 08A0 18                pop A
+ 08A1 5300              mov [__r6],A
+ 08A3 18                pop A
+ 08A4 5300              mov [__r5],A
+ 08A6 18                pop A
+ 08A7 5300              mov [__r4],A
+ 08A9 38FC              add SP,-4
+ 08AB 5100              mov A,[__r0]
+ 08AD 08                push A
+ 08AE 5100              mov A,[__r1]
+ 08B0 08                push A
+ 08B1 5100              mov A,[__r2]
+ 08B3 08                push A
+ 08B4 5100              mov A,[__r3]
+ 08B6 08                push A
+ 08B7 5100              mov A,[__r4]
+ 08B9 08                push A
+ 08BA 5100              mov A,[__r5]
+ 08BC 08                push A
+ 08BD 5100              mov A,[__r6]
+ 08BF 08                push A
+ 08C0 5100              mov A,[__r7]
+ 08C2 08                push A
+ 08C3 7C0000            xcall __fpsub
+ 08C6 18                pop A
+ 08C7 5437              mov [X+55],A
+ 08C9 18                pop A
+ 08CA 5436              mov [X+54],A
+ 08CC 18                pop A
+ 08CD 5435              mov [X+53],A
+ 08CF 18                pop A
+ 08D0 5434              mov [X+52],A
+ 08D2 38FC              add SP,-4
+ 08D4                   .dbline 70
+ 08D4           ;          u2 = u1 * c2 + u2 * c1;
+ 08D4 522C              mov A,[X+44]
+ 08D6 08                push A
+ 08D7 522D              mov A,[X+45]
+ 08D9 08                push A
+ 08DA 522E              mov A,[X+46]
+ 08DC 08                push A
+ 08DD 522F              mov A,[X+47]
+ 08DF 08                push A
+ 08E0 5214              mov A,[X+20]
+ 08E2 08                push A
+ 08E3 5215              mov A,[X+21]
+ 08E5 08                push A
+ 08E6 5216              mov A,[X+22]
+ 08E8 08                push A
+ 08E9 5217              mov A,[X+23]
+ 08EB 08                push A
+ 08EC 7C0000            xcall __fpmul
+ 08EF 18                pop A
+ 08F0 5300              mov [__r3],A
+ 08F2 18                pop A
+ 08F3 5300              mov [__r2],A
+ 08F5 18                pop A
+ 08F6 5300              mov [__r1],A
+ 08F8 18                pop A
+ 08F9 5300              mov [__r0],A
+ 08FB 38FC              add SP,-4
+ 08FD 5230              mov A,[X+48]
+ 08FF 08                push A
+ 0900 5231              mov A,[X+49]
+ 0902 08                push A
+ 0903 5232              mov A,[X+50]
+ 0905 08                push A
+ 0906 5233              mov A,[X+51]
+ 0908 08                push A
+ 0909 5210              mov A,[X+16]
+ 090B 08                push A
+ 090C 5211              mov A,[X+17]
+ 090E 08                push A
+ 090F 5212              mov A,[X+18]
+ 0911 08                push A
+ 0912 5213              mov A,[X+19]
+ 0914 08                push A
+ 0915 7C0000            xcall __fpmul
+ 0918 18                pop A
+ 0919 5300              mov [__r7],A
+ 091B 18                pop A
+ 091C 5300              mov [__r6],A
+ 091E 18                pop A
+ 091F 5300              mov [__r5],A
+ 0921 18                pop A
+ 0922 5300              mov [__r4],A
+ 0924 38FC              add SP,-4
+ 0926 5100              mov A,[__r0]
+ 0928 08                push A
+ 0929 5100              mov A,[__r1]
+ 092B 08                push A
+ 092C 5100              mov A,[__r2]
+ 092E 08                push A
+ 092F 5100              mov A,[__r3]
+ 0931 08                push A
+ 0932 5100              mov A,[__r4]
+ 0934 08                push A
+ 0935 5100              mov A,[__r5]
+ 0937 08                push A
+ 0938 5100              mov A,[__r6]
+ 093A 08                push A
+ 093B 5100              mov A,[__r7]
+ 093D 08                push A
+ 093E 7C0000            xcall __fpadd
+ 0941 18                pop A
+ 0942 5417              mov [X+23],A
+ 0944 18                pop A
+ 0945 5416              mov [X+22],A
+ 0947 18                pop A
+ 0948 5415              mov [X+21],A
+ 094A 18                pop A
+ 094B 5414              mov [X+20],A
+ 094D 38FC              add SP,-4
+ 094F                   .dbline 71
+ 094F           ;          u1 = z;
+ 094F 5234              mov A,[X+52]
+ 0951 5410              mov [X+16],A
+ 0953 5235              mov A,[X+53]
+ 0955 5411              mov [X+17],A
+ 0957 5236              mov A,[X+54]
+ 0959 5412              mov [X+18],A
+ 095B 5237              mov A,[X+55]
+ 095D 5413              mov [X+19],A
+ 095F                   .dbline 72
+ 095F           ;       }
+ 095F           L20:
+ 095F                   .dbline 59
+ 095F 072701            add [X+39],1
+ 0962 0F2600            adc [X+38],0
+ 0965 0F2500            adc [X+37],0
+ 0968 0F2400            adc [X+36],0
+ 096B           L22:
+ 096B                   .dbline 59
+ 096B 5227              mov A,[X+39]
+ 096D 131B              sub A,[X+27]
+ 096F 5226              mov A,[X+38]
+ 0971 1B1A              sbb A,[X+26]
+ 0973 5225              mov A,[X+37]
+ 0975 1B19              sbb A,[X+25]
+ 0977 5218              mov A,[X+24]
+ 0979 3180              xor A,-128
+ 097B 62D000            mov REG[0xd0],>__r0
+ 097E 5300              mov [__rX],A
+ 0980 5224              mov A,[X+36]
+ 0982 3180              xor A,-128
+ 0984 1A00              sbb A,[__rX]
+ 0986 CA55              jc L19
+ 0988           X21:
+ 0988                   .dbline 73
+ 0988           ;       c2 = sqrt((1.0 - c1) / 2.0);
+ 0988 62D000            mov REG[0xd0],>__r0
+ 098B 522C              mov A,[X+44]
+ 098D 08                push A
+ 098E 522D              mov A,[X+45]
+ 0990 08                push A
+ 0991 522E              mov A,[X+46]
+ 0993 08                push A
+ 0994 522F              mov A,[X+47]
+ 0996 08                push A
+ 0997 503F              mov A,63
+ 0999 08                push A
+ 099A 5080              mov A,-128
+ 099C 08                push A
+ 099D 5000              mov A,0
+ 099F 08                push A
+ 09A0 08                push A
+ 09A1 7C0000            xcall __fpsub
+ 09A4 18                pop A
+ 09A5 5300              mov [__r3],A
+ 09A7 18                pop A
+ 09A8 5300              mov [__r2],A
+ 09AA 18                pop A
+ 09AB 5300              mov [__r1],A
+ 09AD 18                pop A
+ 09AE 5300              mov [__r0],A
+ 09B0 38FC              add SP,-4
+ 09B2 5040              mov A,64
+ 09B4 08                push A
+ 09B5 5000              mov A,0
+ 09B7 08                push A
+ 09B8 08                push A
+ 09B9 08                push A
+ 09BA 5100              mov A,[__r0]
+ 09BC 08                push A
+ 09BD 5100              mov A,[__r1]
+ 09BF 08                push A
+ 09C0 5100              mov A,[__r2]
+ 09C2 08                push A
+ 09C3 5100              mov A,[__r3]
+ 09C5 08                push A
+ 09C6 7C0000            xcall __fpdiv
+ 09C9 18                pop A
+ 09CA 5300              mov [__r3],A
+ 09CC 18                pop A
+ 09CD 5300              mov [__r2],A
+ 09CF 18                pop A
+ 09D0 5300              mov [__r1],A
+ 09D2 18                pop A
+ 09D3 38FC              add SP,-4
+ 09D5 08                push A
+ 09D6 5100              mov A,[__r1]
+ 09D8 08                push A
+ 09D9 5100              mov A,[__r2]
+ 09DB 08                push A
+ 09DC 5100              mov A,[__r3]
+ 09DE 08                push A
+ 09DF 7C0000            xcall _sqrtf
+ 09E2 38FC              add SP,-4
+ 09E4 62D000            mov REG[0xd0],>__r0
+ 09E7 5100              mov A,[__r0]
+ 09E9 5430              mov [X+48],A
+ 09EB 5100              mov A,[__r1]
+ 09ED 5431              mov [X+49],A
+ 09EF 5100              mov A,[__r2]
+ 09F1 5432              mov [X+50],A
+ 09F3 5100              mov A,[__r3]
+ 09F5 5433              mov [X+51],A
+ 09F7                   .dbline 74
+ 09F7           ;       if (dir == 1) 
+ 09F7 3DFB00            cmp [X-5],0
+ 09FA B009              jnz L27
+ 09FC 3DFC01            cmp [X-4],1
+ 09FF B004              jnz L27
+ 0A01           X22:
+ 0A01                   .dbline 75
+ 0A01           ;          c2 = -c2;
+ 0A01 373080            xor [X+48],-128
+ 0A04           L27:
+ 0A04                   .dbline 76
+ 0A04           ;       c1 = sqrt((1.0 + c1) / 2.0);
+ 0A04 62D000            mov REG[0xd0],>__r0
+ 0A07 503F              mov A,63
+ 0A09 08                push A
+ 0A0A 5080              mov A,-128
+ 0A0C 08                push A
+ 0A0D 5000              mov A,0
+ 0A0F 08                push A
+ 0A10 08                push A
+ 0A11 522C              mov A,[X+44]
+ 0A13 08                push A
+ 0A14 522D              mov A,[X+45]
+ 0A16 08                push A
+ 0A17 522E              mov A,[X+46]
+ 0A19 08                push A
+ 0A1A 522F              mov A,[X+47]
+ 0A1C 08                push A
+ 0A1D 7C0000            xcall __fpadd
+ 0A20 18                pop A
+ 0A21 5300              mov [__r3],A
+ 0A23 18                pop A
+ 0A24 5300              mov [__r2],A
+ 0A26 18                pop A
+ 0A27 5300              mov [__r1],A
+ 0A29 18                pop A
+ 0A2A 5300              mov [__r0],A
+ 0A2C 38FC              add SP,-4
+ 0A2E 5040              mov A,64
+ 0A30 08                push A
+ 0A31 5000              mov A,0
+ 0A33 08                push A
+ 0A34 08                push A
+ 0A35 08                push A
+ 0A36 5100              mov A,[__r0]
+ 0A38 08                push A
+ 0A39 5100              mov A,[__r1]
+ 0A3B 08                push A
+ 0A3C 5100              mov A,[__r2]
+ 0A3E 08                push A
+ 0A3F 5100              mov A,[__r3]
+ 0A41 08                push A
+ 0A42 7C0000            xcall __fpdiv
+ 0A45 18                pop A
+ 0A46 5300              mov [__r3],A
+ 0A48 18                pop A
+ 0A49 5300              mov [__r2],A
+ 0A4B 18                pop A
+ 0A4C 5300              mov [__r1],A
+ 0A4E 18                pop A
+ 0A4F 38FC              add SP,-4
+ 0A51 08                push A
+ 0A52 5100              mov A,[__r1]
+ 0A54 08                push A
+ 0A55 5100              mov A,[__r2]
+ 0A57 08                push A
+ 0A58 5100              mov A,[__r3]
+ 0A5A 08                push A
+ 0A5B 7C0000            xcall _sqrtf
+ 0A5E 38FC              add SP,-4
+ 0A60 62D000            mov REG[0xd0],>__r0
+ 0A63 5100              mov A,[__r0]
+ 0A65 542C              mov [X+44],A
+ 0A67 5100              mov A,[__r1]
+ 0A69 542D              mov [X+45],A
+ 0A6B 5100              mov A,[__r2]
+ 0A6D 542E              mov [X+46],A
+ 0A6F 5100              mov A,[__r3]
+ 0A71 542F              mov [X+47],A
+ 0A73                   .dbline 77
+ 0A73           ;    }
+ 0A73           L16:
+ 0A73                   .dbline 54
+ 0A73 073B01            add [X+59],1
+ 0A76 0F3A00            adc [X+58],0
+ 0A79 0F3900            adc [X+57],0
+ 0A7C 0F3800            adc [X+56],0
+ 0A7F           L18:
+ 0A7F                   .dbline 54
+ 0A7F 523B              mov A,[X+59]
+ 0A81 13FA              sub A,[X-6]
+ 0A83 523A              mov A,[X+58]
+ 0A85 1BF9              sbb A,[X-7]
+ 0A87 5239              mov A,[X+57]
+ 0A89 1BF8              sbb A,[X-8]
+ 0A8B 52F7              mov A,[X-9]
+ 0A8D 3180              xor A,-128
+ 0A8F 62D000            mov REG[0xd0],>__r0
+ 0A92 5300              mov [__rX],A
+ 0A94 5238              mov A,[X+56]
+ 0A96 3180              xor A,-128
+ 0A98 1A00              sbb A,[__rX]
+ 0A9A C903              jc L15
+ 0A9C           X23:
+ 0A9C                   .dbline 80
+ 0A9C           ; 
+ 0A9C           ;    /* Scaling factor for forward transform */
+ 0A9C           ;    if (dir == 1) {
+ 0A9C 3DFB00            cmp [X-5],0
+ 0A9F B17E              jnz L29
+ 0AA1 3DFC01            cmp [X-4],1
+ 0AA4 B179              jnz L29
+ 0AA6           X24:
+ 0AA6                   .dbline 81
+ 0AA6           ;       for (i=0;i<n;i++) {
+ 0AA6                   .dbline 81
+ 0AA6 560000            mov [X+0],0
+ 0AA9 560100            mov [X+1],0
+ 0AAC 560200            mov [X+2],0
+ 0AAF 560300            mov [X+3],0
+ 0AB2 814E              xjmp L34
+ 0AB4           L31:
+ 0AB4                   .dbline 81
+ 0AB4                   .dbline 82
+ 0AB4           ;          x[i] /= n;
+ 0AB4 62D000            mov REG[0xd0],>__r0
+ 0AB7 5200              mov A,[X+0]
+ 0AB9 5300              mov [__r0],A
+ 0ABB 5201              mov A,[X+1]
+ 0ABD 5300              mov [__r1],A
+ 0ABF 5202              mov A,[X+2]
+ 0AC1 5300              mov [__r2],A
+ 0AC3 5203              mov A,[X+3]
+ 0AC5 5300              mov [__r3],A
+ 0AC7 5002              mov A,2
+ 0AC9           X25:
+ 0AC9 62D000            mov REG[0xd0],>__r0
+ 0ACC 6500              asl [__r3]
+ 0ACE 6B00              rlc [__r2]
+ 0AD0 6B00              rlc [__r1]
+ 0AD2 6B00              rlc [__r0]
+ 0AD4 78                dec A
+ 0AD5 BFF3              jnz X25
+ 0AD7 5100              mov A,[__r3]
+ 0AD9 5300              mov [__r1],A
+ 0ADB 5100              mov A,[__r2]
+ 0ADD 5300              mov [__r0],A
+ 0ADF 52F6              mov A,[X-10]
+ 0AE1 0400              add [__r1],A
+ 0AE3 52F5              mov A,[X-11]
+ 0AE5 0C00              adc [__r0],A
+ 0AE7 521C              mov A,[X+28]
+ 0AE9 08                push A
+ 0AEA 521D              mov A,[X+29]
+ 0AEC 08                push A
+ 0AED 521E              mov A,[X+30]
+ 0AEF 08                push A
+ 0AF0 521F              mov A,[X+31]
+ 0AF2 08                push A
+ 0AF3 7C0000            xcall __long2fp
+ 0AF6 18                pop A
+ 0AF7 5300              mov [__r7],A
+ 0AF9 18                pop A
+ 0AFA 5300              mov [__r6],A
+ 0AFC 18                pop A
+ 0AFD 5300              mov [__r5],A
+ 0AFF 18                pop A
+ 0B00 5300              mov [__r4],A
+ 0B02 5100              mov A,[__r0]
+ 0B04 60D4              mov REG[0xd4],A
+ 0B06 3E00              mvi A,[__r1]
+ 0B08 5300              mov [__r8],A
+ 0B0A 3E00              mvi A,[__r1]
+ 0B0C 5300              mov [__r9],A
+ 0B0E 3E00              mvi A,[__r1]
+ 0B10 5300              mov [__r10],A
+ 0B12 3E00              mvi A,[__r1]
+ 0B14 160004            sub [__r1],4
+ 0B17 5300              mov [__r11],A
+ 0B19 5100              mov A,[__r4]
+ 0B1B 08                push A
+ 0B1C 5100              mov A,[__r5]
+ 0B1E 08                push A
+ 0B1F 5100              mov A,[__r6]
+ 0B21 08                push A
+ 0B22 5100              mov A,[__r7]
+ 0B24 08                push A
+ 0B25 5100              mov A,[__r8]
+ 0B27 08                push A
+ 0B28 5100              mov A,[__r9]
+ 0B2A 08                push A
+ 0B2B 5100              mov A,[__r10]
+ 0B2D 08                push A
+ 0B2E 5100              mov A,[__r11]
+ 0B30 08                push A
+ 0B31 7C0000            xcall __fpdiv
+ 0B34 18                pop A
+ 0B35 5300              mov [__r7],A
+ 0B37 18                pop A
+ 0B38 5300              mov [__r6],A
+ 0B3A 18                pop A
+ 0B3B 5300              mov [__r5],A
+ 0B3D 18                pop A
+ 0B3E 5300              mov [__r4],A
+ 0B40 38FC              add SP,-4
+ 0B42 5100              mov A,[__r0]
+ 0B44 60D5              mov REG[0xd5],A
+ 0B46 5100              mov A,[__r4]
+ 0B48 3F00              mvi [__r1],A
+ 0B4A 5100              mov A,[__r5]
+ 0B4C 3F00              mvi [__r1],A
+ 0B4E 5100              mov A,[__r6]
+ 0B50 3F00              mvi [__r1],A
+ 0B52 5100              mov A,[__r7]
+ 0B54 3F00              mvi [__r1],A
+ 0B56                   .dbline 83
+ 0B56           ;          y[i] /= n;
+ 0B56 5200              mov A,[X+0]
+ 0B58 5300              mov [__r0],A
+ 0B5A 5201              mov A,[X+1]
+ 0B5C 5300              mov [__r1],A
+ 0B5E 5202              mov A,[X+2]
+ 0B60 5300              mov [__r2],A
+ 0B62 5203              mov A,[X+3]
+ 0B64 5300              mov [__r3],A
+ 0B66 5002              mov A,2
+ 0B68           X26:
+ 0B68 62D000            mov REG[0xd0],>__r0
+ 0B6B 6500              asl [__r3]
+ 0B6D 6B00              rlc [__r2]
+ 0B6F 6B00              rlc [__r1]
+ 0B71 6B00              rlc [__r0]
+ 0B73 78                dec A
+ 0B74 BFF3              jnz X26
+ 0B76 5100              mov A,[__r3]
+ 0B78 5300              mov [__r1],A
+ 0B7A 5100              mov A,[__r2]
+ 0B7C 5300              mov [__r0],A
+ 0B7E 52F4              mov A,[X-12]
+ 0B80 0400              add [__r1],A
+ 0B82 52F3              mov A,[X-13]
+ 0B84 0C00              adc [__r0],A
+ 0B86 521C              mov A,[X+28]
+ 0B88 08                push A
+ 0B89 521D              mov A,[X+29]
+ 0B8B 08                push A
+ 0B8C 521E              mov A,[X+30]
+ 0B8E 08                push A
+ 0B8F 521F              mov A,[X+31]
+ 0B91 08                push A
+ 0B92 7C0000            xcall __long2fp
+ 0B95 18                pop A
+ 0B96 5300              mov [__r7],A
+ 0B98 18                pop A
+ 0B99 5300              mov [__r6],A
+ 0B9B 18                pop A
+ 0B9C 5300              mov [__r5],A
+ 0B9E 18                pop A
+ 0B9F 5300              mov [__r4],A
+ 0BA1 5100              mov A,[__r0]
+ 0BA3 60D4              mov REG[0xd4],A
+ 0BA5 3E00              mvi A,[__r1]
+ 0BA7 5300              mov [__r8],A
+ 0BA9 3E00              mvi A,[__r1]
+ 0BAB 5300              mov [__r9],A
+ 0BAD 3E00              mvi A,[__r1]
+ 0BAF 5300              mov [__r10],A
+ 0BB1 3E00              mvi A,[__r1]
+ 0BB3 160004            sub [__r1],4
+ 0BB6 5300              mov [__r11],A
+ 0BB8 5100              mov A,[__r4]
+ 0BBA 08                push A
+ 0BBB 5100              mov A,[__r5]
+ 0BBD 08                push A
+ 0BBE 5100              mov A,[__r6]
+ 0BC0 08                push A
+ 0BC1 5100              mov A,[__r7]
+ 0BC3 08                push A
+ 0BC4 5100              mov A,[__r8]
+ 0BC6 08                push A
+ 0BC7 5100              mov A,[__r9]
+ 0BC9 08                push A
+ 0BCA 5100              mov A,[__r10]
+ 0BCC 08                push A
+ 0BCD 5100              mov A,[__r11]
+ 0BCF 08                push A
+ 0BD0 7C0000            xcall __fpdiv
+ 0BD3 18                pop A
+ 0BD4 5300              mov [__r7],A
+ 0BD6 18                pop A
+ 0BD7 5300              mov [__r6],A
+ 0BD9 18                pop A
+ 0BDA 5300              mov [__r5],A
+ 0BDC 18                pop A
+ 0BDD 5300              mov [__r4],A
+ 0BDF 38FC              add SP,-4
+ 0BE1 5100              mov A,[__r0]
+ 0BE3 60D5              mov REG[0xd5],A
+ 0BE5 5100              mov A,[__r4]
+ 0BE7 3F00              mvi [__r1],A
+ 0BE9 5100              mov A,[__r5]
+ 0BEB 3F00              mvi [__r1],A
+ 0BED 5100              mov A,[__r6]
+ 0BEF 3F00              mvi [__r1],A
+ 0BF1 5100              mov A,[__r7]
+ 0BF3 3F00              mvi [__r1],A
+ 0BF5                   .dbline 84
+ 0BF5           ;       }
+ 0BF5           L32:
+ 0BF5                   .dbline 81
+ 0BF5 070301            add [X+3],1
+ 0BF8 0F0200            adc [X+2],0
+ 0BFB 0F0100            adc [X+1],0
+ 0BFE 0F0000            adc [X+0],0
+ 0C01           L34:
+ 0C01                   .dbline 81
+ 0C01 5203              mov A,[X+3]
+ 0C03 131F              sub A,[X+31]
+ 0C05 5202              mov A,[X+2]
+ 0C07 1B1E              sbb A,[X+30]
+ 0C09 5201              mov A,[X+1]
+ 0C0B 1B1D              sbb A,[X+29]
+ 0C0D 521C              mov A,[X+28]
+ 0C0F 3180              xor A,-128
+ 0C11 62D000            mov REG[0xd0],>__r0
+ 0C14 5300              mov [__rX],A
+ 0C16 5200              mov A,[X+0]
+ 0C18 3180              xor A,-128
+ 0C1A 1A00              sbb A,[__rX]
+ 0C1C CE97              jc L31
+ 0C1E           X27:
+ 0C1E                   .dbline 85
+ 0C1E           ;    }
+ 0C1E           L29:
+ 0C1E                   .dbline 87
+ 0C1E           ;    
+ 0C1E           ;    for(i=0;i<N_points;i++)
+ 0C1E 560000            mov [X+0],0
+ 0C21 560100            mov [X+1],0
+ 0C24 560200            mov [X+2],0
+ 0C27 560300            mov [X+3],0
+ 0C2A           L35:
+ 0C2A                   .dbline 89
+ 0C2A           ;    /* Absolute value */
+ 0C2A           ;    mod[i]=sqrt((data_re[i]*data_re[i])+(data_imm[i]*data_imm[i]))/N_points;   
+ 0C2A 62D000            mov REG[0xd0],>__r0
+ 0C2D 5200              mov A,[X+0]
+ 0C2F 5300              mov [__r0],A
+ 0C31 5201              mov A,[X+1]
+ 0C33 5300              mov [__r1],A
+ 0C35 5202              mov A,[X+2]
+ 0C37 5300              mov [__r2],A
+ 0C39 5203              mov A,[X+3]
+ 0C3B 5300              mov [__r3],A
+ 0C3D 5002              mov A,2
+ 0C3F           X28:
+ 0C3F 62D000            mov REG[0xd0],>__r0
+ 0C42 6500              asl [__r3]
+ 0C44 6B00              rlc [__r2]
+ 0C46 6B00              rlc [__r1]
+ 0C48 6B00              rlc [__r0]
+ 0C4A 78                dec A
+ 0C4B BFF3              jnz X28
+ 0C4D 5100              mov A,[__r3]
+ 0C4F 5300              mov [__r1],A
+ 0C51 5100              mov A,[__r2]
+ 0C53 5300              mov [__r0],A
+ 0C55 5100              mov A,[__r1]
+ 0C57 5449              mov [X+73],A
+ 0C59 5100              mov A,[__r0]
+ 0C5B 5448              mov [X+72],A
+ 0C5D 5100              mov A,[__r1]
+ 0C5F 0100              add A,<_data_re
+ 0C61 5300              mov [__r3],A
+ 0C63 5100              mov A,[__r0]
+ 0C65 0900              adc A,>_data_re
+ 0C67 60D4              mov REG[0xd4],A
+ 0C69 3E00              mvi A,[__r3]
+ 0C6B 5300              mov [__r4],A
+ 0C6D 3E00              mvi A,[__r3]
+ 0C6F 5300              mov [__r5],A
+ 0C71 3E00              mvi A,[__r3]
+ 0C73 5300              mov [__r6],A
+ 0C75 3E00              mvi A,[__r3]
+ 0C77 5300              mov [__r7],A
+ 0C79 5100              mov A,[__r1]
+ 0C7B 0100              add A,<_data_imm
+ 0C7D 5300              mov [__r3],A
+ 0C7F 5100              mov A,[__r0]
+ 0C81 0900              adc A,>_data_imm
+ 0C83 60D4              mov REG[0xd4],A
+ 0C85 3E00              mvi A,[__r3]
+ 0C87 5300              mov [__r8],A
+ 0C89 3E00              mvi A,[__r3]
+ 0C8B 5300              mov [__r9],A
+ 0C8D 3E00              mvi A,[__r3]
+ 0C8F 5300              mov [__r10],A
+ 0C91 3E00              mvi A,[__r3]
+ 0C93 5300              mov [__r11],A
+ 0C95 5100              mov A,[__r8]
+ 0C97 08                push A
+ 0C98 5100              mov A,[__r9]
+ 0C9A 08                push A
+ 0C9B 5100              mov A,[__r10]
+ 0C9D 08                push A
+ 0C9E 5100              mov A,[__r11]
+ 0CA0 08                push A
+ 0CA1 5100              mov A,[__r8]
+ 0CA3 08                push A
+ 0CA4 5100              mov A,[__r9]
+ 0CA6 08                push A
+ 0CA7 5100              mov A,[__r10]
+ 0CA9 08                push A
+ 0CAA 5100              mov A,[__r11]
+ 0CAC 08                push A
+ 0CAD 7C0000            xcall __fpmul
+ 0CB0 18                pop A
+ 0CB1 5300              mov [__r11],A
+ 0CB3 18                pop A
+ 0CB4 5300              mov [__r10],A
+ 0CB6 18                pop A
+ 0CB7 5300              mov [__r9],A
+ 0CB9 18                pop A
+ 0CBA 5300              mov [__r8],A
+ 0CBC 38FC              add SP,-4
+ 0CBE 5100              mov A,[__r4]
+ 0CC0 08                push A
+ 0CC1 5100              mov A,[__r5]
+ 0CC3 08                push A
+ 0CC4 5100              mov A,[__r6]
+ 0CC6 08                push A
+ 0CC7 5100              mov A,[__r7]
+ 0CC9 08                push A
+ 0CCA 5100              mov A,[__r4]
+ 0CCC 08                push A
+ 0CCD 5100              mov A,[__r5]
+ 0CCF 08                push A
+ 0CD0 5100              mov A,[__r6]
+ 0CD2 08                push A
+ 0CD3 5100              mov A,[__r7]
+ 0CD5 08                push A
+ 0CD6 7C0000            xcall __fpmul
+ 0CD9 18                pop A
+ 0CDA 5300              mov [__r7],A
+ 0CDC 18                pop A
+ 0CDD 5300              mov [__r6],A
+ 0CDF 18                pop A
+ 0CE0 5300              mov [__r5],A
+ 0CE2 18                pop A
+ 0CE3 5300              mov [__r4],A
+ 0CE5 38FC              add SP,-4
+ 0CE7 5100              mov A,[__r8]
+ 0CE9 08                push A
+ 0CEA 5100              mov A,[__r9]
+ 0CEC 08                push A
+ 0CED 5100              mov A,[__r10]
+ 0CEF 08                push A
+ 0CF0 5100              mov A,[__r11]
+ 0CF2 08                push A
+ 0CF3 5100              mov A,[__r4]
+ 0CF5 08                push A
+ 0CF6 5100              mov A,[__r5]
+ 0CF8 08                push A
+ 0CF9 5100              mov A,[__r6]
+ 0CFB 08                push A
+ 0CFC 5100              mov A,[__r7]
+ 0CFE 08                push A
+ 0CFF 7C0000            xcall __fpadd
+ 0D02 18                pop A
+ 0D03 5300              mov [__r7],A
+ 0D05 18                pop A
+ 0D06 5300              mov [__r6],A
+ 0D08 18                pop A
+ 0D09 5300              mov [__r5],A
+ 0D0B 18                pop A
+ 0D0C 38FC              add SP,-4
+ 0D0E 08                push A
+ 0D0F 5100              mov A,[__r5]
+ 0D11 08                push A
+ 0D12 5100              mov A,[__r6]
+ 0D14 08                push A
+ 0D15 5100              mov A,[__r7]
+ 0D17 08                push A
+ 0D18 7C0000            xcall _sqrtf
+ 0D1B 38FC              add SP,-4
+ 0D1D 62D000            mov REG[0xd0],>__r0
+ 0D20 5041              mov A,65
+ 0D22 08                push A
+ 0D23 5000              mov A,0
+ 0D25 08                push A
+ 0D26 08                push A
+ 0D27 08                push A
+ 0D28 5100              mov A,[__r0]
+ 0D2A 08                push A
+ 0D2B 5100              mov A,[__r1]
+ 0D2D 08                push A
+ 0D2E 5100              mov A,[__r2]
+ 0D30 08                push A
+ 0D31 5100              mov A,[__r3]
+ 0D33 08                push A
+ 0D34 7C0000            xcall __fpdiv
+ 0D37 18                pop A
+ 0D38 5300              mov [__r3],A
+ 0D3A 18                pop A
+ 0D3B 5300              mov [__r2],A
+ 0D3D 18                pop A
+ 0D3E 5300              mov [__r1],A
+ 0D40 18                pop A
+ 0D41 5300              mov [__r0],A
+ 0D43 38FC              add SP,-4
+ 0D45 5249              mov A,[X+73]
+ 0D47 0100              add A,<_mod
+ 0D49 5300              mov [__r5],A
+ 0D4B 5248              mov A,[X+72]
+ 0D4D 0900              adc A,>_mod
+ 0D4F 60D5              mov REG[0xd5],A
+ 0D51 5100              mov A,[__r0]
+ 0D53 3F00              mvi [__r5],A
+ 0D55 5100              mov A,[__r1]
+ 0D57 3F00              mvi [__r5],A
+ 0D59 5100              mov A,[__r2]
+ 0D5B 3F00              mvi [__r5],A
+ 0D5D 5100              mov A,[__r3]
+ 0D5F 3F00              mvi [__r5],A
+ 0D61           L36:
+ 0D61                   .dbline 87
+ 0D61 070301            add [X+3],1
+ 0D64 0F0200            adc [X+2],0
+ 0D67 0F0100            adc [X+1],0
+ 0D6A 0F0000            adc [X+0],0
+ 0D6D                   .dbline 87
+ 0D6D 5203              mov A,[X+3]
+ 0D6F 1108              sub A,8
+ 0D71 5202              mov A,[X+2]
+ 0D73 1900              sbb A,0
+ 0D75 5201              mov A,[X+1]
+ 0D77 1900              sbb A,0
+ 0D79 5200              mov A,[X+0]
+ 0D7B 3180              xor A,-128
+ 0D7D 1980              sbb A,(0 ^ 0x80)
+ 0D7F CEAA              jc L35
+ 0D81           X29:
+ 0D81                   .dbline -2
+ 0D81           L1:
+ 0D81 38B6              add SP,-74
+ 0D83 20                pop X
+ 0D84                   .dbline 0 ; func end
+ 0D84 7F                ret
+ 0D85                   .dbsym l ty 68 D
+ 0D85                   .dbsym l tx 64 D
+ 0D85                   .dbsym l i2 60 L
+ 0D85                   .dbsym l l 56 L
+ 0D85                   .dbsym l z 52 D
+ 0D85                   .dbsym l c2 48 D
+ 0D85                   .dbsym l c1 44 D
+ 0D85                   .dbsym l k 40 L
+ 0D85                   .dbsym l j 36 L
+ 0D85                   .dbsym l l2 32 L
+ 0D85                   .dbsym l n 28 L
+ 0D85                   .dbsym l l1 24 L
+ 0D85                   .dbsym l u2 20 D
+ 0D85                   .dbsym l u1 16 D
+ 0D85                   .dbsym l t2 12 D
+ 0D85                   .dbsym l t1 8 D
+ 0D85                   .dbsym l i1 4 L
+ 0D85                   .dbsym l i 0 L
+ 0D85                   .dbsym l y -13 pD
+ 0D85                   .dbsym l x -11 pD
+ 0D85                   .dbsym l m -9 L
+ 0D85                   .dbsym l dir -5 I
+ 0D85                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h
+ 0000           _zero::
+ 0000 00000000          .word 0x0,0x0
+ 0004                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0004                   .dbsym e zero _zero D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _i::
+ 0000 0000              .word 0
+ 0002                   .dbsym e i _i i
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _k::
+ 0000 0000              .word 0
+ 0002                   .dbsym e k _k i
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _temp_array::
+ 0000 00000000          .word 0x0,0x0
+ 0004 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0040 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 007C 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00B8 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00F4 00000000000000000000      .word 0,0,0,0,0
+ 00FE 0000              .byte 0,0
+ 0100                   .dbsym e temp_array _temp_array A[256:64]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _temp_array_read::
+ 0000 00000000          .word 0x0,0x0
+ 0004 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0040 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 007C 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00B8 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00F4 00000000000000000000      .word 0,0,0,0,0
+ 00FE 0000              .byte 0,0
+ 0100                   .dbsym e temp_array_read _temp_array_read A[256:64]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _temp_array_result::
+ 0000 00000000          .word 0x0,0x0
+ 0004 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0040 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 007C 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00B8 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00F4 00000000000000000000      .word 0,0,0,0,0
+ 00FE 0000              .byte 0,0
+ 0100                   .dbsym e temp_array_result _temp_array_result A[256:64]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _temp_array_result_read::
+ 0000 00000000          .word 0x0,0x0
+ 0004 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 0040 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 007C 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00B8 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000  .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+ 00F4 00000000000000000000      .word 0,0,0,0,0
+ 00FE 0000              .byte 0,0
+ 0100                   .dbsym e temp_array_result_read _temp_array_result_read A[256:64]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _final_mod::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e final_mod _final_mod A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _final_data_re::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e final_data_re _final_data_re A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _final_data_imm::
+ 0000 00000000          .word 0x0,0x0
+ 0004 00000000000000000000      .word 0,0,0,0,0
+ 000E 00000000000000000000      .word 0,0,0,0,0
+ 0018 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0020                   .dbsym e final_data_imm _final_data_imm A[32:8]D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+                        .area text(rom, con, rel)
+ 0D85                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0D85                   .dbfunc e main _main fV
+ 0D85           ;          bgPos -> X+1
+ 0D85           ;         bError -> X+0
+ 0D85           _main::
+ 0D85                   .dbline -1
+ 0D85 10                push X
+ 0D86 4F                mov X,SP
+ 0D87 3806              add SP,6
+ 0D89                   .dbline 163
+ 0D89           ; //----------------------------------------------------------------------------
+ 0D89           ; // VC1 provides a sample clock of 3 MHz to the DELTA_SIGMA-11bit, 
+ 0D89           ; // resulting in a sample rate of 7.8 Ksamples per second. 
+ 0D89           ; // VC3 generates the baud clock for the UART by dividing 24 MHz by 156. The UART internally 
+ 0D89           ; // divides VC3 by 8 resulting in a baud rate of 19,200 bps. The serial data is 
+ 0D89           ; // sent as ASCII text with 1 start bit, 8 data bits, 1 stop bit and no parity. 
+ 0D89           ; // This data may be monitored using most terminal software. 
+ 0D89           ; //
+ 0D89           ; //
+ 0D89           ; // PSoCEval1 Connections:
+ 0D89           ; //      port0_pin1 -> External Signal = ADC Input (0-Vdd)
+ 0D89           ; //      port1_pin6 -> RX = RS232 RX
+ 0D89           ; //      port2_pin7 -> TX = RS232 TX
+ 0D89           ; //
+ 0D89           ; //-----------------------------------------------------------------------------
+ 0D89           ; 
+ 0D89           ; 
+ 0D89           ; #include <m8c.h>                         // part specific constants and macros
+ 0D89           ; #include "PSoCAPI.h"                     // PSoC API definitions for all User Modules
+ 0D89           ; #include "stdlib.h"
+ 0D89           ; #include "fft.h"                     // PSoC API definitions for all User Modules
+ 0D89           ; #include "math.h"
+ 0D89           ; #include <flashblock.h> 
+ 0D89           ; 
+ 0D89           ; #define RESOLUTION 12                    // ADC resolution
+ 0D89           ; #define SCALE_BG  (( 1 << RESOLUTION)/55) // BarGraph scale factor
+ 0D89           ; 
+ 0D89           ; #ifndef PI
+ 0D89           ; #define PI    3.14159265358979323846264338327950288
+ 0D89           ; #endif
+ 0D89           ; 
+ 0D89           ; //int  iResult; // ADC result variable
+ 0D89           ; int a;
+ 0D89           ; int p;
+ 0D89           ; int j;
+ 0D89           ; int z;
+ 0D89           ; char df[4];
+ 0D89           ; char* data;
+ 0D89           ; char* data_read;
+ 0D89           ; double max,zero=0;
+ 0D89           ; unsigned int i=0;         //index
+ 0D89           ; unsigned int k=0;
+ 0D89           ; unsigned int ind;         
+ 0D89           ; //unsigned int endl=65535;  //uart tag
+ 0D89           ; 
+ 0D89           ; int status;
+ 0D89           ; // Delta-Sigma-11bit: 7.8 ksps
+ 0D89           ; //unsigned int N_samples=7800;
+ 0D89           ; //double  time;    // time record
+ 0D89           ; //double delta_f;  // frequency sampling interval
+ 0D89           ; 
+ 0D89           ; //these are before FFT
+ 0D89           ; double temp_array[64]={0};
+ 0D89           ; double temp_array_read[64]={0};
+ 0D89           ; 
+ 0D89           ; //these are final out of FFT
+ 0D89           ; double temp_array_result[64]={0};
+ 0D89           ; double temp_array_result_read[64]={0};
+ 0D89           ; /*******************************************************************************
+ 0D89           ; *  Defines
+ 0D89           ; *******************************************************************************/
+ 0D89           ; /* Temperature for flash write is set here */
+ 0D89           ; #define Temp 25    
+ 0D89           ; 
+ 0D89           ; /* Block ID used for flash writes and read  */
+ 0D89           ; #define BLOCK 416 
+ 0D89           ; #define BLOCK_DRSLT 448
+ 0D89           ; #define BLOCK_MODRSLT 480
+ 0D89           ; 
+ 0D89           ; /* Return value when an error occured during the flash block write function */ 
+ 0D89           ; #define FLASH_ERROR 0    
+ 0D89           ; 
+ 0D89           ; /* size of the array to be written or read */
+ 0D89           ; #define SIZE 64    
+ 0D89           ; 
+ 0D89           ; union
+ 0D89           ;     {
+ 0D89           ;         FLASH_WRITE_STRUCT Write;
+ 0D89           ;         FLASH_READ_STRUCT Read;
+ 0D89           ;     } FlashParams;
+ 0D89           ;       
+ 0D89           ; /*******************************************************************************
+ 0D89           ; /*  Global Varibles
+ 0D89           ; /*******************************************************************************/
+ 0D89           ;  /* Buffer to store the values to be written to the flash */
+ 0D89           ; //unsigned char Write_Buffer[64];  
+ 0D89           ;     
+ 0D89           ; /* buffer to store the values to be read from the flash */    
+ 0D89           ; //unsigned char Read_Buffer[64];  
+ 0D89           ; 
+ 0D89           ; double final_mod[N_points]={0};
+ 0D89           ; double final_data_re[N_points]={0};
+ 0D89           ; double final_data_imm[N_points]={0};
+ 0D89           ; 
+ 0D89           ; /*
+ 0D89           ; void UART_print_re_imm ()  //send REAL and IMAGINARY parts data
+ 0D89           ; {  
+ 0D89           ;      UART_1_CPutString("Real Part\t\tImaginary Part\n");
+ 0D89           ;      for(i=0;i<N_points;i++)
+ 0D89           ;      {
+ 0D89           ;        UART_1_PutSHexInt(data_re[i]);
+ 0D89           ;         UART_1_CPutString("\t\t");
+ 0D89           ;         UART_1_PutSHexInt(data_imm[i]);
+ 0D89           ;       UART_1_PutCRLF();  
+ 0D89           ;       }
+ 0D89           ;     }
+ 0D89           ; */
+ 0D89           ; 
+ 0D89           ; /*
+ 0D89           ; void UART_print_mod ()    //send ABSOLUTE VALUE data
+ 0D89           ; {
+ 0D89           ;    UART_1_PutSHexInt(0);
+ 0D89           ;    for(i=0;i<N_points;i++)
+ 0D89           ;    {
+ 0D89           ;    UART_1_PutSHexInt(mod[i]);
+ 0D89           ;    }
+ 0D89           ;    UART_1_PutSHexInt(endl);
+ 0D89           ;    UART_1_PutCRLF();   
+ 0D89           ; }
+ 0D89           ; */
+ 0D89           ; 
+ 0D89           ; /*
+ 0D89           ; void UART_print_data ()   // send REAL data
+ 0D89           ; {
+ 0D89           ;    UART_1_CPutString("Data init\n"); // Example string
+ 0D89           ;     
+ 0D89           ;    for (i=0;i<N_points;i++)
+ 0D89           ;    {
+ 0D89           ;    UART_1_PutSHexInt(data_re[i]);
+ 0D89           ;    UART_1_PutCRLF();
+ 0D89           ;    }
+ 0D89           ; 
+ 0D89           ; }
+ 0D89           ; */
+ 0D89           ; 
+ 0D89           ; /*
+ 0D89           ; //void LCD_print()
+ 0D89           ; //{         
+ 0D89           ; //    // find the fundamental harmonic (except the zero component)
+ 0D89           ; //        max=mod[0];        
+ 0D89           ; //        ind=0;
+ 0D89           ; //        for(i=1;i<N_points/2;i++)
+ 0D89           ; //            if(mod[i]>max)
+ 0D89           ; //                    {
+ 0D89           ; //                      max=mod[i];
+ 0D89           ; //                      ind=i;
+ 0D89           ; //                     }
+ 0D89           ; //                    
+ 0D89           ; //        itoa(df,(int)(max),10);
+ 0D89           ; //        LCD_1_Position(1,0);
+ 0D89           ; //        LCD_1_PrString(df);
+ 0D89           ; //        
+ 0D89           ; //        itoa(df,(int)(ind*delta_f),10);
+ 0D89           ; //        LCD_1_Position(1,6);
+ 0D89           ; //        LCD_1_PrString(df);
+ 0D89           ; //        
+ 0D89           ; //        LCD_1_Position(1,11);
+ 0D89           ; //        LCD_1_PrCString("Hz");
+ 0D89           ; //}
+ 0D89           ; */
+ 0D89           ; 
+ 0D89           ; void main(void)
+ 0D89           ; {
+ 0D89                   .dbline 166
+ 0D89           ;     BYTE bgPos;                          // BarGraph position
+ 0D89           ;     BYTE bError;   
+ 0D89           ;       LCD_1_Start();                       // Init the LCD
+ 0D89 10                push X
+ 0D8A 7C0000            xcall _LCD_1_Start
+ 0D8D 20                pop X
+ 0D8E                   .dbline 173
+ 0D8E           ;       
+ 0D8E           ;               
+ 0D8E           ; //////////////////////////////////////////////////////////////////////////////////
+ 0D8E           ;       /// iterate 32 times because we have a total of 256 elements but are only working
+ 0D8E           ;       /// on 8 elements at a time. To get a total of 256 total elements we need to run
+ 0D8E           ;       /// this iteration 32 times. 32*8=256 elements
+ 0D8E           ;       for(j=0; j<32; j++){
+ 0D8E 62D000            mov REG[0xd0],>_j
+ 0D91 550100            mov [_j+1],0
+ 0D94 550000            mov [_j],0
+ 0D97           L43:
+ 0D97                   .dbline 173
+ 0D97                   .dbline 175
+ 0D97           ;          //initialize the data        
+ 0D97           ;          for(k=0; k<8; k++) {
+ 0D97 62D000            mov REG[0xd0],>_k
+ 0D9A 550100            mov [_k+1],0
+ 0D9D 550000            mov [_k],0
+ 0DA0 8449              xjmp L50
+ 0DA2           L47:
+ 0DA2                   .dbline 175
+ 0DA2                   .dbline 176
+ 0DA2           ;           save_data_re[k]  = 0.125*cos(2*PI*((j*8)+k)/(double)N_points); //remember to add j
+ 0DA2 62D000            mov REG[0xd0],>_j
+ 0DA5 5101              mov A,[_j+1]
+ 0DA7 08                push A
+ 0DA8 5100              mov A,[_j]
+ 0DAA 62D000            mov REG[0xd0],>__r0
+ 0DAD 5300              mov [__r0],A
+ 0DAF 18                pop A
+ 0DB0 5300              mov [__r1],A
+ 0DB2 6500              asl [__r1]
+ 0DB4 6B00              rlc [__r0]
+ 0DB6 6500              asl [__r1]
+ 0DB8 6B00              rlc [__r0]
+ 0DBA 6500              asl [__r1]
+ 0DBC 6B00              rlc [__r0]
+ 0DBE 62D000            mov REG[0xd0],>_k
+ 0DC1 5101              mov A,[_k+1]
+ 0DC3 62D000            mov REG[0xd0],>__r0
+ 0DC6 0400              add [__r1],A
+ 0DC8 62D000            mov REG[0xd0],>_k
+ 0DCB 5100              mov A,[_k]
+ 0DCD 62D000            mov REG[0xd0],>__r0
+ 0DD0 0C00              adc [__r0],A
+ 0DD2 5100              mov A,[__r1]
+ 0DD4 2101              and A,1
+ 0DD6 5300              mov [__r3],A
+ 0DD8 5100              mov A,[__r0]
+ 0DDA 2100              and A,0
+ 0DDC 5300              mov [__r2],A
+ 0DDE 5100              mov A,[__r3]
+ 0DE0 5300              mov [__r7],A
+ 0DE2 5100              mov A,[__r2]
+ 0DE4 5300              mov [__r6],A
+ 0DE6 470080            tst [__r6],-128
+ 0DE9 A009              jz X30
+ 0DEB 5500FF            mov [__r5],-1
+ 0DEE 5500FF            mov [__r4],-1
+ 0DF1 800A              jmp X31
+ 0DF3           X30:
+ 0DF3 62D000            mov REG[0xd0],>__r0
+ 0DF6 550000            mov [__r5],0
+ 0DF9 550000            mov [__r4],0
+ 0DFC           X31:
+ 0DFC 62D000            mov REG[0xd0],>__r0
+ 0DFF 5100              mov A,[__r4]
+ 0E01 08                push A
+ 0E02 5100              mov A,[__r5]
+ 0E04 08                push A
+ 0E05 5100              mov A,[__r6]
+ 0E07 08                push A
+ 0E08 5100              mov A,[__r7]
+ 0E0A 08                push A
+ 0E0B 7C0000            xcall __long2fp
+ 0E0E 18                pop A
+ 0E0F 5300              mov [__r7],A
+ 0E11 18                pop A
+ 0E12 5300              mov [__r6],A
+ 0E14 18                pop A
+ 0E15 5300              mov [__r5],A
+ 0E17 18                pop A
+ 0E18 5300              mov [__r4],A
+ 0E1A 70FB              and F,-5
+ 0E1C 6E00              rrc [__r0]
+ 0E1E 6E00              rrc [__r1]
+ 0E20 5100              mov A,[__r1]
+ 0E22 5300              mov [__r3],A
+ 0E24 5100              mov A,[__r0]
+ 0E26 5300              mov [__r2],A
+ 0E28 470080            tst [__r2],-128
+ 0E2B A009              jz X32
+ 0E2D 5500FF            mov [__r1],-1
+ 0E30 5500FF            mov [__r0],-1
+ 0E33 800A              jmp X33
+ 0E35           X32:
+ 0E35 62D000            mov REG[0xd0],>__r0
+ 0E38 550000            mov [__r1],0
+ 0E3B 550000            mov [__r0],0
+ 0E3E           X33:
+ 0E3E 62D000            mov REG[0xd0],>__r0
+ 0E41 5100              mov A,[__r0]
+ 0E43 08                push A
+ 0E44 5100              mov A,[__r1]
+ 0E46 08                push A
+ 0E47 5100              mov A,[__r2]
+ 0E49 08                push A
+ 0E4A 5100              mov A,[__r3]
+ 0E4C 08                push A
+ 0E4D 7C0000            xcall __long2fp
+ 0E50 18                pop A
+ 0E51 5300              mov [__r3],A
+ 0E53 18                pop A
+ 0E54 5300              mov [__r2],A
+ 0E56 18                pop A
+ 0E57 5300              mov [__r1],A
+ 0E59 18                pop A
+ 0E5A 08                push A
+ 0E5B 5100              mov A,[__r1]
+ 0E5D 08                push A
+ 0E5E 5100              mov A,[__r2]
+ 0E60 08                push A
+ 0E61 5100              mov A,[__r3]
+ 0E63 08                push A
+ 0E64 5040              mov A,64
+ 0E66 08                push A
+ 0E67 5000              mov A,0
+ 0E69 08                push A
+ 0E6A 08                push A
+ 0E6B 08                push A
+ 0E6C 7C0000            xcall __fpmul
+ 0E6F 18                pop A
+ 0E70 5300              mov [__r3],A
+ 0E72 18                pop A
+ 0E73 5300              mov [__r2],A
+ 0E75 18                pop A
+ 0E76 5300              mov [__r1],A
+ 0E78 18                pop A
+ 0E79 5300              mov [__r0],A
+ 0E7B 38FC              add SP,-4
+ 0E7D 5100              mov A,[__r4]
+ 0E7F 08                push A
+ 0E80 5100              mov A,[__r5]
+ 0E82 08                push A
+ 0E83 5100              mov A,[__r6]
+ 0E85 08                push A
+ 0E86 5100              mov A,[__r7]
+ 0E88 08                push A
+ 0E89 5100              mov A,[__r0]
+ 0E8B 08                push A
+ 0E8C 5100              mov A,[__r1]
+ 0E8E 08                push A
+ 0E8F 5100              mov A,[__r2]
+ 0E91 08                push A
+ 0E92 5100              mov A,[__r3]
+ 0E94 08                push A
+ 0E95 7C0000            xcall __fpadd
+ 0E98 18                pop A
+ 0E99 5300              mov [__r3],A
+ 0E9B 18                pop A
+ 0E9C 5300              mov [__r2],A
+ 0E9E 18                pop A
+ 0E9F 5300              mov [__r1],A
+ 0EA1 18                pop A
+ 0EA2 38FC              add SP,-4
+ 0EA4 08                push A
+ 0EA5 5100              mov A,[__r1]
+ 0EA7 08                push A
+ 0EA8 5100              mov A,[__r2]
+ 0EAA 08                push A
+ 0EAB 5100              mov A,[__r3]
+ 0EAD 08                push A
+ 0EAE 5040              mov A,64
+ 0EB0 08                push A
+ 0EB1 50C9              mov A,-55
+ 0EB3 08                push A
+ 0EB4 500F              mov A,15
+ 0EB6 08                push A
+ 0EB7 50DB              mov A,-37
+ 0EB9 08                push A
+ 0EBA 7C0000            xcall __fpmul
+ 0EBD 18                pop A
+ 0EBE 5300              mov [__r3],A
+ 0EC0 18                pop A
+ 0EC1 5300              mov [__r2],A
+ 0EC3 18                pop A
+ 0EC4 5300              mov [__r1],A
+ 0EC6 18                pop A
+ 0EC7 5300              mov [__r0],A
+ 0EC9 38FC              add SP,-4
+ 0ECB 5041              mov A,65
+ 0ECD 08                push A
+ 0ECE 5000              mov A,0
+ 0ED0 08                push A
+ 0ED1 08                push A
+ 0ED2 08                push A
+ 0ED3 5100              mov A,[__r0]
+ 0ED5 08                push A
+ 0ED6 5100              mov A,[__r1]
+ 0ED8 08                push A
+ 0ED9 5100              mov A,[__r2]
+ 0EDB 08                push A
+ 0EDC 5100              mov A,[__r3]
+ 0EDE 08                push A
+ 0EDF 7C0000            xcall __fpdiv
+ 0EE2 18                pop A
+ 0EE3 5300              mov [__r3],A
+ 0EE5 18                pop A
+ 0EE6 5300              mov [__r2],A
+ 0EE8 18                pop A
+ 0EE9 5300              mov [__r1],A
+ 0EEB 18                pop A
+ 0EEC 38FC              add SP,-4
+ 0EEE 08                push A
+ 0EEF 5100              mov A,[__r1]
+ 0EF1 08                push A
+ 0EF2 5100              mov A,[__r2]
+ 0EF4 08                push A
+ 0EF5 5100              mov A,[__r3]
+ 0EF7 08                push A
+ 0EF8 7C0000            xcall _cosf
+ 0EFB 38FC              add SP,-4
+ 0EFD 62D000            mov REG[0xd0],>__r0
+ 0F00 5100              mov A,[__r0]
+ 0F02 08                push A
+ 0F03 5100              mov A,[__r1]
+ 0F05 08                push A
+ 0F06 5100              mov A,[__r2]
+ 0F08 08                push A
+ 0F09 5100              mov A,[__r3]
+ 0F0B 08                push A
+ 0F0C 503E              mov A,62
+ 0F0E 08                push A
+ 0F0F 5000              mov A,0
+ 0F11 08                push A
+ 0F12 08                push A
+ 0F13 08                push A
+ 0F14 7C0000            xcall __fpmul
+ 0F17 18                pop A
+ 0F18 5300              mov [__r3],A
+ 0F1A 18                pop A
+ 0F1B 5300              mov [__r2],A
+ 0F1D 18                pop A
+ 0F1E 5300              mov [__r1],A
+ 0F20 18                pop A
+ 0F21 5300              mov [__r0],A
+ 0F23 38FC              add SP,-4
+ 0F25 62D000            mov REG[0xd0],>_k
+ 0F28 5101              mov A,[_k+1]
+ 0F2A 08                push A
+ 0F2B 5100              mov A,[_k]
+ 0F2D 62D000            mov REG[0xd0],>__r0
+ 0F30 5300              mov [__r4],A
+ 0F32 18                pop A
+ 0F33 5300              mov [__r5],A
+ 0F35 6500              asl [__r5]
+ 0F37 6B00              rlc [__r4]
+ 0F39 6500              asl [__r5]
+ 0F3B 6B00              rlc [__r4]
+ 0F3D 060000            add [__r5],<_save_data_re
+ 0F40 0E0000            adc [__r4],>_save_data_re
+ 0F43 5100              mov A,[__r4]
+ 0F45 60D5              mov REG[0xd5],A
+ 0F47 5100              mov A,[__r0]
+ 0F49 3F00              mvi [__r5],A
+ 0F4B 5100              mov A,[__r1]
+ 0F4D 3F00              mvi [__r5],A
+ 0F4F 5100              mov A,[__r2]
+ 0F51 3F00              mvi [__r5],A
+ 0F53 5100              mov A,[__r3]
+ 0F55 3F00              mvi [__r5],A
+ 0F57                   .dbline 177
+ 0F57           ;           save_data_imm[k] = 0.125*sin(2*PI*((j*8)+k)/(double)N_points);
+ 0F57 62D000            mov REG[0xd0],>_j
+ 0F5A 5101              mov A,[_j+1]
+ 0F5C 08                push A
+ 0F5D 5100              mov A,[_j]
+ 0F5F 62D000            mov REG[0xd0],>__r0
+ 0F62 5300              mov [__r0],A
+ 0F64 18                pop A
+ 0F65 5300              mov [__r1],A
+ 0F67 6500              asl [__r1]
+ 0F69 6B00              rlc [__r0]
+ 0F6B 6500              asl [__r1]
+ 0F6D 6B00              rlc [__r0]
+ 0F6F 6500              asl [__r1]
+ 0F71 6B00              rlc [__r0]
+ 0F73 62D000            mov REG[0xd0],>_k
+ 0F76 5101              mov A,[_k+1]
+ 0F78 62D000            mov REG[0xd0],>__r0
+ 0F7B 0400              add [__r1],A
+ 0F7D 62D000            mov REG[0xd0],>_k
+ 0F80 5100              mov A,[_k]
+ 0F82 62D000            mov REG[0xd0],>__r0
+ 0F85 0C00              adc [__r0],A
+ 0F87 5100              mov A,[__r1]
+ 0F89 2101              and A,1
+ 0F8B 5300              mov [__r3],A
+ 0F8D 5100              mov A,[__r0]
+ 0F8F 2100              and A,0
+ 0F91 5300              mov [__r2],A
+ 0F93 5100              mov A,[__r3]
+ 0F95 5300              mov [__r7],A
+ 0F97 5100              mov A,[__r2]
+ 0F99 5300              mov [__r6],A
+ 0F9B 470080            tst [__r6],-128
+ 0F9E A009              jz X34
+ 0FA0 5500FF            mov [__r5],-1
+ 0FA3 5500FF            mov [__r4],-1
+ 0FA6 800A              jmp X35
+ 0FA8           X34:
+ 0FA8 62D000            mov REG[0xd0],>__r0
+ 0FAB 550000            mov [__r5],0
+ 0FAE 550000            mov [__r4],0
+ 0FB1           X35:
+ 0FB1 62D000            mov REG[0xd0],>__r0
+ 0FB4 5100              mov A,[__r4]
+ 0FB6 08                push A
+ 0FB7 5100              mov A,[__r5]
+ 0FB9 08                push A
+ 0FBA 5100              mov A,[__r6]
+ 0FBC 08                push A
+ 0FBD 5100              mov A,[__r7]
+ 0FBF 08                push A
+ 0FC0 7C0000            xcall __long2fp
+ 0FC3 18                pop A
+ 0FC4 5300              mov [__r7],A
+ 0FC6 18                pop A
+ 0FC7 5300              mov [__r6],A
+ 0FC9 18                pop A
+ 0FCA 5300              mov [__r5],A
+ 0FCC 18                pop A
+ 0FCD 5300              mov [__r4],A
+ 0FCF 70FB              and F,-5
+ 0FD1 6E00              rrc [__r0]
+ 0FD3 6E00              rrc [__r1]
+ 0FD5 5100              mov A,[__r1]
+ 0FD7 5300              mov [__r3],A
+ 0FD9 5100              mov A,[__r0]
+ 0FDB 5300              mov [__r2],A
+ 0FDD 470080            tst [__r2],-128
+ 0FE0 A009              jz X36
+ 0FE2 5500FF            mov [__r1],-1
+ 0FE5 5500FF            mov [__r0],-1
+ 0FE8 800A              jmp X37
+ 0FEA           X36:
+ 0FEA 62D000            mov REG[0xd0],>__r0
+ 0FED 550000            mov [__r1],0
+ 0FF0 550000            mov [__r0],0
+ 0FF3           X37:
+ 0FF3 62D000            mov REG[0xd0],>__r0
+ 0FF6 5100              mov A,[__r0]
+ 0FF8 08                push A
+ 0FF9 5100              mov A,[__r1]
+ 0FFB 08                push A
+ 0FFC 5100              mov A,[__r2]
+ 0FFE 08                push A
+ 0FFF 5100              mov A,[__r3]
+ 1001 08                push A
+ 1002 7C0000            xcall __long2fp
+ 1005 18                pop A
+ 1006 5300              mov [__r3],A
+ 1008 18                pop A
+ 1009 5300              mov [__r2],A
+ 100B 18                pop A
+ 100C 5300              mov [__r1],A
+ 100E 18                pop A
+ 100F 08                push A
+ 1010 5100              mov A,[__r1]
+ 1012 08                push A
+ 1013 5100              mov A,[__r2]
+ 1015 08                push A
+ 1016 5100              mov A,[__r3]
+ 1018 08                push A
+ 1019 5040              mov A,64
+ 101B 08                push A
+ 101C 5000              mov A,0
+ 101E 08                push A
+ 101F 08                push A
+ 1020 08                push A
+ 1021 7C0000            xcall __fpmul
+ 1024 18                pop A
+ 1025 5300              mov [__r3],A
+ 1027 18                pop A
+ 1028 5300              mov [__r2],A
+ 102A 18                pop A
+ 102B 5300              mov [__r1],A
+ 102D 18                pop A
+ 102E 5300              mov [__r0],A
+ 1030 38FC              add SP,-4
+ 1032 5100              mov A,[__r4]
+ 1034 08                push A
+ 1035 5100              mov A,[__r5]
+ 1037 08                push A
+ 1038 5100              mov A,[__r6]
+ 103A 08                push A
+ 103B 5100              mov A,[__r7]
+ 103D 08                push A
+ 103E 5100              mov A,[__r0]
+ 1040 08                push A
+ 1041 5100              mov A,[__r1]
+ 1043 08                push A
+ 1044 5100              mov A,[__r2]
+ 1046 08                push A
+ 1047 5100              mov A,[__r3]
+ 1049 08                push A
+ 104A 7C0000            xcall __fpadd
+ 104D 18                pop A
+ 104E 5300              mov [__r3],A
+ 1050 18                pop A
+ 1051 5300              mov [__r2],A
+ 1053 18                pop A
+ 1054 5300              mov [__r1],A
+ 1056 18                pop A
+ 1057 38FC              add SP,-4
+ 1059 08                push A
+ 105A 5100              mov A,[__r1]
+ 105C 08                push A
+ 105D 5100              mov A,[__r2]
+ 105F 08                push A
+ 1060 5100              mov A,[__r3]
+ 1062 08                push A
+ 1063 5040              mov A,64
+ 1065 08                push A
+ 1066 50C9              mov A,-55
+ 1068 08                push A
+ 1069 500F              mov A,15
+ 106B 08                push A
+ 106C 50DB              mov A,-37
+ 106E 08                push A
+ 106F 7C0000            xcall __fpmul
+ 1072 18                pop A
+ 1073 5300              mov [__r3],A
+ 1075 18                pop A
+ 1076 5300              mov [__r2],A
+ 1078 18                pop A
+ 1079 5300              mov [__r1],A
+ 107B 18                pop A
+ 107C 5300              mov [__r0],A
+ 107E 38FC              add SP,-4
+ 1080 5041              mov A,65
+ 1082 08                push A
+ 1083 5000              mov A,0
+ 1085 08                push A
+ 1086 08                push A
+ 1087 08                push A
+ 1088 5100              mov A,[__r0]
+ 108A 08                push A
+ 108B 5100              mov A,[__r1]
+ 108D 08                push A
+ 108E 5100              mov A,[__r2]
+ 1090 08                push A
+ 1091 5100              mov A,[__r3]
+ 1093 08                push A
+ 1094 7C0000            xcall __fpdiv
+ 1097 18                pop A
+ 1098 5300              mov [__r3],A
+ 109A 18                pop A
+ 109B 5300              mov [__r2],A
+ 109D 18                pop A
+ 109E 5300              mov [__r1],A
+ 10A0 18                pop A
+ 10A1 38FC              add SP,-4
+ 10A3 08                push A
+ 10A4 5100              mov A,[__r1]
+ 10A6 08                push A
+ 10A7 5100              mov A,[__r2]
+ 10A9 08                push A
+ 10AA 5100              mov A,[__r3]
+ 10AC 08                push A
+ 10AD 7C0000            xcall _sinf
+ 10B0 38FC              add SP,-4
+ 10B2 62D000            mov REG[0xd0],>__r0
+ 10B5 5100              mov A,[__r0]
+ 10B7 08                push A
+ 10B8 5100              mov A,[__r1]
+ 10BA 08                push A
+ 10BB 5100              mov A,[__r2]
+ 10BD 08                push A
+ 10BE 5100              mov A,[__r3]
+ 10C0 08                push A
+ 10C1 503E              mov A,62
+ 10C3 08                push A
+ 10C4 5000              mov A,0
+ 10C6 08                push A
+ 10C7 08                push A
+ 10C8 08                push A
+ 10C9 7C0000            xcall __fpmul
+ 10CC 18                pop A
+ 10CD 5300              mov [__r3],A
+ 10CF 18                pop A
+ 10D0 5300              mov [__r2],A
+ 10D2 18                pop A
+ 10D3 5300              mov [__r1],A
+ 10D5 18                pop A
+ 10D6 5300              mov [__r0],A
+ 10D8 38FC              add SP,-4
+ 10DA 62D000            mov REG[0xd0],>_k
+ 10DD 5101              mov A,[_k+1]
+ 10DF 08                push A
+ 10E0 5100              mov A,[_k]
+ 10E2 62D000            mov REG[0xd0],>__r0
+ 10E5 5300              mov [__r4],A
+ 10E7 18                pop A
+ 10E8 5300              mov [__r5],A
+ 10EA 6500              asl [__r5]
+ 10EC 6B00              rlc [__r4]
+ 10EE 6500              asl [__r5]
+ 10F0 6B00              rlc [__r4]
+ 10F2 060000            add [__r5],<_save_data_imm
+ 10F5 0E0000            adc [__r4],>_save_data_imm
+ 10F8 5100              mov A,[__r4]
+ 10FA 60D5              mov REG[0xd5],A
+ 10FC 5100              mov A,[__r0]
+ 10FE 3F00              mvi [__r5],A
+ 1100 5100              mov A,[__r1]
+ 1102 3F00              mvi [__r5],A
+ 1104 5100              mov A,[__r2]
+ 1106 3F00              mvi [__r5],A
+ 1108 5100              mov A,[__r3]
+ 110A 3F00              mvi [__r5],A
+ 110C                   .dbline 180
+ 110C           ;               //encapsulate into larger array
+ 110C           ;               //[data_re][data_imm]
+ 110C           ;               temp_array[2*k] = save_data_re[k];
+ 110C 62D000            mov REG[0xd0],>_k
+ 110F 5101              mov A,[_k+1]
+ 1111 08                push A
+ 1112 5100              mov A,[_k]
+ 1114 62D000            mov REG[0xd0],>__r0
+ 1117 5300              mov [__r0],A
+ 1119 18                pop A
+ 111A 5300              mov [__r1],A
+ 111C 6500              asl [__r1]
+ 111E 6B00              rlc [__r0]
+ 1120 6500              asl [__r1]
+ 1122 6B00              rlc [__r0]
+ 1124 060000            add [__r1],<_save_data_re
+ 1127 0E0000            adc [__r0],>_save_data_re
+ 112A 5100              mov A,[__r0]
+ 112C 60D4              mov REG[0xd4],A
+ 112E 3E00              mvi A,[__r1]
+ 1130 5300              mov [__r4],A
+ 1132 3E00              mvi A,[__r1]
+ 1134 5300              mov [__r5],A
+ 1136 3E00              mvi A,[__r1]
+ 1138 5300              mov [__r6],A
+ 113A 3E00              mvi A,[__r1]
+ 113C 5300              mov [__r7],A
+ 113E 62D000            mov REG[0xd0],>_k
+ 1141 5101              mov A,[_k+1]
+ 1143 08                push A
+ 1144 5100              mov A,[_k]
+ 1146 62D000            mov REG[0xd0],>__r0
+ 1149 5300              mov [__r0],A
+ 114B 18                pop A
+ 114C 5300              mov [__r1],A
+ 114E 6500              asl [__r1]
+ 1150 6B00              rlc [__r0]
+ 1152 6500              asl [__r1]
+ 1154 6B00              rlc [__r0]
+ 1156 6500              asl [__r1]
+ 1158 6B00              rlc [__r0]
+ 115A 060000            add [__r1],<_temp_array
+ 115D 0E0000            adc [__r0],>_temp_array
+ 1160 5100              mov A,[__r0]
+ 1162 60D5              mov REG[0xd5],A
+ 1164 5100              mov A,[__r4]
+ 1166 3F00              mvi [__r1],A
+ 1168 5100              mov A,[__r5]
+ 116A 3F00              mvi [__r1],A
+ 116C 5100              mov A,[__r6]
+ 116E 3F00              mvi [__r1],A
+ 1170 5100              mov A,[__r7]
+ 1172 3F00              mvi [__r1],A
+ 1174                   .dbline 181
+ 1174           ;               temp_array[2*k +1] = save_data_imm[k];
+ 1174 62D000            mov REG[0xd0],>_k
+ 1177 5101              mov A,[_k+1]
+ 1179 08                push A
+ 117A 5100              mov A,[_k]
+ 117C 62D000            mov REG[0xd0],>__r0
+ 117F 5300              mov [__r0],A
+ 1181 18                pop A
+ 1182 5300              mov [__r1],A
+ 1184 6500              asl [__r1]
+ 1186 6B00              rlc [__r0]
+ 1188 6500              asl [__r1]
+ 118A 6B00              rlc [__r0]
+ 118C 060000            add [__r1],<_save_data_imm
+ 118F 0E0000            adc [__r0],>_save_data_imm
+ 1192 5100              mov A,[__r0]
+ 1194 60D4              mov REG[0xd4],A
+ 1196 3E00              mvi A,[__r1]
+ 1198 5300              mov [__r4],A
+ 119A 3E00              mvi A,[__r1]
+ 119C 5300              mov [__r5],A
+ 119E 3E00              mvi A,[__r1]
+ 11A0 5300              mov [__r6],A
+ 11A2 3E00              mvi A,[__r1]
+ 11A4 5300              mov [__r7],A
+ 11A6 62D000            mov REG[0xd0],>_k
+ 11A9 5101              mov A,[_k+1]
+ 11AB 08                push A
+ 11AC 5100              mov A,[_k]
+ 11AE 62D000            mov REG[0xd0],>__r0
+ 11B1 5300              mov [__r0],A
+ 11B3 18                pop A
+ 11B4 5300              mov [__r1],A
+ 11B6 6500              asl [__r1]
+ 11B8 6B00              rlc [__r0]
+ 11BA 060001            add [__r1],1
+ 11BD 0E0000            adc [__r0],0
+ 11C0 6500              asl [__r1]
+ 11C2 6B00              rlc [__r0]
+ 11C4 6500              asl [__r1]
+ 11C6 6B00              rlc [__r0]
+ 11C8 060000            add [__r1],<_temp_array
+ 11CB 0E0000            adc [__r0],>_temp_array
+ 11CE 5100              mov A,[__r0]
+ 11D0 60D5              mov REG[0xd5],A
+ 11D2 5100              mov A,[__r4]
+ 11D4 3F00              mvi [__r1],A
+ 11D6 5100              mov A,[__r5]
+ 11D8 3F00              mvi [__r1],A
+ 11DA 5100              mov A,[__r6]
+ 11DC 3F00              mvi [__r1],A
+ 11DE 5100              mov A,[__r7]
+ 11E0 3F00              mvi [__r1],A
+ 11E2                   .dbline 182
+ 11E2           ;         }
+ 11E2           L48:
+ 11E2                   .dbline 175
+ 11E2 62D000            mov REG[0xd0],>_k
+ 11E5 7601              inc [_k+1]
+ 11E7 0E0000            adc [_k],0
+ 11EA           L50:
+ 11EA                   .dbline 175
+ 11EA 62D000            mov REG[0xd0],>_k
+ 11ED 5101              mov A,[_k+1]
+ 11EF 1108              sub A,8
+ 11F1 5100              mov A,[_k]
+ 11F3 1900              sbb A,0
+ 11F5 CBAC              jc L47
+ 11F7           X38:
+ 11F7                   .dbline 186
+ 11F7           ;       
+ 11F7           ; 
+ 11F7           ;       //write the 8 encapsulated elements to Flash
+ 11F7           ;       FlashParams.Write.wARG_BlockId = BLOCK + j;             /* Block ID  */
+ 11F7 62D000            mov REG[0xd0],>_j
+ 11FA 5101              mov A,[_j+1]
+ 11FC 01A0              add A,-96
+ 11FE 62D000            mov REG[0xd0],>__r0
+ 1201 5300              mov [__r1],A
+ 1203 62D000            mov REG[0xd0],>_j
+ 1206 5100              mov A,[_j]
+ 1208 0901              adc A,1
+ 120A 62D000            mov REG[0xd0],>__r0
+ 120D 5300              mov [__r0],A
+ 120F 5100              mov A,[__r1]
+ 1211 08                push A
+ 1212 5100              mov A,[__r0]
+ 1214 62D000            mov REG[0xd0],>_FlashParams
+ 1217 5300              mov [_FlashParams],A
+ 1219 18                pop A
+ 121A 5301              mov [_FlashParams+1],A
+ 121C                   .dbline 187
+ 121C           ;     FlashParams.Write.pARG_FlashBuffer = (char *)&temp_array;  /* Start with the first byte of Buffer */ 
+ 121C 550300            mov [_FlashParams+2+1],<_temp_array
+ 121F 550200            mov [_FlashParams+2],>_temp_array
+ 1222                   .dbline 188
+ 1222           ;     FlashParams.Write.cARG_Temperature = Temp;          /* Place your average expected device temperature here.  
+ 1222 550419            mov [_FlashParams+4],25
+ 1225                   .dbline 194
+ 1225           ;                                                            For optimal flash write conditions the temperature needs to be
+ 1225           ;                                                            within +/- 20 C of the actual device die temperature.*/
+ 1225           ;     /* bFlashWriteBlock returns a non-zero value in the case of a flash write failure.
+ 1225           ;        See flashblock.h line 55 for more details.*/
+ 1225           ;     /* Write the buffer(WriteData) data to Flash assuming room temp to be 25C  */
+ 1225           ;     bError = bFlashWriteBlock(&FlashParams.Write);  
+ 1225 10                push X
+ 1226 5000              mov A,>_FlashParams
+ 1228 08                push A
+ 1229 5000              mov A,<_FlashParams
+ 122B 5C                mov X,A
+ 122C 18                pop A
+ 122D 7C0000            xcall _bFlashWriteBlock
+ 1230 20                pop X
+ 1231 62D000            mov REG[0xd0],>__r0
+ 1234 5400              mov [X+0],A
+ 1236                   .dbline 195
+ 1236           ;       }
+ 1236           L44:
+ 1236                   .dbline 173
+ 1236 62D000            mov REG[0xd0],>_j
+ 1239 7601              inc [_j+1]
+ 123B 0E0000            adc [_j],0
+ 123E                   .dbline 173
+ 123E 5101              mov A,[_j+1]
+ 1240 1120              sub A,32
+ 1242 5100              mov A,[_j]
+ 1244 3180              xor A,-128
+ 1246 1980              sbb A,(0 ^ 0x80)
+ 1248 CB4E              jc L43
+ 124A           X39:
+ 124A                   .dbline 203
+ 124A           ;       ////////////////////////////////////////////////////////////////////////////////////
+ 124A           ;       /// initialize complete 
+ 124A           ; 
+ 124A           ;       
+ 124A           ;       ////////////////////////////////////////////////////////////////////////////////////
+ 124A           ;       /// read 8 elements from flash at a time and run FFT on the elements then store the 
+ 124A           ;       /// result (data_re/data_imm/mod) back in FLASH
+ 124A           ; for(z=0; z<32; z++){
+ 124A 62D000            mov REG[0xd0],>_z
+ 124D 550100            mov [_z+1],0
+ 1250 550000            mov [_z],0
+ 1253           L53:
+ 1253                   .dbline 203
+ 1253                   .dbline 205
+ 1253           ;                /* If the write operaton is successful, read back the data to the ReadBuffer */
+ 1253           ;     if ( bError != FLASH_ERROR )  
+ 1253 3D0000            cmp [X+0],0
+ 1256 A040              jz L57
+ 1258                   .dbline 208
+ 1258           ;      {  
+ 1258           ;         /* Enable global interupts */
+ 1258           ;         M8C_EnableGInt;                                    
+ 1258                   .dbline 208
+ 1258 7101                      or  F, 01h
+ 125A           
+ 125A                   .dbline 211
+ 125A           ;     
+ 125A           ;         /* Starting at the first byte of the first block */
+ 125A           ;         FlashParams.Read.wARG_BlockId = BLOCK + z; 
+ 125A 62D000            mov REG[0xd0],>_z
+ 125D 5101              mov A,[_z+1]
+ 125F 01A0              add A,-96
+ 1261 62D000            mov REG[0xd0],>__r0
+ 1264 5300              mov [__r1],A
+ 1266 62D000            mov REG[0xd0],>_z
+ 1269 5100              mov A,[_z]
+ 126B 0901              adc A,1
+ 126D 62D000            mov REG[0xd0],>__r0
+ 1270 5300              mov [__r0],A
+ 1272 5100              mov A,[__r1]
+ 1274 08                push A
+ 1275 5100              mov A,[__r0]
+ 1277 62D000            mov REG[0xd0],>_FlashParams
+ 127A 5300              mov [_FlashParams],A
+ 127C 18                pop A
+ 127D 5301              mov [_FlashParams+1],A
+ 127F                   .dbline 214
+ 127F           ;         
+ 127F           ;         /* RAM buffer to read */
+ 127F           ;         FlashParams.Read.pARG_FlashBuffer = (char *)&temp_array_read;//encapsulated float array
+ 127F 550300            mov [_FlashParams+2+1],<_temp_array_read
+ 1282 550200            mov [_FlashParams+2],>_temp_array_read
+ 1285                   .dbline 217
+ 1285           ;         
+ 1285           ;         /* 16 byte read */
+ 1285           ;         FlashParams.Read.wARG_ReadCount = SIZE; 
+ 1285 550540            mov [_FlashParams+4+1],64
+ 1288 550400            mov [_FlashParams+4],0
+ 128B                   .dbline 220
+ 128B           ;         
+ 128B           ;         /* read the data from the flash to the buffer */
+ 128B           ;         FlashReadBlock(&FlashParams.Read);               
+ 128B 10                push X
+ 128C 5000              mov A,>_FlashParams
+ 128E 08                push A
+ 128F 5000              mov A,<_FlashParams
+ 1291 5C                mov X,A
+ 1292 18                pop A
+ 1293 7C0000            xcall _FlashReadBlock
+ 1296 20                pop X
+ 1297                   .dbline 222
+ 1297           ;                               
+ 1297           ;       }
+ 1297           L57:
+ 1297                   .dbline 225
+ 1297           ;  
+ 1297           ;               //decapsulate the array into data_re and data_imm
+ 1297           ;           for(k=0; k<8; k++) {
+ 1297 62D000            mov REG[0xd0],>_k
+ 129A 550100            mov [_k+1],0
+ 129D 550000            mov [_k],0
+ 12A0 80DF              xjmp L64
+ 12A2           L61:
+ 12A2                   .dbline 225
+ 12A2                   .dbline 226
+ 12A2           ;               data_re[k]  = temp_array_read[2*k];
+ 12A2 62D000            mov REG[0xd0],>_k
+ 12A5 5101              mov A,[_k+1]
+ 12A7 08                push A
+ 12A8 5100              mov A,[_k]
+ 12AA 62D000            mov REG[0xd0],>__r0
+ 12AD 5300              mov [__r0],A
+ 12AF 18                pop A
+ 12B0 5300              mov [__r1],A
+ 12B2 6500              asl [__r1]
+ 12B4 6B00              rlc [__r0]
+ 12B6 6500              asl [__r1]
+ 12B8 6B00              rlc [__r0]
+ 12BA 6500              asl [__r1]
+ 12BC 6B00              rlc [__r0]
+ 12BE 060000            add [__r1],<_temp_array_read
+ 12C1 0E0000            adc [__r0],>_temp_array_read
+ 12C4 5100              mov A,[__r0]
+ 12C6 60D4              mov REG[0xd4],A
+ 12C8 3E00              mvi A,[__r1]
+ 12CA 5300              mov [__r4],A
+ 12CC 3E00              mvi A,[__r1]
+ 12CE 5300              mov [__r5],A
+ 12D0 3E00              mvi A,[__r1]
+ 12D2 5300              mov [__r6],A
+ 12D4 3E00              mvi A,[__r1]
+ 12D6 5300              mov [__r7],A
+ 12D8 62D000            mov REG[0xd0],>_k
+ 12DB 5101              mov A,[_k+1]
+ 12DD 08                push A
+ 12DE 5100              mov A,[_k]
+ 12E0 62D000            mov REG[0xd0],>__r0
+ 12E3 5300              mov [__r0],A
+ 12E5 18                pop A
+ 12E6 5300              mov [__r1],A
+ 12E8 6500              asl [__r1]
+ 12EA 6B00              rlc [__r0]
+ 12EC 6500              asl [__r1]
+ 12EE 6B00              rlc [__r0]
+ 12F0 060000            add [__r1],<_data_re
+ 12F3 0E0000            adc [__r0],>_data_re
+ 12F6 5100              mov A,[__r0]
+ 12F8 60D5              mov REG[0xd5],A
+ 12FA 5100              mov A,[__r4]
+ 12FC 3F00              mvi [__r1],A
+ 12FE 5100              mov A,[__r5]
+ 1300 3F00              mvi [__r1],A
+ 1302 5100              mov A,[__r6]
+ 1304 3F00              mvi [__r1],A
+ 1306 5100              mov A,[__r7]
+ 1308 3F00              mvi [__r1],A
+ 130A                   .dbline 227
+ 130A           ;               data_imm[k] = temp_array_read[2*k +1];
+ 130A 62D000            mov REG[0xd0],>_k
+ 130D 5101              mov A,[_k+1]
+ 130F 08                push A
+ 1310 5100              mov A,[_k]
+ 1312 62D000            mov REG[0xd0],>__r0
+ 1315 5300              mov [__r0],A
+ 1317 18                pop A
+ 1318 5300              mov [__r1],A
+ 131A 6500              asl [__r1]
+ 131C 6B00              rlc [__r0]
+ 131E 060001            add [__r1],1
+ 1321 0E0000            adc [__r0],0
+ 1324 6500              asl [__r1]
+ 1326 6B00              rlc [__r0]
+ 1328 6500              asl [__r1]
+ 132A 6B00              rlc [__r0]
+ 132C 060000            add [__r1],<_temp_array_read
+ 132F 0E0000            adc [__r0],>_temp_array_read
+ 1332 5100              mov A,[__r0]
+ 1334 60D4              mov REG[0xd4],A
+ 1336 3E00              mvi A,[__r1]
+ 1338 5300              mov [__r4],A
+ 133A 3E00              mvi A,[__r1]
+ 133C 5300              mov [__r5],A
+ 133E 3E00              mvi A,[__r1]
+ 1340 5300              mov [__r6],A
+ 1342 3E00              mvi A,[__r1]
+ 1344 5300              mov [__r7],A
+ 1346 62D000            mov REG[0xd0],>_k
+ 1349 5101              mov A,[_k+1]
+ 134B 08                push A
+ 134C 5100              mov A,[_k]
+ 134E 62D000            mov REG[0xd0],>__r0
+ 1351 5300              mov [__r0],A
+ 1353 18                pop A
+ 1354 5300              mov [__r1],A
+ 1356 6500              asl [__r1]
+ 1358 6B00              rlc [__r0]
+ 135A 6500              asl [__r1]
+ 135C 6B00              rlc [__r0]
+ 135E 060000            add [__r1],<_data_imm
+ 1361 0E0000            adc [__r0],>_data_imm
+ 1364 5100              mov A,[__r0]
+ 1366 60D5              mov REG[0xd5],A
+ 1368 5100              mov A,[__r4]
+ 136A 3F00              mvi [__r1],A
+ 136C 5100              mov A,[__r5]
+ 136E 3F00              mvi [__r1],A
+ 1370 5100              mov A,[__r6]
+ 1372 3F00              mvi [__r1],A
+ 1374 5100              mov A,[__r7]
+ 1376 3F00              mvi [__r1],A
+ 1378                   .dbline 228
+ 1378           ;                       }
+ 1378           L62:
+ 1378                   .dbline 225
+ 1378 62D000            mov REG[0xd0],>_k
+ 137B 7601              inc [_k+1]
+ 137D 0E0000            adc [_k],0
+ 1380           L64:
+ 1380                   .dbline 225
+ 1380 62D000            mov REG[0xd0],>_k
+ 1383 5101              mov A,[_k+1]
+ 1385 1108              sub A,8
+ 1387 5100              mov A,[_k]
+ 1389 1900              sbb A,0
+ 138B CF16              jc L61
+ 138D           X40:
+ 138D                   .dbline 231
+ 138D           ;       
+ 138D           ;                       //print out the data read from Flash
+ 138D           ;                       LCD_1_Position(0,0);
+ 138D 10                push X
+ 138E 5000              mov A,0
+ 1390 5700              mov X,0
+ 1392 7C0000            xcall _LCD_1_Position
+ 1395 20                pop X
+ 1396                   .dbline 232
+ 1396           ;                       data_read = ftoa(data_re[5], &status);
+ 1396 5000              mov A,>_status
+ 1398 08                push A
+ 1399 5000              mov A,<_status
+ 139B 08                push A
+ 139C 62D000            mov REG[0xd0],>_data_re
+ 139F 5114              mov A,[_data_re+20]
+ 13A1 08                push A
+ 13A2 5115              mov A,[_data_re+20+1]
+ 13A4 08                push A
+ 13A5 5116              mov A,[_data_re+20+2]
+ 13A7 08                push A
+ 13A8 5117              mov A,[_data_re+20+3]
+ 13AA 08                push A
+ 13AB 7C0000            xcall _ftoa
+ 13AE 38FA              add SP,-6
+ 13B0 62D000            mov REG[0xd0],>__r0
+ 13B3 5100              mov A,[__r1]
+ 13B5 08                push A
+ 13B6 5100              mov A,[__r0]
+ 13B8 62D000            mov REG[0xd0],>_data_read
+ 13BB 5300              mov [_data_read],A
+ 13BD 18                pop A
+ 13BE 5301              mov [_data_read+1],A
+ 13C0                   .dbline 233
+ 13C0           ;                       LCD_1_PrString(data_read);
+ 13C0 10                push X
+ 13C1 5100              mov A,[_data_read]
+ 13C3 08                push A
+ 13C4 5101              mov A,[_data_read+1]
+ 13C6 5C                mov X,A
+ 13C7 18                pop A
+ 13C8 7C0000            xcall _LCD_1_PrString
+ 13CB 20                pop X
+ 13CC                   .dbline 238
+ 13CC           ; 
+ 13CC           ;               
+ 13CC           ;       //while (1)// Main loop 
+ 13CC           ; 
+ 13CC           ;       for (p=0; p<N_points; p++)
+ 13CC 62D000            mov REG[0xd0],>_p
+ 13CF 550100            mov [_p+1],0
+ 13D2 550000            mov [_p],0
+ 13D5           L66:
+ 13D5                   .dbline 239
+ 13D5           ;     {   
+ 13D5                   .dbline 242
+ 13D5           ;               
+ 13D5           ;                       //run FFT on data_re & data_imm
+ 13D5           ;               FFT(1,exponent,data_re,data_imm );
+ 13D5 5041              mov A,65
+ 13D7 08                push A
+ 13D8 5000              mov A,0
+ 13DA 08                push A
+ 13DB 08                push A
+ 13DC 08                push A
+ 13DD 7C0000            xcall _logf
+ 13E0 62D000            mov REG[0xd0],>__r0
+ 13E3 5100              mov A,[__r0]
+ 13E5 5402              mov [X+2],A
+ 13E7 5100              mov A,[__r1]
+ 13E9 5403              mov [X+3],A
+ 13EB 5100              mov A,[__r2]
+ 13ED 5404              mov [X+4],A
+ 13EF 5100              mov A,[__r3]
+ 13F1 5405              mov [X+5],A
+ 13F3 5040              mov A,64
+ 13F5 08                push A
+ 13F6 5000              mov A,0
+ 13F8 08                push A
+ 13F9 08                push A
+ 13FA 08                push A
+ 13FB 7C0000            xcall _logf
+ 13FE 38F8              add SP,-8
+ 1400 5000              mov A,>_data_imm
+ 1402 08                push A
+ 1403 5000              mov A,<_data_imm
+ 1405 08                push A
+ 1406 5000              mov A,>_data_re
+ 1408 08                push A
+ 1409 5000              mov A,<_data_re
+ 140B 08                push A
+ 140C 62D000            mov REG[0xd0],>__r0
+ 140F 5100              mov A,[__r0]
+ 1411 08                push A
+ 1412 5100              mov A,[__r1]
+ 1414 08                push A
+ 1415 5100              mov A,[__r2]
+ 1417 08                push A
+ 1418 5100              mov A,[__r3]
+ 141A 08                push A
+ 141B 5202              mov A,[X+2]
+ 141D 08                push A
+ 141E 5203              mov A,[X+3]
+ 1420 08                push A
+ 1421 5204              mov A,[X+4]
+ 1423 08                push A
+ 1424 5205              mov A,[X+5]
+ 1426 08                push A
+ 1427 7C0000            xcall __fpdiv
+ 142A 18                pop A
+ 142B 5300              mov [__r3],A
+ 142D 18                pop A
+ 142E 5300              mov [__r2],A
+ 1430 18                pop A
+ 1431 5300              mov [__r1],A
+ 1433 18                pop A
+ 1434 38FC              add SP,-4
+ 1436 08                push A
+ 1437 5100              mov A,[__r1]
+ 1439 08                push A
+ 143A 5100              mov A,[__r2]
+ 143C 08                push A
+ 143D 5100              mov A,[__r3]
+ 143F 08                push A
+ 1440 7C0000            xcall __fp2long
+ 1443 18                pop A
+ 1444 5300              mov [__r3],A
+ 1446 18                pop A
+ 1447 5300              mov [__r2],A
+ 1449 18                pop A
+ 144A 5300              mov [__r1],A
+ 144C 18                pop A
+ 144D 08                push A
+ 144E 5100              mov A,[__r1]
+ 1450 08                push A
+ 1451 5100              mov A,[__r2]
+ 1453 08                push A
+ 1454 5100              mov A,[__r3]
+ 1456 08                push A
+ 1457 5000              mov A,0
+ 1459 08                push A
+ 145A 5001              mov A,1
+ 145C 08                push A
+ 145D 7C0000            xcall _FFT
+ 1460 38F6              add SP,-10
+ 1462                   .dbline 251
+ 1462           ;        
+ 1462           ;               
+ 1462           ;                       //print out the data from FFT
+ 1462           ; //                    LCD_1_Position(1,0);
+ 1462           ; //                    data = ftoa(data_re[5], &status);
+ 1462           ; //                    LCD_1_PrString(data);
+ 1462           ;                       
+ 1462           ; 
+ 1462           ;               }//end while loop 
+ 1462           L67:
+ 1462                   .dbline 238
+ 1462 62D000            mov REG[0xd0],>_p
+ 1465 7601              inc [_p+1]
+ 1467 0E0000            adc [_p],0
+ 146A                   .dbline 238
+ 146A 5101              mov A,[_p+1]
+ 146C 1108              sub A,8
+ 146E 5100              mov A,[_p]
+ 1470 3180              xor A,-128
+ 1472 1980              sbb A,(0 ^ 0x80)
+ 1474 CF60              jc L66
+ 1476           X41:
+ 1476                   .dbline 256
+ 1476           ;       
+ 1476           ; ////////////////////////////////////////////////////////////////////
+ 1476           ; 
+ 1476           ;       //out the data from FFT
+ 1476           ;       LCD_1_Position(0,0);
+ 1476 10                push X
+ 1477 5000              mov A,0
+ 1479 5700              mov X,0
+ 147B 7C0000            xcall _LCD_1_Position
+ 147E 20                pop X
+ 147F                   .dbline 257
+ 147F           ;       data_read = ftoa(data_re[5], &status);
+ 147F 5000              mov A,>_status
+ 1481 08                push A
+ 1482 5000              mov A,<_status
+ 1484 08                push A
+ 1485 62D000            mov REG[0xd0],>_data_re
+ 1488 5114              mov A,[_data_re+20]
+ 148A 08                push A
+ 148B 5115              mov A,[_data_re+20+1]
+ 148D 08                push A
+ 148E 5116              mov A,[_data_re+20+2]
+ 1490 08                push A
+ 1491 5117              mov A,[_data_re+20+3]
+ 1493 08                push A
+ 1494 7C0000            xcall _ftoa
+ 1497 38FA              add SP,-6
+ 1499 62D000            mov REG[0xd0],>__r0
+ 149C 5100              mov A,[__r1]
+ 149E 08                push A
+ 149F 5100              mov A,[__r0]
+ 14A1 62D000            mov REG[0xd0],>_data_read
+ 14A4 5300              mov [_data_read],A
+ 14A6 18                pop A
+ 14A7 5301              mov [_data_read+1],A
+ 14A9                   .dbline 258
+ 14A9           ;       LCD_1_PrString(data_read);
+ 14A9 10                push X
+ 14AA 5100              mov A,[_data_read]
+ 14AC 08                push A
+ 14AD 5101              mov A,[_data_read+1]
+ 14AF 5C                mov X,A
+ 14B0 18                pop A
+ 14B1 7C0000            xcall _LCD_1_PrString
+ 14B4 20                pop X
+ 14B5                   .dbline 261
+ 14B5           ;       
+ 14B5           ;       /// encapsulate the data_re and data_imm back up
+ 14B5           ;       for(k=0; k<8; k++) {
+ 14B5 62D000            mov REG[0xd0],>_k
+ 14B8 550100            mov [_k+1],0
+ 14BB 550000            mov [_k],0
+ 14BE 80DF              xjmp L74
+ 14C0           L71:
+ 14C0                   .dbline 261
+ 14C0                   .dbline 264
+ 14C0           ;               //encapsulate into larger array
+ 14C0           ;               //[data_re][data_imm]
+ 14C0           ;               temp_array_result[2*k] = data_re[k];
+ 14C0 62D000            mov REG[0xd0],>_k
+ 14C3 5101              mov A,[_k+1]
+ 14C5 08                push A
+ 14C6 5100              mov A,[_k]
+ 14C8 62D000            mov REG[0xd0],>__r0
+ 14CB 5300              mov [__r0],A
+ 14CD 18                pop A
+ 14CE 5300              mov [__r1],A
+ 14D0 6500              asl [__r1]
+ 14D2 6B00              rlc [__r0]
+ 14D4 6500              asl [__r1]
+ 14D6 6B00              rlc [__r0]
+ 14D8 060000            add [__r1],<_data_re
+ 14DB 0E0000            adc [__r0],>_data_re
+ 14DE 5100              mov A,[__r0]
+ 14E0 60D4              mov REG[0xd4],A
+ 14E2 3E00              mvi A,[__r1]
+ 14E4 5300              mov [__r4],A
+ 14E6 3E00              mvi A,[__r1]
+ 14E8 5300              mov [__r5],A
+ 14EA 3E00              mvi A,[__r1]
+ 14EC 5300              mov [__r6],A
+ 14EE 3E00              mvi A,[__r1]
+ 14F0 5300              mov [__r7],A
+ 14F2 62D000            mov REG[0xd0],>_k
+ 14F5 5101              mov A,[_k+1]
+ 14F7 08                push A
+ 14F8 5100              mov A,[_k]
+ 14FA 62D000            mov REG[0xd0],>__r0
+ 14FD 5300              mov [__r0],A
+ 14FF 18                pop A
+ 1500 5300              mov [__r1],A
+ 1502 6500              asl [__r1]
+ 1504 6B00              rlc [__r0]
+ 1506 6500              asl [__r1]
+ 1508 6B00              rlc [__r0]
+ 150A 6500              asl [__r1]
+ 150C 6B00              rlc [__r0]
+ 150E 060000            add [__r1],<_temp_array_result
+ 1511 0E0000            adc [__r0],>_temp_array_result
+ 1514 5100              mov A,[__r0]
+ 1516 60D5              mov REG[0xd5],A
+ 1518 5100              mov A,[__r4]
+ 151A 3F00              mvi [__r1],A
+ 151C 5100              mov A,[__r5]
+ 151E 3F00              mvi [__r1],A
+ 1520 5100              mov A,[__r6]
+ 1522 3F00              mvi [__r1],A
+ 1524 5100              mov A,[__r7]
+ 1526 3F00              mvi [__r1],A
+ 1528                   .dbline 265
+ 1528           ;               temp_array_result[2*k +1] = data_imm[k];
+ 1528 62D000            mov REG[0xd0],>_k
+ 152B 5101              mov A,[_k+1]
+ 152D 08                push A
+ 152E 5100              mov A,[_k]
+ 1530 62D000            mov REG[0xd0],>__r0
+ 1533 5300              mov [__r0],A
+ 1535 18                pop A
+ 1536 5300              mov [__r1],A
+ 1538 6500              asl [__r1]
+ 153A 6B00              rlc [__r0]
+ 153C 6500              asl [__r1]
+ 153E 6B00              rlc [__r0]
+ 1540 060000            add [__r1],<_data_imm
+ 1543 0E0000            adc [__r0],>_data_imm
+ 1546 5100              mov A,[__r0]
+ 1548 60D4              mov REG[0xd4],A
+ 154A 3E00              mvi A,[__r1]
+ 154C 5300              mov [__r4],A
+ 154E 3E00              mvi A,[__r1]
+ 1550 5300              mov [__r5],A
+ 1552 3E00              mvi A,[__r1]
+ 1554 5300              mov [__r6],A
+ 1556 3E00              mvi A,[__r1]
+ 1558 5300              mov [__r7],A
+ 155A 62D000            mov REG[0xd0],>_k
+ 155D 5101              mov A,[_k+1]
+ 155F 08                push A
+ 1560 5100              mov A,[_k]
+ 1562 62D000            mov REG[0xd0],>__r0
+ 1565 5300              mov [__r0],A
+ 1567 18                pop A
+ 1568 5300              mov [__r1],A
+ 156A 6500              asl [__r1]
+ 156C 6B00              rlc [__r0]
+ 156E 060001            add [__r1],1
+ 1571 0E0000            adc [__r0],0
+ 1574 6500              asl [__r1]
+ 1576 6B00              rlc [__r0]
+ 1578 6500              asl [__r1]
+ 157A 6B00              rlc [__r0]
+ 157C 060000            add [__r1],<_temp_array_result
+ 157F 0E0000            adc [__r0],>_temp_array_result
+ 1582 5100              mov A,[__r0]
+ 1584 60D5              mov REG[0xd5],A
+ 1586 5100              mov A,[__r4]
+ 1588 3F00              mvi [__r1],A
+ 158A 5100              mov A,[__r5]
+ 158C 3F00              mvi [__r1],A
+ 158E 5100              mov A,[__r6]
+ 1590 3F00              mvi [__r1],A
+ 1592 5100              mov A,[__r7]
+ 1594 3F00              mvi [__r1],A
+ 1596                   .dbline 266
+ 1596           ;         }
+ 1596           L72:
+ 1596                   .dbline 261
+ 1596 62D000            mov REG[0xd0],>_k
+ 1599 7601              inc [_k+1]
+ 159B 0E0000            adc [_k],0
+ 159E           L74:
+ 159E                   .dbline 261
+ 159E 62D000            mov REG[0xd0],>_k
+ 15A1 5101              mov A,[_k+1]
+ 15A3 1108              sub A,8
+ 15A5 5100              mov A,[_k]
+ 15A7 1900              sbb A,0
+ 15A9 CF16              jc L71
+ 15AB           X42:
+ 15AB                   .dbline 271
+ 15AB           ;       
+ 15AB           ;       
+ 15AB           ;       /// write result to Flash
+ 15AB           ;       //write the 8 encapsulated elements to Flash
+ 15AB           ;       FlashParams.Write.wARG_BlockId = BLOCK_DRSLT+z;             /* Block ID  */
+ 15AB 62D000            mov REG[0xd0],>_z
+ 15AE 5101              mov A,[_z+1]
+ 15B0 01C0              add A,-64
+ 15B2 62D000            mov REG[0xd0],>__r0
+ 15B5 5300              mov [__r1],A
+ 15B7 62D000            mov REG[0xd0],>_z
+ 15BA 5100              mov A,[_z]
+ 15BC 0901              adc A,1
+ 15BE 62D000            mov REG[0xd0],>__r0
+ 15C1 5300              mov [__r0],A
+ 15C3 5100              mov A,[__r1]
+ 15C5 08                push A
+ 15C6 5100              mov A,[__r0]
+ 15C8 62D000            mov REG[0xd0],>_FlashParams
+ 15CB 5300              mov [_FlashParams],A
+ 15CD 18                pop A
+ 15CE 5301              mov [_FlashParams+1],A
+ 15D0                   .dbline 272
+ 15D0           ;     FlashParams.Write.pARG_FlashBuffer = (char *)&temp_array_result;  /* Start with the first byte of Buffer */ 
+ 15D0 550300            mov [_FlashParams+2+1],<_temp_array_result
+ 15D3 550200            mov [_FlashParams+2],>_temp_array_result
+ 15D6                   .dbline 273
+ 15D6           ;     FlashParams.Write.cARG_Temperature = Temp;          /* Place your average expected device temperature here.  
+ 15D6 550419            mov [_FlashParams+4],25
+ 15D9                   .dbline 279
+ 15D9           ;                                                            For optimal flash write conditions the temperature needs to be
+ 15D9           ;                                                            within +/- 20 C of the actual device die temperature.*/
+ 15D9           ;     /* bFlashWriteBlock returns a non-zero value in the case of a flash write failure.
+ 15D9           ;        See flashblock.h line 55 for more details.*/
+ 15D9           ;     /* Write the buffer(WriteData) data to Flash assuming room temp to be 25C  */
+ 15D9           ;     bError = bFlashWriteBlock(&FlashParams.Write);  
+ 15D9 10                push X
+ 15DA 5000              mov A,>_FlashParams
+ 15DC 08                push A
+ 15DD 5000              mov A,<_FlashParams
+ 15DF 5C                mov X,A
+ 15E0 18                pop A
+ 15E1 7C0000            xcall _bFlashWriteBlock
+ 15E4 20                pop X
+ 15E5 5400              mov [X+0],A
+ 15E7                   .dbline 284
+ 15E7           ; 
+ 15E7           ;       
+ 15E7           ;       
+ 15E7           ;       //write the mod elements to Flash
+ 15E7           ;       FlashParams.Write.wARG_BlockId = BLOCK_MODRSLT +z;             /* Block ID  */
+ 15E7 62D000            mov REG[0xd0],>_z
+ 15EA 5101              mov A,[_z+1]
+ 15EC 01E0              add A,-32
+ 15EE 62D000            mov REG[0xd0],>__r0
+ 15F1 5300              mov [__r1],A
+ 15F3 62D000            mov REG[0xd0],>_z
+ 15F6 5100              mov A,[_z]
+ 15F8 0901              adc A,1
+ 15FA 62D000            mov REG[0xd0],>__r0
+ 15FD 5300              mov [__r0],A
+ 15FF 5100              mov A,[__r1]
+ 1601 08                push A
+ 1602 5100              mov A,[__r0]
+ 1604 62D000            mov REG[0xd0],>_FlashParams
+ 1607 5300              mov [_FlashParams],A
+ 1609 18                pop A
+ 160A 5301              mov [_FlashParams+1],A
+ 160C                   .dbline 285
+ 160C           ;     FlashParams.Write.pARG_FlashBuffer = (char *)&mod;  /* Start with the first byte of Buffer */ 
+ 160C 550300            mov [_FlashParams+2+1],<_mod
+ 160F 550200            mov [_FlashParams+2],>_mod
+ 1612                   .dbline 286
+ 1612           ;     FlashParams.Write.cARG_Temperature = Temp;          /* Place your average expected device temperature here.  
+ 1612 550419            mov [_FlashParams+4],25
+ 1615                   .dbline 292
+ 1615           ;                                                            For optimal flash write conditions the temperature needs to be
+ 1615           ;                                                            within +/- 20 C of the actual device die temperature.*/
+ 1615           ;     /* bFlashWriteBlock returns a non-zero value in the case of a flash write failure.
+ 1615           ;        See flashblock.h line 55 for more details.*/
+ 1615           ;     /* Write the buffer(WriteData) data to Flash assuming room temp to be 25C  */
+ 1615           ;     bError = bFlashWriteBlock(&FlashParams.Write);
+ 1615 10                push X
+ 1616 5000              mov A,>_FlashParams
+ 1618 08                push A
+ 1619 5000              mov A,<_FlashParams
+ 161B 5C                mov X,A
+ 161C 18                pop A
+ 161D 7C0000            xcall _bFlashWriteBlock
+ 1620 20                pop X
+ 1621 5400              mov [X+0],A
+ 1623                   .dbline 298
+ 1623           ;       
+ 1623           ;       
+ 1623           ;       
+ 1623           ;       
+ 1623           ;       /* If the write operaton is successful, read back the data to the ReadBuffer */
+ 1623           ;     if ( bError != FLASH_ERROR )  
+ 1623 3D0000            cmp [X+0],0
+ 1626 A040              jz L79
+ 1628                   .dbline 301
+ 1628           ;      {  
+ 1628           ;         /* Enable global interupts */
+ 1628           ;         M8C_EnableGInt;                                    
+ 1628                   .dbline 301
+ 1628 7101                      or  F, 01h
+ 162A           
+ 162A                   .dbline 304
+ 162A           ;     
+ 162A           ;         /* Starting at the first byte of the first block */
+ 162A           ;         FlashParams.Read.wARG_BlockId = BLOCK_DRSLT +z ; 
+ 162A 62D000            mov REG[0xd0],>_z
+ 162D 5101              mov A,[_z+1]
+ 162F 01C0              add A,-64
+ 1631 62D000            mov REG[0xd0],>__r0
+ 1634 5300              mov [__r1],A
+ 1636 62D000            mov REG[0xd0],>_z
+ 1639 5100              mov A,[_z]
+ 163B 0901              adc A,1
+ 163D 62D000            mov REG[0xd0],>__r0
+ 1640 5300              mov [__r0],A
+ 1642 5100              mov A,[__r1]
+ 1644 08                push A
+ 1645 5100              mov A,[__r0]
+ 1647 62D000            mov REG[0xd0],>_FlashParams
+ 164A 5300              mov [_FlashParams],A
+ 164C 18                pop A
+ 164D 5301              mov [_FlashParams+1],A
+ 164F                   .dbline 307
+ 164F           ;         
+ 164F           ;         /* RAM buffer to read */
+ 164F           ;         FlashParams.Read.pARG_FlashBuffer = (char *)&temp_array_result_read;//encapsulated float array
+ 164F 550300            mov [_FlashParams+2+1],<_temp_array_result_read
+ 1652 550200            mov [_FlashParams+2],>_temp_array_result_read
+ 1655                   .dbline 310
+ 1655           ;         
+ 1655           ;         /* 16 byte read */
+ 1655           ;         FlashParams.Read.wARG_ReadCount = SIZE; 
+ 1655 550540            mov [_FlashParams+4+1],64
+ 1658 550400            mov [_FlashParams+4],0
+ 165B                   .dbline 313
+ 165B           ;         
+ 165B           ;         /* read the data from the flash to the buffer */
+ 165B           ;         FlashReadBlock(&FlashParams.Read);               
+ 165B 10                push X
+ 165C 5000              mov A,>_FlashParams
+ 165E 08                push A
+ 165F 5000              mov A,<_FlashParams
+ 1661 5C                mov X,A
+ 1662 18                pop A
+ 1663 7C0000            xcall _FlashReadBlock
+ 1666 20                pop X
+ 1667                   .dbline 315
+ 1667           ;                               
+ 1667           ;       }
+ 1667           L79:
+ 1667                   .dbline 320
+ 1667           ;       
+ 1667           ;       
+ 1667           ;       
+ 1667           ;               /* If the write operaton is successful, read back the data to the ReadBuffer */
+ 1667           ;     if ( bError != FLASH_ERROR )  
+ 1667 3D0000            cmp [X+0],0
+ 166A A040              jz L83
+ 166C                   .dbline 323
+ 166C           ;      {  
+ 166C           ;         /* Enable global interupts */
+ 166C           ;         M8C_EnableGInt;                                    
+ 166C                   .dbline 323
+ 166C 7101                      or  F, 01h
+ 166E           
+ 166E                   .dbline 326
+ 166E           ;     
+ 166E           ;         /* Starting at the first byte of the first block */
+ 166E           ;         FlashParams.Read.wARG_BlockId = BLOCK_MODRSLT + z; 
+ 166E 62D000            mov REG[0xd0],>_z
+ 1671 5101              mov A,[_z+1]
+ 1673 01E0              add A,-32
+ 1675 62D000            mov REG[0xd0],>__r0
+ 1678 5300              mov [__r1],A
+ 167A 62D000            mov REG[0xd0],>_z
+ 167D 5100              mov A,[_z]
+ 167F 0901              adc A,1
+ 1681 62D000            mov REG[0xd0],>__r0
+ 1684 5300              mov [__r0],A
+ 1686 5100              mov A,[__r1]
+ 1688 08                push A
+ 1689 5100              mov A,[__r0]
+ 168B 62D000            mov REG[0xd0],>_FlashParams
+ 168E 5300              mov [_FlashParams],A
+ 1690 18                pop A
+ 1691 5301              mov [_FlashParams+1],A
+ 1693                   .dbline 329
+ 1693           ;         
+ 1693           ;         /* RAM buffer to read */
+ 1693           ;         FlashParams.Read.pARG_FlashBuffer = (char *)&final_mod;//encapsulated float array
+ 1693 550300            mov [_FlashParams+2+1],<_final_mod
+ 1696 550200            mov [_FlashParams+2],>_final_mod
+ 1699                   .dbline 332
+ 1699           ;         
+ 1699           ;         /* 16 byte read */
+ 1699           ;         FlashParams.Read.wARG_ReadCount = SIZE; 
+ 1699 550540            mov [_FlashParams+4+1],64
+ 169C 550400            mov [_FlashParams+4],0
+ 169F                   .dbline 335
+ 169F           ;         
+ 169F           ;         /* read the data from the flash to the buffer */
+ 169F           ;         FlashReadBlock(&FlashParams.Read);               
+ 169F 10                push X
+ 16A0 5000              mov A,>_FlashParams
+ 16A2 08                push A
+ 16A3 5000              mov A,<_FlashParams
+ 16A5 5C                mov X,A
+ 16A6 18                pop A
+ 16A7 7C0000            xcall _FlashReadBlock
+ 16AA 20                pop X
+ 16AB                   .dbline 337
+ 16AB           ;                               
+ 16AB           ;       }
+ 16AB           L83:
+ 16AB                   .dbline 340
+ 16AB           ;       
+ 16AB           ;       //decapsulate the array into final_data_re and final_data_imm
+ 16AB           ;           for(k=0; k<8; k++) {
+ 16AB 62D000            mov REG[0xd0],>_k
+ 16AE 550100            mov [_k+1],0
+ 16B1 550000            mov [_k],0
+ 16B4 80DF              xjmp L90
+ 16B6           L87:
+ 16B6                   .dbline 340
+ 16B6                   .dbline 341
+ 16B6           ;               final_data_re[k]  = temp_array_result_read[2*k];
+ 16B6 62D000            mov REG[0xd0],>_k
+ 16B9 5101              mov A,[_k+1]
+ 16BB 08                push A
+ 16BC 5100              mov A,[_k]
+ 16BE 62D000            mov REG[0xd0],>__r0
+ 16C1 5300              mov [__r0],A
+ 16C3 18                pop A
+ 16C4 5300              mov [__r1],A
+ 16C6 6500              asl [__r1]
+ 16C8 6B00              rlc [__r0]
+ 16CA 6500              asl [__r1]
+ 16CC 6B00              rlc [__r0]
+ 16CE 6500              asl [__r1]
+ 16D0 6B00              rlc [__r0]
+ 16D2 060000            add [__r1],<_temp_array_result_read
+ 16D5 0E0000            adc [__r0],>_temp_array_result_read
+ 16D8 5100              mov A,[__r0]
+ 16DA 60D4              mov REG[0xd4],A
+ 16DC 3E00              mvi A,[__r1]
+ 16DE 5300              mov [__r4],A
+ 16E0 3E00              mvi A,[__r1]
+ 16E2 5300              mov [__r5],A
+ 16E4 3E00              mvi A,[__r1]
+ 16E6 5300              mov [__r6],A
+ 16E8 3E00              mvi A,[__r1]
+ 16EA 5300              mov [__r7],A
+ 16EC 62D000            mov REG[0xd0],>_k
+ 16EF 5101              mov A,[_k+1]
+ 16F1 08                push A
+ 16F2 5100              mov A,[_k]
+ 16F4 62D000            mov REG[0xd0],>__r0
+ 16F7 5300              mov [__r0],A
+ 16F9 18                pop A
+ 16FA 5300              mov [__r1],A
+ 16FC 6500              asl [__r1]
+ 16FE 6B00              rlc [__r0]
+ 1700 6500              asl [__r1]
+ 1702 6B00              rlc [__r0]
+ 1704 060000            add [__r1],<_final_data_re
+ 1707 0E0000            adc [__r0],>_final_data_re
+ 170A 5100              mov A,[__r0]
+ 170C 60D5              mov REG[0xd5],A
+ 170E 5100              mov A,[__r4]
+ 1710 3F00              mvi [__r1],A
+ 1712 5100              mov A,[__r5]
+ 1714 3F00              mvi [__r1],A
+ 1716 5100              mov A,[__r6]
+ 1718 3F00              mvi [__r1],A
+ 171A 5100              mov A,[__r7]
+ 171C 3F00              mvi [__r1],A
+ 171E                   .dbline 342
+ 171E           ;               final_data_imm[k] = temp_array_result_read[2*k +1];
+ 171E 62D000            mov REG[0xd0],>_k
+ 1721 5101              mov A,[_k+1]
+ 1723 08                push A
+ 1724 5100              mov A,[_k]
+ 1726 62D000            mov REG[0xd0],>__r0
+ 1729 5300              mov [__r0],A
+ 172B 18                pop A
+ 172C 5300              mov [__r1],A
+ 172E 6500              asl [__r1]
+ 1730 6B00              rlc [__r0]
+ 1732 060001            add [__r1],1
+ 1735 0E0000            adc [__r0],0
+ 1738 6500              asl [__r1]
+ 173A 6B00              rlc [__r0]
+ 173C 6500              asl [__r1]
+ 173E 6B00              rlc [__r0]
+ 1740 060000            add [__r1],<_temp_array_result_read
+ 1743 0E0000            adc [__r0],>_temp_array_result_read
+ 1746 5100              mov A,[__r0]
+ 1748 60D4              mov REG[0xd4],A
+ 174A 3E00              mvi A,[__r1]
+ 174C 5300              mov [__r4],A
+ 174E 3E00              mvi A,[__r1]
+ 1750 5300              mov [__r5],A
+ 1752 3E00              mvi A,[__r1]
+ 1754 5300              mov [__r6],A
+ 1756 3E00              mvi A,[__r1]
+ 1758 5300              mov [__r7],A
+ 175A 62D000            mov REG[0xd0],>_k
+ 175D 5101              mov A,[_k+1]
+ 175F 08                push A
+ 1760 5100              mov A,[_k]
+ 1762 62D000            mov REG[0xd0],>__r0
+ 1765 5300              mov [__r0],A
+ 1767 18                pop A
+ 1768 5300              mov [__r1],A
+ 176A 6500              asl [__r1]
+ 176C 6B00              rlc [__r0]
+ 176E 6500              asl [__r1]
+ 1770 6B00              rlc [__r0]
+ 1772 060000            add [__r1],<_final_data_imm
+ 1775 0E0000            adc [__r0],>_final_data_imm
+ 1778 5100              mov A,[__r0]
+ 177A 60D5              mov REG[0xd5],A
+ 177C 5100              mov A,[__r4]
+ 177E 3F00              mvi [__r1],A
+ 1780 5100              mov A,[__r5]
+ 1782 3F00              mvi [__r1],A
+ 1784 5100              mov A,[__r6]
+ 1786 3F00              mvi [__r1],A
+ 1788 5100              mov A,[__r7]
+ 178A 3F00              mvi [__r1],A
+ 178C                   .dbline 343
+ 178C           ;               }
+ 178C           L88:
+ 178C                   .dbline 340
+ 178C 62D000            mov REG[0xd0],>_k
+ 178F 7601              inc [_k+1]
+ 1791 0E0000            adc [_k],0
+ 1794           L90:
+ 1794                   .dbline 340
+ 1794 62D000            mov REG[0xd0],>_k
+ 1797 5101              mov A,[_k+1]
+ 1799 1108              sub A,8
+ 179B 5100              mov A,[_k]
+ 179D 1900              sbb A,0
+ 179F CF16              jc L87
+ 17A1           X43:
+ 17A1                   .dbline 346
+ 17A1           ; 
+ 17A1           ;               //print out the data read from Flash
+ 17A1           ;                       LCD_1_Position(1,0);
+ 17A1 10                push X
+ 17A2 5700              mov X,0
+ 17A4 5001              mov A,1
+ 17A6 7C0000            xcall _LCD_1_Position
+ 17A9 20                pop X
+ 17AA                   .dbline 347
+ 17AA           ;                       data_read = ftoa(final_data_re[5], &status);
+ 17AA 5000              mov A,>_status
+ 17AC 08                push A
+ 17AD 5000              mov A,<_status
+ 17AF 08                push A
+ 17B0 62D000            mov REG[0xd0],>_final_data_re
+ 17B3 5114              mov A,[_final_data_re+20]
+ 17B5 08                push A
+ 17B6 5115              mov A,[_final_data_re+20+1]
+ 17B8 08                push A
+ 17B9 5116              mov A,[_final_data_re+20+2]
+ 17BB 08                push A
+ 17BC 5117              mov A,[_final_data_re+20+3]
+ 17BE 08                push A
+ 17BF 7C0000            xcall _ftoa
+ 17C2 38FA              add SP,-6
+ 17C4 62D000            mov REG[0xd0],>__r0
+ 17C7 5100              mov A,[__r1]
+ 17C9 08                push A
+ 17CA 5100              mov A,[__r0]
+ 17CC 62D000            mov REG[0xd0],>_data_read
+ 17CF 5300              mov [_data_read],A
+ 17D1 18                pop A
+ 17D2 5301              mov [_data_read+1],A
+ 17D4                   .dbline 348
+ 17D4           ;                       LCD_1_PrString(data_read);
+ 17D4 10                push X
+ 17D5 5100              mov A,[_data_read]
+ 17D7 08                push A
+ 17D8 5101              mov A,[_data_read+1]
+ 17DA 5C                mov X,A
+ 17DB 18                pop A
+ 17DC 7C0000            xcall _LCD_1_PrString
+ 17DF 20                pop X
+ 17E0                   .dbline 349
+ 17E0           ;       }
+ 17E0           L54:
+ 17E0                   .dbline 203
+ 17E0 62D000            mov REG[0xd0],>_z
+ 17E3 7601              inc [_z+1]
+ 17E5 0E0000            adc [_z],0
+ 17E8                   .dbline 203
+ 17E8 5101              mov A,[_z+1]
+ 17EA 1120              sub A,32
+ 17EC 5100              mov A,[_z]
+ 17EE 3180              xor A,-128
+ 17F0 1980              sbb A,(0 ^ 0x80)
+ 17F2 CA60              jc L53
+ 17F4           X44:
+ 17F4                   .dbline -2
+ 17F4           L42:
+ 17F4 38FA              add SP,-6
+ 17F6 20                pop X
+ 17F7                   .dbline 0 ; func end
+ 17F7 8FFF              jmp .
+ 17F9                   .dbsym l bgPos 1 c
+ 17F9                   .dbsym l bError 0 c
+ 17F9                   .dbend
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _FlashParams::
+ 0000 0000000000000000  .byte 0,0,0,0,0,0,0,0
+ 0008                   .dbstruct 0 8 .39
+ 0008                   .dbfield 0 wARG_BlockId i
+ 0008                   .dbfield 2 pARG_FlashBuffer pc
+ 0008                   .dbfield 4 cARG_Temperature C
+ 0008                   .dbfield 5 bDATA_PWErase c
+ 0008                   .dbfield 6 bDATA_PWProgram c
+ 0008                   .dbfield 7 bDATA_PWMultiplier c
+ 0008                   .dbend
+ 0008                   .dbstruct 0 6 .40
+ 0008                   .dbfield 0 wARG_BlockId i
+ 0008                   .dbfield 2 pARG_FlashBuffer pc
+ 0008                   .dbfield 4 wARG_ReadCount i
+ 0008                   .dbend
+ 0008                   .dbunion 0 8 .41
+ 0008                   .dbfield 0 Write S[.39]
+ 0008                   .dbfield 0 Read S[.40]
+ 0008                   .dbend
+ 0008                   .dbsym e FlashParams _FlashParams S[.41]
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _status::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e status _status I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _ind::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e ind _ind i
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _max::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e max _max D
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _data_read::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e data_read _data_read pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _data::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e data _data pc
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _df::
+ 0000 00000000          .byte 0,0,0,0
+ 0004                   .dbsym e df _df A[4:4]c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _z::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e z _z I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _j::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e j _j I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _p::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e p _p I
+                        .area data(ram, con, rel)
+ 0000                   .dbfile F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\main.c
+ 0000           _a::
+ 0000 0000              .byte 0,0
+ 0002                   .dbsym e a _a I

@@ -1,0 +1,98 @@
+//Assuming no overflows in any register
+//Matrix A is stored in [70h] through [78h]; Matrix B is stored in [80h] through [88h]; Result in [90h] through [98h]
+//registers from [50h] through [69h] will be used for manipulations 
+
+mov [FFh],09h // define size of output matrix
+mov [EFh],90h 
+mov [03h],00h
+mov [02h],90h // element in matrix C
+mov [32h],70h // element in matrix A
+mov [22h],80h // element in matrix B
+mov A,00h
+loop_result: //  values in the output matrix are set to '0'
+mvi [EFh],A
+dec [FFh]
+jnz loop_result
+
+#######################
+mov [40h],00h
+loop_of_death1:
+mov [41h],00h
+mov [42h],[40h]
+mov A,[40h]
+loop1:
+add [42h],A // [42h]=z; 
+inc [41h]
+cmp [41h],02h
+jnz loop1
+########################
+mov [50h],00h // [50h]=i
+loop_of_death2:
+########################
+mov [60h],00h
+loop_of_death3:
+mov [61h],00h
+mov [62h],[60h]
+mov A,[60h]
+loop1:
+add [62h],A // [62h]=t
+inc [61h]
+cmp [61h],02h
+jnz loop1
+
+//multiplication and addition
+
+mov A,[42h]
+add [32h],A // points to matrix A
+
+mvi A,[32h]// A contains value in location 70+i+z
+mov [10h],A // the value in 70+i+z is moved into [10h] location
+
+mov A,[62h]
+add [22h],A //points to matrix B
+mov A,[50h]
+add [22h],A
+
+mvi A,[22h]// the value in [80h]+t+i is moved into A
+mov [11h],A// he value in 80+i+z is moved into [11h] location
+mov [22h],[80h]
+dec [11h]
+
+mov A,[10h]
+loop_mul:
+add [10h],A
+dec [11h]
+jnz loop_mul
+ 
+mov A,[10h]
+add [03h],A
+ 
+ inc [60h]
+ cmp [60h],03h
+ jnz loop_of_death3
+
+ mov [32h],[70h]
+ mov A,[03h]
+ mvi [02h],A
+ mov [03h],00h
+ 
+ inc [50h]
+ cmp [50h],03h
+ jnz loop_of_death2
+ 
+ inc [40h]
+ cmp [40h],03h
+ jnz loop_of_death1
+ 
+ .terminate
+ jmp terminate
+ 
+
+
+
+
+
+
+
+
+

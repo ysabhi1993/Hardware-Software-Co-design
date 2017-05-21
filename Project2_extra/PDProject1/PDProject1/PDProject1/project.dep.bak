@@ -1,0 +1,21 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8ssc.inc\
+   F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\lib\GLOBAL~1.INC\
+   F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\memory.inc
+./obj/main.o :  ./lib/PSoCAPI.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\memory.inc
+./obj/test.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/_const.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/math.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/stdarg.h\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/stdio.h\
+   F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\_mingw.h\
+   F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\complex.h
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   F:\HARDWA~1\Project2\PDPROJ~1\PDPROJ~1\PDPROJ~1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc

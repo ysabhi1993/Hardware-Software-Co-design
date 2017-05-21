@@ -1,0 +1,34 @@
+Starting MAKE...
+creating project.mk 
+
+lib/dualadc_1.asm
+
+lib/dualadc_1int.asm
+
+lib/lcd.asm
+
+lib/lpf2_1.asm
+
+lib/lpf2_2.asm
+
+lib/pga_1.asm
+
+lib/pga_2.asm
+
+lib/pga_3.asm
+
+lib/pga_4.asm
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+!E ./isroutine.asm(6): no such mnemonic '_GPIO_ISR'
+
+make: *** [obj/isroutine.o] Error 1
+
+make: *** Deleting file `obj/isroutine.o'
+
+ 
+Project1 - 3 error(s) 0 warning(s) 02:58:30
+

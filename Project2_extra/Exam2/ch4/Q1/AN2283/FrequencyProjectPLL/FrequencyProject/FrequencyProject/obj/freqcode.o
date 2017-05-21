@@ -1,0 +1,68 @@
+XH
+H 1 areas 4 global symbols
+M freqcode.asm
+S _wTickCount Ref0000
+S _bDataAvailable Ref0000
+S _cOverFlow Ref0000
+A text size 1C flags 0
+dbfile ./freqcode.asm
+dbfunc 0 ? 0 I
+dbline 3D 0
+dbline 3E 3
+dbline 3F 6
+dbline 40 9
+dbline 41 C
+dbline 2 F
+dbline 2 12
+dbline 44 15
+dbline 45 18
+dbline 47 1B
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile TickTimer.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/TickTimer.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile SampleFreq.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/SampleFreq.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile LCD.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LCD.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Comparator.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCGPIOINT.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./freqcode.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./freqcode.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+S _StartFreq Def0000
+T 00 00 55 00 00 FF 55 00 00 FF 55 00 01 FF 55
+R 00 00 00 00 03 03 00 02 03 07 00 00 03 0B 00 00
+T 00 0A 00 00 00 41 DB FD 43 E1 02 43 23 01 41 DA
+R 00 00 00 00 03 02 00 01
+T 00 17 FD 43 E0 02 7F
+R 00 00 00 00

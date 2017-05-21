@@ -1,0 +1,86 @@
+Starting MAKE...
+creating project.mk 
+
+lib/lcd_1.asm
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+!W F:\HARDWA~1\Project2\HWSW_P~1\HWSW_P~1\HWSW_P~1\fft.h(90):[warning] missing return value
+
+./boot.asm
+
+Linking..
+
+LMM info: area 'InterruptRAM' uses 3 bytes in SRAM bank 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 15 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 4 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 0
+
+LMM info: area 'data' item of 256 bytes allocated in SRAM page 1
+
+LMM info: area 'data' item of 256 bytes allocated in SRAM page 2
+
+LMM info: area 'data' item of 256 bytes allocated in SRAM page 3
+
+LMM info: area 'data' item of 256 bytes allocated in SRAM page 4
+
+LMM info: area 'data' item of 32 bytes allocated in SRAM page 5
+
+LMM info: area 'virtual_registers' uses 15 bytes in SRAM page 5
+
+LMM info: area 'data' item of 8 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 4 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 4 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+LMM info: area 'data' item of 2 bytes allocated in SRAM page 5
+
+idata dump at output/HWSW_Partition_FFT.idata
+
+  ROM 44% full. 14214 out of 32768 bytes used (does not include absolute areas).
+
+  RAM 76% full. 1355 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+HWSW_Partition_FFT - 0 error(s) 1 warning(s) 18:25:32
+

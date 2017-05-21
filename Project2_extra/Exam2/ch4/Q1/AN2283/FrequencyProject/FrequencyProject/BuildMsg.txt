@@ -1,0 +1,14 @@
+Starting MAKE...
+creating project.mk -- no changes
+
+Linking..
+
+  ROM 19% full. 5940 out of 32768 bytes used (does not include absolute areas).
+
+  RAM 21% full. 52 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+FrequencyProject - 0 error(s) 0 warning(s) 11:34:37
+

@@ -1,0 +1,211 @@
+XH
+H B areas 10 global symbols
+M boot.asm
+S _main Ref0000
+S _TickTimer_ISR Ref0000
+S __r0 Ref0000
+S LoadConfigInit Ref0000
+S __bss_end Ref0000
+S __ramareas_end Ref0000
+S __data_end Ref0000
+S _TickHandler_ISR Ref0000
+A TOP size EC flags C
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbline 72 0
+dbline 7A 4
+dbline 7D 8
+dbline 7E B
+dbline 82 C
+dbline 86 10
+dbline 8A 14
+dbline 8E 18
+dbline 92 1C
+dbline 96 20
+dbline 99 24
+dbline 9A 27
+dbline 9E 28
+dbline A2 2C
+dbline A6 30
+dbline AA 34
+dbline AE 38
+dbline B2 3C
+dbline B6 40
+dbline BA 44
+dbline BE 48
+dbline C2 4C
+dbline C6 50
+dbline CA 54
+dbline CE 58
+dbline D2 5C
+dbline D6 60
+dbline DA 64
+dbline 2 68
+dbline F3 6A
+dbline F4 6D
+dbline 2 70
+dbline F8 72
+dbline F9 74
+dbline FA 75
+dbline FB 77
+dbline FC 78
+dbline FD 7A
+dbline 2 7B
+dbline 108 7E
+dbline 112 81
+dbline 113 83
+dbline 2 84
+dbline 133 87
+dbline 134 8A
+dbline 2 8D
+dbline 14D 8F
+dbline 2 92
+dbline 2 94
+dbline 179 97
+dbline 17A 9A
+dbline 17B 9D
+dbline 17C A0
+dbline 1A6 A3
+dbline 1A7 A5
+dbline 1BD A6
+dbline 1C4 A9
+dbline 1C5 AB
+dbline 1C7 AE
+dbline 1C8 B1
+dbline 1C9 B3
+dbline 1CA B5
+dbline 1CC B7
+dbline 1CD B9
+dbline 1CE BB
+dbline 1D0 BE
+dbline 1D1 C1
+dbline 1D2 C3
+dbline 1D3 C4
+dbline 1D4 C5
+dbline 1D5 C7
+dbline 1D6 C8
+dbline 1D7 C9
+dbline 1D8 CB
+dbline 2 CD
+dbline 27E CF
+dbline 2 D2
+dbline 28C D4
+dbline 2 D7
+dbline 292 D9
+dbline 293 DC
+dbline 2 DF
+dbline 29A E1
+dbline 2A2 E4
+dbline 2A4 E7
+dbline 2B1 E9
+dbline 2B2 EB
+S bGetPowerSetting Def00E9
+S _bGetPowerSetting Def00E9
+S __Start Def0068
+A lit size 0 flags 1
+A idata size 0 flags 1
+S __idata_start Def0000
+A func_lit size 0 flags 2
+S __func_lit_start Def0000
+A psoc_config size 0 flags 0
+A UserModules size 0 flags 0
+A text size 0 flags 0
+S __text_start Def0000
+A data size 0 flags 20
+S __data_start Def0000
+A virtual_registers size 0 flags 20
+A InterruptRAM size 0 flags 20
+A bss size 0 flags 20
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8ssc.inc
+dbfunc 0 ? 0 I
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CY110F~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./boot.asm
+dbfunc 0 ? 0 I
+dbfile .\lib\GlobalParams.inc
+dbfunc 0 ? 0 I
+S __bss_start Def0000
+T 00 00 80 67
+R 00 00 00 00
+T 00 04 30
+R 00 00 00 00
+T 00 08 7D 00 00 7E
+R 00 00 00 00 02 03 00 07
+T 00 0C 7E
+R 00 00 00 00
+T 00 10 7E
+R 00 00 00 00
+T 00 14 7E
+R 00 00 00 00
+T 00 18 7E
+R 00 00 00 00
+T 00 1C 7E
+R 00 00 00 00
+T 00 20 7E
+R 00 00 00 00
+T 00 24 7D 00 00 7E
+R 00 00 00 00 02 03 00 01
+T 00 28 7E
+R 00 00 00 00
+T 00 2C 7E
+R 00 00 00 00
+T 00 30 7E
+R 00 00 00 00
+T 00 34 7E
+R 00 00 00 00
+T 00 38 7E
+R 00 00 00 00
+T 00 3C 7E
+R 00 00 00 00
+T 00 40 7E
+R 00 00 00 00
+T 00 44 7E
+R 00 00 00 00
+T 00 48 7E
+R 00 00 00 00
+T 00 4C 7E
+R 00 00 00 00
+T 00 50 7E
+R 00 00 00 00
+T 00 54 7E
+R 00 00 00 00
+T 00 58 7E
+R 00 00 00 00
+T 00 5C 7E
+R 00 00 00 00
+T 00 60 7E
+R 00 00 00 00
+T 00 64 7E
+R 00 00 00 00
+T 00 68 71 10 62 FA 00 62 E3 8F 70 EF 50 20 28 50
+R 00 00 00 00
+T 00 76 40 28 50 60 28 62 E3 38 41 FE FB 50 80 4E
+R 00 00 00 00
+T 00 84 62 E3 38 55 F8 00 55 F9 00 71 10 62 E0 1A
+R 00 00 00 00
+T 00 92 70 EF 62 E3 38 62 71 05 62 75 05 62 79 05
+R 00 00 00 00
+T 00 A0 62 7D 05 50 00 00 4E 7C 00 00 50 00 55
+R 00 00 00 00 03 06 00 05 02 0A 00 03
+T 00 AC 00 00 00 00 3C 00 00
+R 00 00 00 00 03 02 00 02 01 04 00 0A 03 07 00 02
+T 00 B0 00 00 A0 05 3F 00 00 8F F8 50 00 00 57
+R 00 00 00 00 03 02 00 04 03 07 00 02 41 0C 00 02
+T 00 BA 00 00 55 00 00 00 00 3C
+R 00 00 00 00 01 02 00 02 03 05 00 02 01 07 00 07
+T 00 BF 00 00 00 00 A0 0B 08 28 3F 00 00 18 75 09
+R 00 00 00 00 03 02 00 02 03 04 00 06 03 0B 00 02
+T 00 CA 00 8F F2 71 10 43 E3 20 70 EF 62 E0 00 71
+R 00 00 00 00
+T 00 D8 10 62 E0 1B 43 E7 80 70 EF 62 E2 00 7C
+R 00 00 00 00
+T 00 E5 00 00 8F FF 50 10 7F
+R 00 00 00 00 02 02 00 00

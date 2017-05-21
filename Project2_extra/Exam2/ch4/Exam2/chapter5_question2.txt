@@ -1,0 +1,105 @@
+M1: reading from input sending to M2
+M2: is receiving from M1 and putting in Flash
+
+unions {
+	FLASH_WRITE_STRUCT Write;
+} FlashParams
+
+BYTE receive_status;
+BYTE transmit_status;
+BYTE transmit_done;
+BYTE receive_data;
+
+//--------------------start M1-------------------
+//start
+//while(1) {
+//grab input data from GPIO pin
+
+	read data from input port: 
+		BYTE input_data;
+		input_data = PORT0_DR;
+//poll for M2 ready
+//transmit to M2
+//}
+//--------------------finish M1------------------
+
+
+
+//--------------------start M2-------------------
+
+//Start: 
+UART_M2_Start(UART_PARITY_NONE);		//Enable M2 UART
+
+/*not doing checks for error as it is not done in Fig 5.3*/
+
+while (1){
+		transmit_done = 0x00;
+		
+	
+		//poll the reg_full - initial read
+		receive_status = UART_M2_bReadRxStatus();
+
+		//mask out reg_full
+		receive_status &= UART_M2_RX_REG_FULL; 
+
+		//poll for reg_full - continuous polling
+		while (receive_status != UART_M2_RX_REG_FULL) 
+		{
+			receive_status = UART_M2_bReadRxStatus();
+			receive_status &= UART_M2_RX_REG_FULL;
+		}
+		//RX_REG_FULL flag is cleared
+
+		//grab data from receive buffer
+
+		receive_data = UART_M2_bReadRxData;
+
+		//send data to flash- assuming you dont need to gather up 64 bytes
+		//enhance the code by piling up 64 bytes
+		FlashParams.Write.wARG_BlockId = BLOCK = 510;
+		FlashParams.Write.pARH_FlashBuffer = receive_data;
+		FlashParams.Write.cARG_Temperature = Temp;
+
+		bError = bFlashWriteBlock(&FlashParams.Write);
+		
+		//transmit ready/done back to M1
+		
+		//check Tx buffer is empty
+		transmit_status = UART_M2_bReadTxStatus();
+
+		//mask for just tx buffer empty bit
+		transmit_Status &= UART_M2_TX_BUFFER_EMPTY;
+		
+		while (transmit_status != UART_M2_TX_BUFFER_EMPTY) 
+		{
+			transmit_status = UART_M2_bReadTxStatus();
+			transmit_Status &= UART_M2_TX_BUFFER_EMPTY;
+		}
+		transmit_done = 0x55;
+		
+		//send done status to M1
+		UART_M2_SendData(transmit_done);
+		
+}
+//--------------------finished M2----------------
+
+
+assuming all input is 8-bit since we are only sending a byte across
+UART, before we can send the next 8-bit input data we have to receive
+the okay from M2. the following is the flow before new data can be send
+giving an overview of the data flow: 
+
+1. get input data
+2. poll M1 Tx buffer empty
+3. send byte over M1 Tx buffer
+	3a. get new input data but will be held until okay from M2 to send
+4. poll M2 receive buffer full
+5. read M2 receive buffer
+6. send data over to Flash = flash writes take the longest time in this process
+7. poll M2 Tx buffer empty
+8. send ready byte over M2 Tx buffer
+9. jump to 2
+
+
+
+

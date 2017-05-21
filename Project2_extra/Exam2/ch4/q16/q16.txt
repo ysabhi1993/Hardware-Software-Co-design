@@ -1,0 +1,89 @@
+16. Develop firmware routines for managing and operating the deadband block. 
+Use the firmware routines in a C program to generate nonoverlapping signals with different frequencies, 
+and dead - band values.
+
+Answer:
+
+Assume that we are using a PWM_DB8 digital block. A PWM_DB8 digital block comprises of two digital blocks.
+One is the PWM8 block and the other is the PWMDB8 block. The output from the PWM block is used
+as a reference signal to calculate the PHI1 and PHI2.
+
+Depending on the placement of the PWMDB8 block the DxBxxCR0 (Dead Band Control) is selected and the first three bits
+are modified. The 0th bit is the enable bit is enabled and disabled with the start and stop routines. The 1st bit is
+the Bit Bang Mode bit, if it is 0, DB uses input reference from the previous block(PWM), if it is 1, DB uses Bit Bang Clock
+register as input reference. The 2nd bit is the Bit Bang Clock bit. When Bit Bang mode is enabled, 
+the output of this register bit is substituted for the PWM reference.
+
+Assuming that the 0th block is used as the PWM8 and the 1st block is used as the PWMDB8 module, 
+based on the TRM, the CR0 register is DBB01CR0 at address 0,27h and the FN register is DBB01FN at address 1,24h.
+
+Consider the PHI1 output from the PWMDB8 block on the P0[3] pin and the output pulse frequency is 50Hz. 
+Also consider PHI2 output from the PWMDB8 block on the P1[4] pin and the output pulse frequency is shifted to 50% (10 usec) relative to the first one.
+
+
+Firmware routines:
+
+#pragma ioport	DB_FN:	0x24     	// register FN for Dead Band
+#pragma ioport	DB_CR0:	0x27     	// register CR0 for Dead Band
+
+PWMDB8_SetDeadBandFN:
+_PWMDB8_SetDeadBandFN:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank1
+and [DB_FN], 0xF8
+or [DB_FN], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+PWMDB8_SetKillModeFN:
+_PWMDB8_SetKillModeFN:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank1
+and [DB_FN], 0xE7
+or [DB_FN], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+PWMDB8_SetBitBangModeCR0:
+_PWMDB8_SetBitBangModeCR0:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank0
+and [DB_CR0], 0xFD
+or [DB_CR0], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+PWMDB8_SetBitBangClkCR0:
+_PWMDB8_SetBitBangClkCR0:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank0
+and [DB_CR0], 0xFB
+or [DB_CR0], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+
+C code:
+
+#include <m8c.h> // part specific constants and macros
+#include "PSoCAPI.h" // PSoC API definitions for all User Modules
+
+#define PWM_PERIOD 29
+#define PWM_PULSEWIDTH 15		//P = 29 and W = 15 gives the duty cycle = 50%
+#define PWM_DEATHTIME 2			//Dead time = 20%; (15*0.2)-1
+
+void main(void)
+{
+ 	M8C_EnableGInt ; 
+	PWMDB8_WritePeriod(PWM_PERIOD); 
+	PWMDB8_WritePulseWidth(PWM_PULSEWIDTH); 
+	PWMDB8_WriteDeadTime(PWM_DEATHTIME); 
+	
+	PWMDB8_SetDeadBandFN(0x04);
+	PWMDB8_SetKillModeFN(0x10);
+	PWMDB8_SetBitBangModeCR0(0x00);
+	PWMDB8_SetBitBangClkCR0(0x00);
+	
+	PWMDB8_Start();
+	
+}

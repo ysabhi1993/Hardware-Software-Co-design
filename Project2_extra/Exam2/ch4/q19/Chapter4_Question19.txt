@@ -1,0 +1,191 @@
+#pragma	ioport	DEC_DH:		0xE4		// output register high byte
+#pragma ioport 	DEC_DL:		0xE5		// output register low byte
+#pragma ioport	DEC_CR2:	0xE7		// control register 2
+#pragma ioport	DEC_CR1:	0xE7     	// register DEC_CR1
+#pragma ioport	DEC_CR0:	0xE6     	// register DEC_CR1
+
+#define DEC_Mode_type1_M DEC_CR2 &= 0x3F
+#define DEC_Mode_type2_M1 DEC_CR2 &= 0xBF
+#define DEC_Mode_type2_M2 DEC_CR2 |= 0x80
+
+#define Enable_Dec_as_counter_4_ADC DEC_CR1 |= 0x80
+#define Disable_Dec_as_counter_4_ADC DEC_CR1 &= ~0x80
+
+#define Inverted_Latch_Contol DEC_CR1 |= 0x40
+#define Non_Inverted_Latch_Contol DEC_CR1 &= ~0x40
+
+//NOTE: Anytime a function is called the value 
+//is assumed to be in the correct bit space by user
+
+//************************************
+//DEC_CR0 - FIRMWARE ROUTINES
+//************************************
+
+DEC_SetAnalogCompBlock:
+_DEC_SetAnalogCompBlock:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank0
+and [DEC_CR0], 0x0F
+or [DEC_CR0], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+
+DEC_DigitalBlkForADC:
+_DEC_DigitalBlkForADC:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank0
+and [DEC_CR0], 0xF7
+or [DEC_CR0], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+
+DEC_InputFromComCol:
+_DEC_InputFromComCol:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank0
+and [DEC_CR0], 0xF9
+or [DEC_CR0], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+
+DEC_DigitalBlkForDCLK0:
+_DEC_DigitalBlkForDCLK0:
+RAM_PROLOGUE RAM USE_CLASS_2
+M8C_SetBank0
+and [DEC_CR0], 0xFE
+or [DEC_CR0], A
+RAM_EPILOGUE RAM USE_CLASS_2
+ret
+
+
+//************************************
+//DEC_CR1 - FIRMWARE ROUTINES
+//************************************
+
+Disable_Dec_as_counter_4_ADC:
+_Disable_Dec_as_counter_4_ADC:
+RAM_PROLOGUE RAM_USE_CLASS_1
+Disable_Dec_as_counter_4_ADC
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+Enable_Dec_as_counter_4_ADC:
+_Enable_Dec_as_counter_4_ADC:
+RAM_PROLOGUE RAM_USE_CLASS_1
+Enable_Dec_as_counter_4_ADC
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+Non_Inverted_Latch_Contol:
+_Non_Inverted_Latch_Contol:
+RAM_PROLOGUE RAM_USE_CLASS_1
+Non_Inverted_Latch_Contol
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+
+Inverted_Latch_Contol:
+_Inverted_Latch_Contol:
+RAM_PROLOGUE RAM_USE_CLASS_1
+Inverted_Latch_Contol
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+DEC_Set_ILCKS:
+_DEC_Set_ILCKS:
+RAM_PROLOGUE RAM_USE_CLASS_1
+AND REG[DEC_CR1],0XC7
+OR REG[DEC_CR1], A
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+DEC_Set_DLCKS:
+_DEC_Set_DLCKS:
+RAM_PROLOGUE RAM_USE_CLASS_1
+AND REG[DEC_CR1],0XF8
+OR REG[DEC_CR1], A
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+
+
+
+
+//************************************
+//DEC_CR2 - FIRMWARE ROUTINES
+//************************************
+
+ DEC_Mode_type1:
+_DEC_Mode_type1:
+RAM_PROLOGUE RAM_USE_CLASS_1
+M8C_SetBank1
+DEC_Mode_type1_M
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+ DEC_Mode_type2:
+_DEC_Mode_type2:
+RAM_PROLOGUE RAM_USE_CLASS_1
+M8C_SetBank1
+DEC_Mode_type2_M1
+DEC_Mode_type2_M2
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+DEC_SetDataOutShift:				//different method here bc Charan is cool
+_DEC_SetDataOutShift:
+RAM_PROLOGUE RAM_USE_CLASS_1
+M8C_SetBank1
+cmp A,00
+JZ no_shift
+cmp A,01
+jz 1_shift
+cmp A,02
+jz 2_shift
+or reg[DEC_CR2], 0x30
+no_shift:
+and reg[DEC_CR2], 0xCF
+1_shift:
+and reg[DEC_CR2], 0xDF
+or reg[DEC_CR2], 0x10
+1_shift:
+and reg[DEC_CR2], 0xEF
+or reg[DEC_CR2], 0x20
+RAM_EPILOGUE RAM_USE_CLASS_1
+
+
+ DEC_SetDataFormat:
+_DEC_SetDataFormat:
+RAM_PROLOGUE RAM_USE_CLASS_1
+M8C_SetBank1
+or reg[DEC_CR2], A
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+DEC_Set_Decimation_Rate:
+_DEC_Set_Decimation_Rate:
+RESET_DEC_RATE: 	EQU 0xF8
+RAM_PROLOGUE RAM_USE_CLASS_1 
+M8C_SetBank1
+and reg[DEC_CR2], RESET_DEC_RATE
+or reg[DEC_CR2], A
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret
+
+
+
+//************************************
+//DEC OUTPUT REGISTER FIRMWARE ROUTINE
+//************************************
+
+
+DEC_ReadOutputReg:
+_DEC_ReadOutputReg:
+RAM_PROLOGUE RAM_USE_CLASS_1
+mov A, reg[DEC_DH]
+mov X, reg[DEC_DL]
+RAM_EPILOGUE RAM_USE_CLASS_1
+ret

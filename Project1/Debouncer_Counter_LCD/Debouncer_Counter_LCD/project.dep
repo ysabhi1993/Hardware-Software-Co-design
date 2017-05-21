@@ -1,0 +1,26 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8ssc.inc\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\lib\GLOBAL~1.INC\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\memory.inc
+./obj/main.o :  ./lib/LCD.inc ./lib/PSoCAPI.inc ./lib/PSOCGP~1.INC\
+   ./lib/Timer8_1.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\memory.inc
+./lib/obj/lcd.o :  ./lib/LCD.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\memory.inc
+./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\memory.inc
+./lib/obj/psocconfigtbl.o : \
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/psocgpioint.o :  ./lib/PSOCGP~1.INC\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+./lib/obj/timer8_1.o :  ./lib/Timer8_1.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\memory.inc
+./lib/obj/timer8_1int.o :  ./lib/Timer8_1.inc\
+   C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc\
+   C:\Users\Limor\DOCUME~1\PSOCDE~1.4PR\DEBOUN~1\DEBOUN~1\memory.inc

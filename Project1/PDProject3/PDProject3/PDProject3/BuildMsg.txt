@@ -1,0 +1,28 @@
+Starting MAKE...
+creating project.mk 
+
+lib/lcd_1.asm
+
+lib/psocconfig.asm
+
+lib/psocconfigtbl.asm
+
+./boot.asm
+
+Linking..
+
+LMM info: area 'InterruptRAM' uses 3 bytes in SRAM bank 0
+
+LMM info: area 'virtual_registers' uses 2 bytes in SRAM page 0
+
+idata dump at output/PDProject3.idata
+
+  ROM 2% full. 506 out of 32768 bytes used (does not include absolute areas).
+
+  RAM 1% full. 5 bytes used (does not include stack usage).
+
+Built with ICCM8C STD V7.05.00
+
+ 
+PDProject3 - 0 error(s) 0 warning(s) 03:30:58
+

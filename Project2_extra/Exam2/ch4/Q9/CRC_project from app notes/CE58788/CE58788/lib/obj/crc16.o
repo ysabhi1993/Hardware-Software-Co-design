@@ -1,0 +1,87 @@
+XH
+H 2 areas 16 global symbols
+M crc16.asm
+A text size 0 flags 0
+dbfile lib/crc16.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile lib/crc16.asm
+dbfunc 0 ? 0 I
+dbfile CRC16.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/CRC16.inc
+dbfunc 0 ? 0 I
+dbfile lib/crc16.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.4/Common/CY3E64~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+A UserModules size 36 flags 0
+dbfile lib/crc16.asm
+dbfunc 0 ? 0 I
+dbline 54 0
+dbline 56 3
+dbline 74 4
+dbline 76 7
+dbline 9A 8
+dbline 9B 9
+dbline 9E A
+dbline 9F C
+dbline A2 D
+dbline A5 10
+dbline A6 11
+dbline A7 13
+dbline A8 14
+dbline AB 16
+dbline AC 17
+dbline AF 19
+dbline D4 1A
+dbline D5 1B
+dbline D8 1C
+dbline D9 1E
+dbline DC 1F
+dbline DF 22
+dbline E0 23
+dbline E1 25
+dbline E2 26
+dbline E5 28
+dbline E6 29
+dbline E9 2B
+dbline 118 2C
+dbline 11B 2E
+dbline 11C 30
+dbline 123 31
+dbline 126 33
+dbline 129 35
+S _CRC16_Start Def0000
+S CRC16_WriteSeed Def0008
+S _CRC16_WritePolynomial Def001A
+S CRC16_Stop Def0004
+S $sb$CRC16_WriteSeed Def0008
+S $se$CRC16_WriteSeed Def001A
+S $sb$CRC16_Stop Def0004
+S $se$CRC16_Stop Def0008
+S wCRC16_ReadCRC Def002C
+S CRC16_wReadCRC Def002C
+S $sb$CRC16_wReadCRC Def002C
+S $se$CRC16_wReadCRC Def0036
+S _CRC16_WriteSeed Def0008
+S _CRC16_Stop Def0004
+S CRC16_Start Def0000
+S _wCRC16_ReadCRC Def002C
+S _CRC16_wReadCRC Def002C
+S $sb$CRC16_Start Def0000
+S $se$CRC16_Start Def0004
+S CRC16_WritePolynomial Def001A
+S $sb$CRC16_WritePolynomial Def001A
+S $se$CRC16_WritePolynomial Def002C
+T 00 00 43 23 01 7F 41 23 FE 7F 10 08 5D 23 5C 41
+R 00 00 00 01
+T 00 0E 23 FE 18 60 22 18 60 26 5B 60 23 7F 10 08
+R 00 00 00 01
+T 00 1C 5D 23 5C 41 23 FE 18 60 21 18 60 25 5B 60
+R 00 00 00 01
+T 00 2A 23 7F 5D 24 5D 26 5C 5D 20 5D 22 7F
+R 00 00 00 01

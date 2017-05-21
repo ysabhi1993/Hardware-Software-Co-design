@@ -1,0 +1,5 @@
+input_count: equ 71h
+counter_sum: equ 69h
+counter_input: equ 00h
+counting_adds: equ 70h
+operand_2:equ 40h

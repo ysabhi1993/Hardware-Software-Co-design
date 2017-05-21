@@ -1,0 +1,43 @@
+XH
+H 1 areas 4 global symbols
+M delay_ff_ff.asm
+A text size F flags 0
+dbfile ./delay_ff_ff.asm
+dbfunc 0 ? 0 I
+dbline E 0
+dbline 10 2
+dbline 12 5
+dbline 13 7
+dbline 15 9
+dbline 16 A
+dbline 18 C
+dbline 1C D
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile LCD_1.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LCD_1.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCGPIOINT.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./delay_ff_ff.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./delay_ff_ff.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+S _Delay10msTimes Def0000
+S $sb$_Delay10msTimes Def0000
+S $se$_Delay10msTimes Def000D
+T 00 00 50 FF 55 80 FF 7A 80 BF FD 78 BF F7 7F 8F
+R 00 00 00 00
+T 00 0E FF
+R 00 00 00 00

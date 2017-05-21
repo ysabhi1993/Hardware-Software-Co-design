@@ -1,0 +1,77 @@
+XH
+H 2 areas 8 global symbols
+M main.asm
+S LCD_Start Ref0000
+S Timer16_sec_Start Ref0000
+S LCD_Position Ref0000
+S LCD_PrCString Ref0000
+A text size 3A flags 0
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbline 19 0
+dbline 1A 2
+dbline 1B 4
+dbline 1C 6
+dbline 1D 8
+dbline 1E A
+dbline 1F C
+dbline 2 E
+dbline 2 11
+dbline 2 14
+dbline 24 16
+dbline 25 19
+dbline 26 1C
+dbline 2A 1F
+dbline 2E 22
+dbline 2F 23
+dbline 30 24
+dbline 31 25
+dbline 32 26
+dbline 34 27
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile Timer16_sec.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/Timer16_sec.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile LCD.inc
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/LCD.inc
+dbfunc 0 ? 0 I
+dbfile PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCGPIOINT.inc
+dbfunc 0 ? 0 I
+dbfile ./lib/PSoCAPI.inc
+dbfunc 0 ? 0 I
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbfile memory.inc
+dbfunc 0 ? 0 I
+dbfile ./main.asm
+dbfunc 0 ? 0 I
+dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.4/Common/CYPRES~1/tools/include/CY8C29~1/m8c.inc
+dbfunc 0 ? 0 I
+S _main Def0000
+S $lb$THE_STRNG Def0029
+S $le$THE_STRNG Def003A
+A bss size 1 flags 20
+S bShadow Def0000
+T 00 00 90 00 50 01 57 00 90 00 50
+R 00 00 00 00 06 02 00 00 00 00 06 08 00 02 00 00
+T 00 09 00 29 57 00 29
+R 00 00 00 00 41 02 00 00 01 05 00 00
+T 00 0C 90 00 43 E1 02 43 E0 20 71 01 55 FA 00 55
+R 00 00 00 00 06 02 00 03 00 00
+T 00 1A FB 00 55 FC 00 7C 00 00 40 40 40 40 40 8F
+R 00 00 00 00 02 08 00 01
+T 00 28 FA 45 76 72 79 54 6E 67 20 69 73 20 41 77
+R 00 00 00 00
+T 00 36 73 6D 65 00
+R 00 00 00 00
